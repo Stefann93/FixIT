@@ -1,0 +1,22 @@
+{
+  "name": "fixitsite",
+  "version": "1.0.0",
+  "description": "FixIT sajt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Steefaan04/FixITSite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Steefaan04/FixITSite/issues"
+  },
+  "homepage": "https://github.com/Steefaan04/FixITSite#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3"
+  }
+}

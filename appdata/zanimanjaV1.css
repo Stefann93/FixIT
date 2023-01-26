@@ -1,0 +1,473 @@
+@font-face {
+  font-family: 'customFont';
+  src: url('../GothamBlackRegular/gotham_black_regular-webfont.woff2') format('woff2'),
+    url('../GothamBlackRegular/gotham_black_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+#naslov {
+  font-size: 2.3em;
+  font-weight: bold;
+}
+
+.myform {
+  padding: 2em;
+  max-width: 100%;
+  color: #fff;
+  box-shadow: 0 4px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-content {
+  width: 80%;
+  margin-inline: auto;
+}
+
+.btn-close {
+  position: absolute;
+  right: 0;
+  padding: 1em;
+}
+
+.form-control:focus {
+  box-shadow: inset 0 -1px 0 #7e7e7e;
+  background-color: inherit;
+  color: #fff;
+}
+
+.form-control {
+  background-color: inherit;
+  color: #fff;
+  padding-left: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #fff;
+}
+
+.myform .btn {
+  width: 100%;
+  font-weight: 800;
+  background-color: #fff;
+  border-radius: 0;
+  padding: 0.5em 0;
+}
+
+.myform .btn:hover {
+  background-color: inherit;
+  color: #fff;
+  border-color: #fff;
+}
+
+#nisi-korisnik {
+  text-align: center;
+  padding-top: 2em;
+  color: grey;
+}
+
+#prijava-mini {
+  color: #e1e1e1;
+  text-decoration: none;
+}
+
+#prijava-mini:hover {
+  color: #fff;
+}
+
+/*Kraj LOGIN FORM*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bread {
+  text-decoration: none;
+}
+
+.image {
+  height: 80px;
+  width: 80px;
+}
+
+.z {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.parent {
+  width: 100%;
+  height: 400px;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.slika {
+  background-size: cover;
+  min-height: 60vh;
+}
+
+.searchbar {
+  position: relative;
+  display: block;
+  border: 1px solid #212529;
+  padding: 0px 10px;
+  border-radius: 10px;
+  background-color: white;
+  height: 42px;
+  width: 492px;
+  color: white;
+}
+
+.tabela {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  background-color: #212529;
+}
+
+.search {
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #212529;
+  font-weight: 500;
+  background-color: #212529;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.dropdown {
+  position: relative;
+  border: 1px solid #e5e5e5;
+  padding: 0px 10px;
+  border-radius: 10px;
+  height: 42px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.fa {
+  color: white;
+}
+
+.datum {
+  position: relative;
+  border: 1px solid #e5e5e5;
+  padding: 0px 10px;
+  border-radius: 10px;
+  height: 42px;
+  width: 100%;
+}
+
+.card {
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  border: none;
+}
+
+.sidebar {
+  padding: 3px 70px;
+  text-align: center;
+  background-color: #64B245;
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  font-weight: bold;
+  border-bottom-right-radius: 6px;
+}
+.sidebar-Dug {
+  padding: 3px 70px;
+  text-align: center;
+  background-color: #64B245;
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  font-weight: bold;
+  border-bottom-right-radius: 6px;
+}
+@media (max-width: 800px) {
+  .sidebar {
+    text-align: center;
+    background-color: #64B245;
+    color: white;
+    position:absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50px;
+    right: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  .sidebar-Dug {
+    padding: 3px 70px;
+    text-align: center;
+    background-color: #64B245;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    font-weight: bold;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+.pozadinaCenter {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+}
+
+.pozadinaBottom {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  height: 450px;
+}
+
+.pozadinaTop {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 450px;
+}
+
+.naslov {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 5rem;
+font-family: 'customFont';
+}
+
+.tekst {
+  font-weight: bold;
+}
+
+.multiselect {
+  width: 100%;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.rad {
+  padding: 0px 10px;
+  border-radius: 10px;
+  height: 42px;
+  font-size: 20px;
+}
+
+.selectBox select {
+  width: 100%;
+  border: none;
+}
+
+.overSelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#checkboxes,
+#checkboxes2 {
+  display: none;
+  padding-left: 5px;
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  background-color: white;
+  z-index: 20;
+  width: 50%;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes2 label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #64B245;
+}
+
+#checkboxes2 label:hover {
+  background-color: #64B245;
+}
+
+.as {
+  color: white;
+  font-size: 25px;
+  padding-left: 15px;
+}
+
+.majstor {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 2px 15px;
+}
+
+.majstor2 {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 5px 15px;
+  font-size: 20px;
+}
+
+.ocena {
+  text-align: right;
+  padding: 2px 15px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.ocena2 {
+  text-align: right;
+  padding: 5px 15px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 20px;
+}
+
+.tabela2 {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+.tabelaa {
+  width: 100%;
+}
+
+.dugme {
+  text-align: center;
+}
+
+.btn {
+  font-size: 20px;
+  font-family: 'Roboto';
+}
+
+.nasMajstorNaslov {
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'customFont';
+}
+
+.nasMajstorTekst {
+  text-align: center;
+  font-family: 'customFont';
+}
+
+.page {
+  text-align: end;
+}
+
+.dodatak {
+  margin-top: 100px;
+}
+
+.aa {
+  background-color: #e5e5e5;
+  color: black;
+  cursor: pointer;
+}
+
+.aa1 {
+  background-color: #64B245;
+}
+
+.aa:hover {
+  background-color: #64B245;
+  transition: background-color 0.2s;
+  color: white;
+  transition: color 0.2s;
+}
+
+#instructors {
+  margin-top: 5rem;
+}
+
+.page-link {
+  border: none;
+  background-color: #e5e5e5;
+}
+
+.page-link:hover {
+  background-color: #64B245;
+  color: white;
+}
+
+@media (max-width: 800px) {
+  .nakompu {
+    display: none;
+  }
+
+  .as {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .nafonu {
+    display: none;
+  }
+}
+
+.tekstnafonu {
+  color: #64B245;
+  font-size: 20px;
+  display: inline-block;
+  cursor: pointer;
+  padding:5px 1rem;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.filtermodal {
+  background-color: #e5e5e5;
+  border-radius: 20px;
+}
+
+.majstor-button {
+  padding-left: 100px;
+  padding-right: 100px;
+  text-transform: uppercase;
+  border-radius: 17px;
+  font-family: 'customFont';
+}
+
+@media (max-width: 450px) {
+  .majstor-button {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.ss {
+  height: 2px;
+}

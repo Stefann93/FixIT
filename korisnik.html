@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="appdata/main.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel='stylesheet' href='appdata/styleV1.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
+    <title>Registracija</title>
+</head>
+
+<body class="bg-primary">
+    <!--#region NavBar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container">
+            <a href="index.html" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Pocetna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="onama.html" class="nav-link">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi
+                            se</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--#endregion -->
+
+    <section class="vh-100 p-md-4">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body ">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><span
+                                            class="text-success">FixIT</span>
+
+                                    <ul class="nav nav-tabs justify-content-center">
+                                        <li class="nav-item">
+                                            <a class="nav-link active link-secondary" aria-current="page"
+                                                href="register.html">Korisnik</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-success" href="fizicko_lice.html">Fizičko lice</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-success" href="firma.html">Firma</a>
+                                        </li>
+                                    </ul>
+
+                                    </p>
+                                    <p class="text-center h2 mb-5 mx-1 mx-md-4 mt-4">Korisnička registracija</p>
+
+                                    <form class="mx-1 mx-md-4" action="appdata/registerKorisink.php" method="POST">
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" name="ime" placeholder="Ime i prezime"
+                                                    id="form3Example1c" class="form-control" />
+                                                <label class="form-label" for="form3Example1c"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" name="adresa" placeholder="Adresa"
+                                                    id="form3Example2c" class="form-control" />
+                                                <label class="form-label" for="form3Example1c"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="email" name="email" placeholder="Email" id="form3Example3c"
+                                                    class="form-control" />
+                                                <label class="form-label" for="form3Example3c"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="password" name="sifra" placeholder="Šifra"
+                                                    id="form3Example4c" class="form-control" />
+                                                <label class="form-label" for="form3Example4c"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="password" placeholder="Potvrdite šifru"
+                                                    id="form3Example5cd" class="form-control" />
+                                                <label class="form-label" for="form3Example4cd"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check d-flex justify-content-center mb-5">
+                                            <input class="form-check-input me-2" type="checkbox" value=""
+                                                id="form2Example3c" />
+                                            <label class="form-check-label" for="form2Example3">
+                                                Slažem se sa uslovima <a href="#!"> Korišćenja usluge</a>
+                                            </label>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <button type="submit" name="submit" class="btn btn-success btn-lg">Registruj
+                                                se</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="col-sm-6 col-lg-6 col-xl-7 align-self-center order-1 order-lg-2">
+
+                                    <img src="slike/logo/Logo.svg" class="img-fluid w-100 w-50-sm" alt="Logo">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#region Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+
+                        <div class="myform bg-dark">
+                            <h1 id="naslov" class="text-center">Forma za prijavu</h1>
+                            <form>
+                                <div class="mb-3 mt-4">
+                                    <label for="exampleInputEmail1" class="form-label">Email adresa</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Šifra</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                                </div>
+                                <button type="submit" class="btn btn-light mt-3">
+                                    PRIJAVI SE
+                                </button>
+                                <p id="nisi-korisnik">
+                                    Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#endregion -->
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

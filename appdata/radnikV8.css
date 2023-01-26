@@ -1,0 +1,753 @@
+@font-face {
+    font-family: 'customFont';
+    src: url('../GothamBlackRegular/gotham_black_regular-webfont.woff2') format('woff2'),
+        url('../GothamBlackRegular/gotham_black_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#naslov {
+    font-size: 2.3em;
+    font-weight: bold;
+}
+
+.myform {
+    padding: 2em;
+    max-width: 100%;
+    color: #fff;
+    box-shadow: 0 4px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-content {
+    width: 80%;
+    margin-inline: auto;
+}
+
+.btn-close {
+    position: absolute;
+    right: 0;
+    padding: 1em;
+}
+
+.form-control:focus {
+    box-shadow: inset 0 -1px 0 #7e7e7e;
+    background-color: inherit;
+    color: #fff;
+}
+
+.form-control {
+    background-color: inherit;
+    color: #fff;
+    padding-left: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+}
+
+.myform .btn {
+    width: 100%;
+    font-weight: 800;
+    background-color: #fff;
+    border-radius: 0;
+    padding: 0.5em 0;
+}
+
+.myform .btn:hover {
+    background-color: inherit;
+    color: #fff;
+    border-color: #fff;
+}
+
+#nisi-korisnik {
+    text-align: center;
+    padding-top: 2em;
+    color: grey;
+}
+
+#prijava-mini {
+    color: #e1e1e1;
+    text-decoration: none;
+}
+
+#prijava-mini:hover {
+    color: #fff;
+}
+
+/*Kraj LOGIN FORM*/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto";
+}
+
+.bread {
+    text-decoration: none;
+}
+
+.image {
+    height: 80px;
+    width: 80px;
+}
+
+.z {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.parent {
+    width: 100%;
+    height: 400px;
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+.naziv-radnika {
+    border-top: solid 10px #64B245;
+    padding-top: 2rem;
+}
+
+.okupacija {
+    font-family: "customFont";
+}
+
+.ime {
+    font-family: "customFont";
+    font-size: 4rem;
+}
+
+.id {
+    font-family: "customFont";
+    padding-bottom: 80px;
+    font-weight: bold;
+    float: right;
+}
+
+@media (min-width: 800px) {
+    .asa {
+        width: fit-content;
+        margin-left: 10rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .asa {
+        margin-left: none;
+    }
+
+    .id {
+        float: left;
+    }
+}
+
+.ocena {
+    font-family: "customFont";
+    font-weight: bold;
+    color: white;
+    padding-bottom: 5rem;
+    margin-top: 4.5rem;
+}
+
+.boja {
+    padding: 3rem 1.7rem;
+    border-radius: 100px;
+    font-family: "customFont";
+}
+
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: block;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 3rem;
+    line-height: 80px;
+    overflow: hidden;
+    border-bottom: 1px solid white;
+}
+
+.tab {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 25%;
+    text-align: center;
+    font-family: "customFont";
+}
+
+.tab.active {
+    border-bottom: 5px solid #64B245;
+}
+
+.tab:hover {
+    opacity: 0.8;
+}
+
+.vrsta-rada {
+    width: 50%;
+    padding-right: 10px;
+}
+
+@media (max-width: 576px) {
+    .vrsta-rada {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: relative;
+        border: 1px solid #e5e5e5;
+        padding: 0px 10px;
+        border-radius: 10px;
+        height: 42px;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .opis-tekst {
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%;
+        resize: none;
+    }
+}
+@media (min-width: 576px) {
+    .dropdown {
+        position: relative;
+        border: 1px solid #e5e5e5;
+        padding: 0px 10px;
+        border-radius: 10px;
+        height: 42px;
+        width: 90%;
+        font-size: 20px;
+        margin-left: 70px;
+        width: 90%;
+    }
+
+    .opis-tekst {
+        margin-left: 70px;
+        padding: 10px;
+        border-radius: 10px;
+        width: 90%;
+        resize: none;
+    }
+}
+
+.vrsta-rada h4 {
+    display: flex;
+    position: relative;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    align-items: center;
+    padding: 15px;
+    line-height: 22px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: left;
+    color: #707070;
+    padding-left: 70px;
+}
+
+.checked,
+.x,
+.sat,
+.zvezdica,
+.kliper,
+.lokacija,
+.lokacija-pinned,
+.kalendar,
+.korisnik,
+.telefon,
+.opis,
+.email {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.telefon{
+    background-image: url('../slike/Ikonice/telefon.svg');
+}
+.lokacija-pinned
+{
+    background-image: url('../slike/Ikonice/lokacija-pinned.svg');
+}
+.sat{
+    background-image: url('../slike/Ikonice/sat.svg');
+}
+.email{
+    background-image: url('../slike/Ikonice/email.svg');
+
+}
+.checked {
+    width: 30px;
+    height: 30px;
+    background-image: url('../slike/Ikonice/check-solid.svg');
+}
+
+.x {
+    width: 30px;
+    height: 30px;
+    background-image: url('../slike/Ikonice/xmark-solid.svg');
+}
+
+.zvezdica {
+    background-image: url('../slike/Ikonice/zvezdicaa.svg');
+}
+
+.kliper {
+    background-image: url('../slike/Ikonice/kliper.svg');
+}
+
+.lokacija {
+    background-image: url('../slike/Ikonice/lokacija.svg');
+}
+
+.kalendar {
+    background-image: url('../slike/Ikonice/kalendar.svg');
+}
+
+.korisnik {
+    width:30px;
+    height:30px;
+    background-image: url('../slike/Ikonice/korisnik.svg');
+}
+
+.opis {
+    background-image: url('../slike/Ikonice/opiss.svg');
+}
+
+.nepravilnost {
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'customFont';
+}
+
+.nepravilnost-dodatak {
+    text-align: center;
+}
+
+.prijavi-button {
+    padding-left: 100px;
+    padding-right: 100px;
+    text-transform: uppercase;
+    border-radius: 17px;
+    font-family: 'customFont';
+}
+
+@media (max-width: 450px) {
+    .prijavi-button {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+.recenzije {
+    width: 70%;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+.recenzije h4 {
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 70px;
+}
+.kontakt-sekcija,.lokacija-sekcija
+{
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    height: 47%;
+}
+.kontakt-sekcija{
+    margin-bottom: 3%;
+}
+.kontakt-sekcija h4,.lokacija-sekcija h4 {
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 70px;
+}
+.undertext {
+    padding-left: 70px;
+}
+
+.undertext-komentar {
+    padding-left: 70px;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.glavna-ocena {
+    width: 29%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+
+.glavna-ocena h4 {
+    color: #64B245;
+    font-family: 'customFont';
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+}
+.radno-vreme{
+    width: 49%;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+.radno-vreme h4{
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 70px;
+}
+.posebne-ocene {
+    position: relative;
+    text-align: left;
+    padding-left: 110px;
+}
+
+.kvalitet-usluga,
+.postovanje-rokova,
+.povoljnost-cena,
+.odnos {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 70px;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.slobodan-dan,
+.zauzet-dan {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    border-radius: 20px;
+    margin-right: 5px;
+}
+
+.slobodan-dan {
+    background-image: url('../slike/Ikonice/slobodan-dan.svg');
+}
+
+.zauzet-dan {
+    background-image: url('../slike/Ikonice/zauzet-dan.svg');
+
+}
+
+.kvalitet-usluga {
+    background-image: url('../slike/Ikonice/kvalitetUsluga.svg');
+}
+
+.postovanje-rokova {
+    background-image: url('../slike/Ikonice/postovanjeRokova.svg');
+}
+
+.povoljnost-cena {
+    background-image: url('../slike/Ikonice/povoljnostCena.svg');
+}
+
+.odnos {
+    background-image: url('../slike/Ikonice/odnosPermaKorisniku.svg');
+}
+
+.bar {
+    display: inline-block;
+    width: 350px;
+    margin-right: 10px;
+    height: 20px;
+    border-radius: 7px;
+}
+
+@media (min-width: 600px) {
+    .bar {
+        width: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .bar {
+        width: 300px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .bar {
+        width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bar {
+        width: 85%;
+    }
+    .kvalitet-usluga,.postovanje-rokova,.povoljnost-cena,.odnos{
+        display: none;
+    }
+    .posebne-ocene{
+        padding-left: 0;
+    }
+    .wrapper{
+        justify-content: end;
+    }
+}
+.sub-container{
+    width:50%;
+}
+@media (max-width: 990px) {
+    .sub-container{
+        width:100%;
+    }
+    .recenzije {
+        width: 100%;
+    }
+
+    .glavna-ocena {
+        width: 100%;
+        margin-top: 0.8rem;
+    }
+    .radno-vreme{
+        margin-top: 0.8rem;
+        width: 100%;
+    }
+}
+
+.wrapper-komentar,.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.boja2 {
+    padding: 50px 20px;
+    border-radius: 100px;
+    font-family: "customFont";
+}
+
+@media (max-width: 760px) {
+    .boja2 {
+        padding: 40px 20px;
+        border-radius: 100px;
+    }
+
+    .boja {
+        padding: 2rem 1rem;
+        border-radius: 100px;
+    }
+
+    .tab {
+        color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #64B245;
+    }
+    .ime{
+        font-size: calc(1.375rem + 1.5vw);
+    }
+    .undertext {
+        padding-left: 0;
+        text-align: center;
+        padding-top: 1rem;
+    }
+    .tab.active {
+        border-bottom: 5px solid #212529;
+    }
+    .email-sekcija{
+        display: none;
+    }
+    .undertext-komentar{
+        padding-left: 0;
+    }
+    .wrapper-komentar{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .usluge{
+        background-image: url('../slike/Ikonice/usluge.svg');
+        border-top-left-radius: 30px;
+    }   
+     .recenzije-tab{
+        background-image: url('../slike/Ikonice/ocena.svg');
+    }   
+     .kontakt{
+        background-image: url('../slike/Ikonice/contact.svg');
+    }  
+      .angazovanje{
+        background-image: url('../slike/Ikonice/angazuj.svg');
+        border-top-right-radius: 30px;
+    }
+}
+
+.ostatak-sekcija {
+    width: 100%;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+.email-sekcija
+{
+    width: 100%;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+.email-sekcija h4{
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 70px;
+}
+.ostatak-sekcija h4 {
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    position: relative;
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 70px;
+}
+
+.ocenite-button {
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 17px;
+    font-family: 'customFont';
+}
+
+.komentari {
+    width: 100%;
+    padding-right: 10px;
+    border-radius: 10px;
+    padding: 25px;
+    background-color: #f2f2f2;
+}
+
+.komentari h4 {
+    color: #64B245;
+    font-family: 'customFont';
+    display: flex;
+    flex-wrap:wrap;
+    position: relative;
+    padding-top: 15px;
+    font-size: 23px;
+    text-align: left;
+    padding-left: 60px;
+    justify-content: space-between;
+}
+
+.kvalitet-usluga-kruzic {
+    display: inline-block;
+    background-position: center;
+    background-image: url('../slike/Ikonice/kvalitetUsluga.svg');
+    border-radius: 20px;
+    padding: 5px;
+    padding-right: 6px;
+    font-size: 20px;
+    color: #212529;
+    font-weight: bold;
+}
+
+.postovanje-rokova-kruzic {
+    display: inline-block;
+    background-position: center;
+    background-image: url('../slike/Ikonice/postovanjeRokova.svg');
+    border-radius: 20px;
+    padding: 5px;
+    padding-right: 6px;
+    font-size: 20px;
+    color: #212529;
+    font-weight: bold;
+}
+
+.povoljnost-cena-kruzic {
+    display: inline-block;
+    background-position: center;
+    background-image: url('../slike/Ikonice/povoljnostCena.svg');
+    border-radius: 20px;
+    padding: 5px;
+    padding-right: 6px;
+    font-size: 20px;
+    color: #212529;
+    font-weight: bold;
+}
+
+.odnos-kruzic {
+    display: inline-block;
+    background-position: center;
+    background-image: url('../slike/Ikonice/odnosPermaKorisniku.svg');
+    border-radius: 20px;
+    padding: 5px;
+    padding-right: 6px;
+    font-size: 20px;
+    color: #212529;
+    font-weight: bold;
+}
+
+.datum {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 0;
+    margin-top: 20px;
+
+}
+
+.wrapper-dani {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-left: 20px;
+}
+
+@media (min-height: 1000px) {
+    .footer {
+        padding-top: 45px;
+        padding-bottom: 40px;
+    }
+}

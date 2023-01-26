@@ -1,2 +1,2 @@
 # FixIT
-FixIT Sajt
+FixIT sajt
