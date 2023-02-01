@@ -5,9 +5,9 @@ $sifra = $_POST['sifra'];
 $pokazivac = 0;
 if (!empty($email) || !empty($sifra) || !empty($adresa) || !empty($ime)) {
     $host = "localhost";
-    $dbusername = "root";
-    $dbpassword = "fixit";
-    $dbname = "fixit";
+    $dbusername = "fixitinr_fixit"; //root
+    $dbpassword = "9KD!Co9]B+D*"; //fixit
+    $dbname = "fixitinr_fixit"; //fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
     if (mysqli_connect_error()) {
         die('Connection Error(' . mysqli_connect_error() . ')' . mysqli_connect_error());

@@ -21,12 +21,12 @@
 <body>
     <?php
     $host = "localhost";
-    $dbusername = "root";
-    $dbname = "proba";
-    $dbpassword = "";
+    $dbusername = "fixitinr_fixit"; //root
+    $dbpassword = "9KD!Co9]B+D*"; //fixit
+    $dbname = "fixitinr_fixit"; //fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-    $result = $conn->query("SELECT * FROM test WHERE id<=7")
+    $result = $conn->query("SELECT * FROM fizicko_lice WHERE id<=7")
         or die($conn->error);
     ?>
     <!--#region Modal -->
@@ -235,7 +235,7 @@
                         <table class="tabela2">
                             <?php while ($podatak = $result->fetch_assoc()) : ?>
                                 <tr class="aa" onclick="location.href='../moler/ime-radnika.php'">
-                                    <td class="majstor2"><?= $podatak['ime'] ?>&nbsp;<?= $podatak['prezime'] ?>&nbsp;<span style="display:none"><?= $podatak['ID'] ?></span></td>
+                                    <td class="majstor2"><?= $podatak['IME'] ?>&nbsp;<?= $podatak['PREZIME'] ?>&nbsp;<span style="display:none"><?= $podatak['ID'] ?></span></td>
                                     <td class="ocena2">10.0</td>
                                 </tr>
                             <?php endwhile; ?>

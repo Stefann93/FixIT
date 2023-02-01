@@ -19,32 +19,29 @@
 </head>
 
 <body>
-<?php  
-   $host = "localhost";
-   $dbusername = "root";
-   $dbname = "proba";
-   $dbpassword = "";
-   $conn = new mysqli($host, $dbusername,$dbpassword, $dbname);
+    <?php
+    $host = "localhost";
+    $dbusername = "fixitinr_fixit"; //root
+    $dbpassword = "9KD!Co9]B+D*"; //fixit
+    $dbname = "fixitinr_fixit"; //fixit
+    $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-   $result = $conn -> query
-   ("SELECT * FROM test WHERE id>=7*2 and id<=7*3")
-   or die($conn ->error);
-   ?>
+    $result = $conn->query("SELECT * FROM test WHERE id>=7*2 and id<=7*3")
+        or die($conn->error);
+    ?>
     <!--#region Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     <div class="myform bg-dark">
                         <h1 id="naslov" class="text-center">Forma za prijavu</h1>
                         <form>
                             <div class="mb-3 mt-4">
                                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" />
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
@@ -66,8 +63,7 @@
     <!--#region NavBar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
         <div class="container">
-            <a href="../index.html" class="nav brand"><img class="image" src="../slike/logo/Logo(white).svg"
-                    alt="logo" /></a>
+            <a href="../index.html" class="nav brand"><img class="image" src="../slike/logo/Logo(white).svg" alt="logo" /></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -94,8 +90,7 @@
     </nav>
     <!--#endregion -->
     <div class="sidebar">MOLER</div>
-    <div class="pozadinaCenter"
-        style="background-image: url('../slike/DelatnostiHighRes/GRADJEVINSKI-RADOVI/MOLER.jpg');">
+    <div class="pozadinaCenter" style="background-image: url('../slike/DelatnostiHighRes/GRADJEVINSKI-RADOVI/MOLER.jpg');">
     </div>
     <h1 class="naslov fw-bold mb-5">pronadjite <span class="text-primary naslov">molera</span></h1>
     <div class="container">
@@ -118,8 +113,7 @@
             </tr>
             <tr class="nafonu">
                 <td style="text-align: center;">
-                    <p class="tekstnafonu mb-4 bg-primary text-white fw-bold" data-bs-toggle="modal"
-                        data-bs-target="#filternafonu">Dodate
+                    <p class="tekstnafonu mb-4 bg-primary text-white fw-bold" data-bs-toggle="modal" data-bs-target="#filternafonu">Dodate
                         opcije
                         pretrazivanja
                     </p>
@@ -239,11 +233,11 @@
                             </tr>
                         </table>
                         <table class="tabela2">
-                        <?php while($podatak = $result -> fetch_assoc()):?>
-                            <tr class="aa" onclick="location.href='../moler/ime-radnika.html'">
-                                <td class="majstor2"><?=$podatak['ime']?>&nbsp;<?=$podatak['prezime']?>&nbsp;<span style="display:none"><?=$podatak['ID']?></span></td>
-                                <td class="ocena2">10.0</td>
-                            </tr>
+                            <?php while ($podatak = $result->fetch_assoc()) : ?>
+                                <tr class="aa" onclick="location.href='../moler/ime-radnika.html'">
+                                    <td class="majstor2"><?= $podatak['IME'] ?>&nbsp;<?= $podatak['PREZIME'] ?>&nbsp;<span style="display:none"><?= $podatak['ID'] ?></span></td>
+                                    <td class="ocena2">10.0</td>
+                                </tr>
                             <?php endwhile; ?>
                             <tr>
                                 <td colspan="2" class="page">
@@ -278,8 +272,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card bg-light">
                         <div class="card-body text-center">
-                            <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3"
-                                alt="" />
+                            <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3" alt="" />
                             <h3 class="card-title mb-3">Marko Nikolic</h3>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -291,8 +284,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card bg-light">
                         <div class="card-body text-center">
-                            <img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle mb-3"
-                                alt="" />
+                            <img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle mb-3" alt="" />
                             <h3 class="card-title mb-3">Stefan Markovic</h3>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -305,8 +297,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card bg-light">
                         <div class="card-body text-center">
-                            <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3"
-                                alt="" />
+                            <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" alt="" />
                             <h3 class="card-title mb-3">Milos Nikolic</h3>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -319,8 +310,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card bg-light">
                         <div class="card-body text-center">
-                            <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle mb-3"
-                                alt="" />
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle mb-3" alt="" />
                             <h3 class="card-title mb-3">Aleksandar Pavlovic</h3>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -358,9 +348,7 @@
     </footer>
     <!--#endregion-->
     <script src="https://kit.fontawesome.com/41428e8763.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
@@ -373,6 +361,7 @@
             "locale": "sr"
         });
         var expanded = false;
+
         function showCheckboxes() {
             var checkboxes = document.getElementById("checkboxes");
             if (!expanded) {
@@ -383,6 +372,7 @@
                 expanded = false;
             }
         }
+
         function showCheckboxes2() {
             var checkboxes2 = document.getElementById("checkboxes2");
             if (!expanded) {
@@ -393,11 +383,12 @@
                 expanded = false;
             }
         }
-        $('tr').click(function () {
+        $('tr').click(function() {
             window.location = $(this).find('a').attr('href');
-        }).hover(function () {
+        }).hover(function() {
             $(this).toggleClass('hover');
         });
     </script>
 </body>
+
 </html>
