@@ -25,9 +25,9 @@
     $dbpassword = ""; //9KD!Co9]B+D*
     $dbname = "fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-
-    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID<=7")
+    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p]")
         or die($conn->error);
+
     ?>
     <!--#region Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -244,11 +244,11 @@
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-md-end justify-content-center">
                                             <li class="page-item"><a class="page-link  fs-5" href="#">Nazad</a></li>
-                                            <li class="page-item"><a class="page-link active fs-5" href="">1</a>
+                                            <li class="page-item"><a class="page-link fs-5" id="1" onclick="page(this);">1</a>
                                             </li>
-                                            <li class="page-item"><a class="page-link  fs-5" href="./moler-p2.php">2</a>
+                                            <li class="page-item"><a class="page-link fs-5" id="2" onclick="page(this);">2</a>
                                             </li>
-                                            <li class="page-item"><a class="page-link  fs-5" href="./moler-p3.php">3</a>
+                                            <li class="page-item"><a class="page-link  fs-5" id="3" onclick="page(this);">3</a>
                                             </li>
                                             <li class="page-item"><a class="page-link  fs-5" href="./moler-p2.php">Napred</a>
                                             </li>
@@ -336,6 +336,7 @@
             </div>
         </div>
     </section>
+
     <div class="bg-primary ss"></div>
     <!--#region Footer-->
     <footer class="p-4 bg-dark text-white text-center position-relative">
@@ -353,10 +354,23 @@
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
     <script>
+        function Pagination() {
+            var az = document.getElementById("<?php echo $_GET['p']; ?>");
+            az.classList.add("active");
+            console.log(az);
+        }
+
+        window.onload = Pagination();
+
         function getId(element) {
             var id = element.id;
-            console.log(element.textContent);
             window.location.href = "../moler/ime-radnika.php?myVariable=" + id;
+            // localStorage.setItem("text", text.textContent);
+        }
+
+        function page(element) {
+            var id = element.id;
+            window.location.href = "../gradjevina/moler.php?p=" + id;
             // localStorage.setItem("text", text.textContent);
         }
         flatpickr('#calendar-range', {
