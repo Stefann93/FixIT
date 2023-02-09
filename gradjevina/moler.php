@@ -21,12 +21,12 @@
 <body>
     <?php
     $host = "localhost";
-    $dbusername = "fixitinr_fixit"; //root
-    $dbpassword = "9KD!Co9]B+D*"; //fixit
-    $dbname = "fixitinr_fixit"; //fixit
+    $dbusername = "root"; //fixitinr_fixit
+    $dbpassword = ""; //9KD!Co9]B+D*
+    $dbname = "fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-    $result = $conn->query("SELECT * FROM fizicko_lice WHERE id<=7")
+    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID<=7")
         or die($conn->error);
     ?>
     <!--#region Modal -->
@@ -234,8 +234,8 @@
                         </table>
                         <table class="tabela2">
                             <?php while ($podatak = $result->fetch_assoc()) : ?>
-                                <tr class="aa" onclick="location.href='../moler/ime-radnika.php'">
-                                    <td class="majstor2"><?= $podatak['IME'] ?>&nbsp;<?= $podatak['PREZIME'] ?>&nbsp;<span style="display:none"><?= $podatak['ID'] ?></span></td>
+                                <tr class="aa"> <!-- onclick="location.href='../moler/ime-radnika.php'" -->
+                                    <td onclick="getId(this);" class="majstor2" id="<?= $podatak['ID'] ?>"><?= $podatak['IME'] ?>&nbsp;<?= $podatak['PREZIME'] ?>&nbsp;<span style="display:none"><?= $podatak['ID'] ?></span></td>
                                     <td class="ocena2">10.0</td>
                                 </tr>
                             <?php endwhile; ?>
@@ -352,8 +352,13 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
-    <script src="../appdata/menjanjeRadnika.js"></script>
     <script>
+        function getId(element) {
+            var id = element.id;
+            console.log(element.textContent);
+            window.location.href = "../moler/ime-radnika.php?myVariable=" + id;
+            // localStorage.setItem("text", text.textContent);
+        }
         flatpickr('#calendar-range', {
             mode: "range",
             minDate: "today",
