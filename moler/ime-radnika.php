@@ -21,12 +21,12 @@
 <body>
     <?php
     $host = "localhost";
-    $dbusername = "fixitinr_fixit"; //root
-    $dbpassword = "9KD!Co9]B+D*"; //fixit
-    $dbname = "fixitinr_fixit"; //fixit
+    $dbusername = "root"; //fixitinr_fixit
+    $dbpassword = ""; //9KD!Co9]B+D*
+    $dbname = "fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-    $result = $conn->query("select * from fizicko_lice")
+    $result = $conn->query("select * from fizicko_lice where id=1")
         or die($conn->error);
     while ($podatak = $result->fetch_assoc()) :
     ?>
