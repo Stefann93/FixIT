@@ -25,7 +25,7 @@
     $dbpassword = ""; //9KD!Co9]B+D*
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p] ")
+    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p]")
         or die($conn->error);
     $opstine = $conn->query("SELECT ime_opstine FROM opstine")
     or die($conn->error);
