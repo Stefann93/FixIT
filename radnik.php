@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS only -->
-    <link href="../appdata/main.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../appdata/radnikV8.css" />
+    <link href="./appdata/main.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./appdata/radnikV8.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="../slike/Ikonice/FAVICON2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>FixIT</title>
 </head>
@@ -23,10 +23,10 @@
     $host = "localhost";
     $dbusername = "root"; //fixitinr_fixit
     $dbpassword = ""; //9KD!Co9]B+D*
-    $dbname = "fixit"; //fixitinr_fixit
+    $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-    $result = $conn->query("select * from fizicko_lice where id=1")
+    $result = $conn->query("select * from fizicko_lice where ID=($_GET[id])")
         or die($conn->error);
     while ($podatak = $result->fetch_assoc()) :
     ?>
@@ -64,7 +64,7 @@
         <!--#region NavBar -->
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
             <div class="container">
-                <a href="../index.html" class="nav brand"><img class="image" src="../slike/logo/Logo(white).svg" alt="logo" /></a>
+                <a href="./index.html" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                     <span class="navbar-toggler-icon"></span>
@@ -73,17 +73,17 @@
                 <div class="collapse navbar-collapse" id="navmenu">
                     <ul class="navbar-nav ms-auto z">
                         <li class="nav-item">
-                            <a href="../index.html" class="nav-link">Pocetna</a>
+                            <a href="./index.html" class="nav-link">Pocetna</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../onama.html" class="nav-link">O nama</a>
+                            <a href="./onama.html" class="nav-link">O nama</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi
                                 se</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../korisnik.html" class="nav-link">Registruj se</a>
+                            <a href="./korisnik.html" class="nav-link">Registruj se</a>
                         </li>
                     </ul>
                 </div>
@@ -95,10 +95,14 @@
             <div class="container text-white">
                 <div class="row">
                     <div class="col-8 mt-5">
-                        <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0">Moler,
-                                Mladenovac</span>
-                            <span class="ime d-block my-0"><?= $podatak['IME'] ?>&nbsp;<?= $podatak['PREZIME'] ?></span>
-                            <span id="a" class="id text-primary d-block my-0 fs-3">ID:2512</span>
+                        <?php
+                        $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE Poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.ID='$_GET[id]';")
+                            or die($conn->error);
+                        $podatakPosao = $posao->fetch_assoc();
+                        ?>
+                        <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0"><?= $podatakPosao['naziv_posla'] ?>,
+                                <?= $podatakPosao['ime_opstine'] ?></span>
+                            <span class="ime d-block my-0"><?= $podatak['Ime'] ?> <?= $podatak['Prezime'] ?></span>
                         </div>
                     </div>
                     <div class="col-4 fs-1 ocena text-center"><span class="boja bg-primary">10.0</span></div>
@@ -234,7 +238,7 @@
                                     <h4><span class="email"></span>
                                         E-mail
                                     </h4>
-                                    <p class="lead undertext">Milan.contact @gmail.com</p>
+                                    <p class="lead undertext"><?= $podatak['Email'] ?></p>
                                 </div>
                             </div>
                             <div class="radno-vreme">
