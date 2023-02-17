@@ -7,11 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
   <link href="appdata/main.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Nunito&family=Rowdies:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500&family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="appdata/styleV2.css" />
+  <link rel="stylesheet" href="appdata/styleV1.css" />
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <title>FixIT</title>
 </head>
@@ -35,8 +41,8 @@
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
                 <input type="password" name="sifra" class="form-control" id="exampleInputPassword1" />
               </div>
-              <button type="submit" name="submit" class="btn btn-primary mt-3">
-                PRIJAVI SE
+              <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
+                Prijavi se
               </button>
             </form>
             <p id="nisi-korisnik">
@@ -76,23 +82,42 @@
     <div class="container">
       <div class="d-sm-flex align-items-xxl-center align-items-md-end justify-content-between">
         <div>
-          <h1 class="fs-1 pt-5">
-            PRONAĐITE I ANGAŽUJTE <span class="text-primary">PROVERENOG MAJSTORA</span>
+          <h1 class="display-2 display-font pt-3">
+                SVI MAJSTORI <br><span class="text-primary display-font2"> NA </span> <span class="text-primary display-font3">JEDNOM MESTU</span>
           </h1>
-          <div class="input-group trazi">
-            <input type="text" class="form-control" placeholder="Pretrazi poslove..." />
-            <button class="btn btn-primary btn-lg" type="button">Pretrazi</button>
+          <div class=" phone-text">
+            <p>Pretražite našu bazu majstora ili ih izlistajte po delatnostima. <span class="hero-text"> Direktno stupite u kontakt sa majstorom i angažujte majstora u vremenskom periodu koji vama odgovara.</span></p>
+            </div>
+            
+          <div class="input-group trazi pt-4">
+            <input type="text" class="form-control search-bar" placeholder="Pronadji majstora..." />
+            <button class="btn btn-primary btn-lg text-light search-button" type="button">Pretraži</button>
           </div>
-          <p class="lead my-4 fs-5">
-            Pretražite našu bazu majstora i angažujte proverenog<br />
-            <span class="text-primary">stručnjaka</span> u samo par koraka!
-          </p>
+          
+          <div class=" popular pt-4">
+           <strong class="popular-text">Popularno:</strong>          
+            <a href="zidar.html" class="btn btn-outlined">Zidar</a>
+            <a href="#" class="btn btn-outlined">Moler</a>
+            <a href="#" class="btn btn-outlined">Električar</a>
+            <a href="#" class="btn btn-outlined">Obućar</a>
+            <a href="#" class="btn btn-outlined">Vulkanizer</a>
+          </div>
+
+          <div class="pt-3">
+          <button class="btn btn-primary search-phone-button">Pretraga</button>
+          </div>
+
+          <div class="pt-4 phone2-text">
+            <p>Pretražite našu bazu majstora ili ih izlistajte po delatnostima. <span class="hero-text"> Direktno stupite u kontakt sa majstorom i angažujte majstora u vremenskom periodu koji vama odgovara.</span></p>
+            </div>
+
+         <br><br>
         </div>
         <img class="img-fluid w-40 d-none d-lg-block" src="slike/heroimage.png" alt="radnik" />
       </div>
     </div>
   </section>
-  <section class="bg-primary text-light p-5 text-center">
+  <section class="bg-primary p-5 section ">
 
   </section>
   <!--#endregion -->
@@ -101,89 +126,94 @@
     <div class="container-sm">
       <div class="row text-center poslovii">
         <div class="text-center mt-5 pt-2">
-          <h1 class><span class="text-primary">MAJSTORI</span> PO DELATNOSTIMA</h1>
+          <h1 class="naslov1"><span class="text-primary naslov1">MAJSTORI</span> PO DELATNOSTIMA</h1>
         </div>
         <a href="delatnosti/gradjevina.html" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/GRADJEVINA.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Gradjevina</h5>
+            <h5 class="text-dark pt-4"><strong>Građevina</strong> </h5>
           </div>
         </a>
         <a href="delatnosti/elektrika.html" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/ELEKTRONIKA.svg" alt="" class="img-fluid ikonice " />
-            <h5 class="text-dark pt-4">Elektrika</h5>
+            <h5 class="text-dark pt-4"><strong>Elektrika</strong> </h5>
           </div>
         </a>
         <a href="delatnosti/odrzavanje.html" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/ODRZAVANJE.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Odrzavanje</h5>
+            <h5 class="text-dark pt-4"><strong>Održavanje</strong> </h5>
           </div>
         </a>
         <a href="delatnosti/cevne-instalacije.html" class="col-6 col-lg-3 ada mt-3 ">
           <div>
             <img src="slike/Ikonice/CEVNEINSTALACIJE.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Cevne instalacije</h5>
+            <h5 class="text-dark pt-4"><strong>Cevne instalacije</strong> </h5>
           </div>
         </a>
         <a href="delatnosti/obrada-materijala.html" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
             <img src="slike/Ikonice/OBRADA.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Obrada materijala</h5>
+            <h5 class="text-dark pt-4"><strong>Obrada materijala</strong> </h5>
           </div>
         </a>
         <a href="delatnosti/vozila.html" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
             <img src="slike/Ikonice/VOZILA.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Odrzavanje vozila</h5>
+            <h5 class="text-dark pt-4"><strong> Održavanje vozila</strong></h5>
           </div>
         </a>
         <a href="delatnosti/garderoba.html" class="col-6 col-lg-3 ada mb-5">
           <div>
 
             <img src="slike/Ikonice/GARDEROBA.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Garderoba i nakit</h5>
+            <h5 class="text-dark pt-4"><strong> Garderoba i nakit</strong></h5>
           </div>
         </a>
         <a href="delatnosti/ostalo.html" class="col-6 col-lg-3 ada mb-5">
           <div>
             <img src="slike/Ikonice/NEKATEGORIZOVANO.svg" alt="" class="img-fluid ikonice" />
-            <h5 class="text-dark pt-4">Ostalo</h5>
+            <h5 class="text-dark pt-4"><strong>Ostalo</strong> </h5>
           </div>
         </a>
       </div>
     </div>
   </section>
   <!--#endregion -->
-
-  <section class="p-5 bg-primary">
-    <div class="container text-center text-sm-start">
-      <h2 class="text-white pb-4">
-        <span class="naslovActiona">Naslov</span><br>It is a long established fact that a
-        reader will be distracted by the
-        readable content of a page when looking at its layout.
-      </h2>
-      <h3 class="lead text-white fw-bold pb-4">Are many variations of passages of Lorem Ipsum available</h3>
-      <h4 class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fermentum ut urna eu
-        tincidunt. Donec dignissim vestibulum sollicitudin. Suspendisse interdum tortor ante, nec auctor ligula congue
-        at. Sed ac turpis libero. Vivamus rutrum massa sed eros sagittis, eget consectetur mi euismod.</h4>
-      <div class="d-sm-flex justify-content-between text-white text-center pt-5 mx-auto">
-        <div>
-          <h1 class="fw-bold  text-dark ">2232</h1>
-          <p class="fs-3">Broj Majstora</p>
+ <br>
+ <section class="background-section">
+  <div class="container text-white pt-5">
+    <h1 class="display-font">PROVERENI POUZDANI MAJSTORI</h1>
+    <p class="podnaslov">Pronađite pouzdane majstore za sve vaše potrebe na našem sajtu!</p>
+    <p>Brzo i lako pronalaženje pouzdanih majstora za sve vaše potrebe. Pregledajte profile majstora sa recenzijama drugih korisnika, komunicirajte direktno sa majstorom putem sajta, pronađite majstore u vašoj blizini, i pregledajte cene usluga. Olakšajte sebi pronalaženje najboljeg majstora za vaše potrebe uz minimalni napor i maksimalnu udobnost. Isprobajte naš sajt danas i uverite se sami u njegove prednosti!</p>
+    <div class="container text-center text-sm-center pt-5">
+      <div class="d-sm-flex">
+      <div class="row">
+        <div class="col-sm-6  col-6 desire-section">
+          <img src="slike/ikonice/database-icon.png" alt="booking">
+          <strong><p class="icon-text">BAZA MAJSTORA</p></strong>
         </div>
-        <div class="my-4 my-sm-0">
-          <h1 class="fw-bold  text-dark">80</h1>
-          <p class="fs-3">Ukupno zanimanja</p>
+        <div class="col-sm-6 col-6 desire-section">
+          <img src="slike/ikonice/search-icon.png" alt="booking">
+          <strong><p class="icon-text">LAKA PRETRAGA</p></strong>
         </div>
-        <div>
-          <h1 class="fw-bold  text-dark ">154657</h1>
-          <p class="fs-3">Poziva Musterija</p>
+        <div class="col-sm-6  col-6 desire-section">
+          <img src="slike/ikonice/contact-icon.png" alt="booking">
+          <strong><p class="icon-text">RECENZIJE I KONTAKT</p></strong>
+        </div>
+        <div class="col-sm-6  col-6  desire-section">
+          <img src="slike/ikonice/booking-icon.png" alt="booking">
+          <strong><p class="icon-text">ANGAŽOVANJE</p></strong>
         </div>
       </div>
     </div>
-  </section>
+    </div>
+  </div>
+</section>
+
+
+
   <!--#region Footer-->
   <footer class="p-4 bg-dark text-white text-center position-relative">
     <div class="container">
