@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS only -->
-    <link href="../appdata/main.min.css" rel="stylesheet" />
+    <link href="./appdata/main.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../appdata/zanimanjaV1.css" />
+    <link rel="stylesheet" href="./appdata/zanimanjaV2.css" />
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="../slike/Ikonice/FAVICON2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>FixIT</title>
 </head>
@@ -25,10 +25,10 @@
     $dbpassword = ""; //9KD!Co9]B+D*
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-    $result = $conn->query("SELECT * FROM fizicko_lice WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p] ")
+    $radnik = $conn->query("SELECT ID,Ime,Prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p] and Poslovi.naziv_posla = '$_GET[posao]';")
         or die($conn->error);
     $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-    or die($conn->error);
+        or die($conn->error);
     ?>
     <!--#region Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,7 +64,7 @@
     <!--#region NavBar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
         <div class="container">
-            <a href="../index.html" class="nav brand"><img class="image" src="../slike/logo/Logo(white).svg" alt="logo" /></a>
+            <a href="./index.html" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -73,28 +73,32 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto z">
                     <li class="nav-item">
-                        <a href="../index.html" class="nav-link">Pocetna</a>
+                        <a href="./index.html" class="nav-link">Pocetna</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../onama.html" class="nav-link">O nama</a>
+                        <a href="./onama.html" class="nav-link">O nama</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi
                             se</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../korisnik.html" class="nav-link">Registruj se</a>
+                        <a href="./korisnik.html" class="nav-link">Registruj se</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!--#endregion -->
-    <div class="sidebar">MOLER</div>
-    <div class="pozadinaCenter" style="background-image: url('../slike/DelatnostiHighRes/GRADJEVINSKI-RADOVI/MOLER.jpg');">
+    <?php
+    $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE Poslovi.naziv_posla = '$_GET[posao]';")
+        or die($conn->error);
+    $podatak = $posao->fetch_assoc();
+    ?>
+    <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= $podatak['naziv_posla'] ?>.jpg');">
     </div>
-    <h1 class="naslov fw-bold mb-5">pronadjite <span class="text-primary naslov">molera</span></h1>
     <div class="container">
+        <div class="naslov text-uppercase fw-bold mb-5" id="ImePosla"><?= $podatak['naziv_posla'] ?></div>
         <table style="width:100%">
             <tr class="nafonu">
                 <td>
@@ -191,7 +195,7 @@
                             <select class="dropdown">
                                 <option value="odaberi" disabled selected>Odaberi Opstinu...</option>
                                 <?php while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                                <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>                
+                                    <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                                 <?php endwhile; ?>
                             </select>
                             <h4 class="mt-3 tekst">Vrsta rada</h4>
@@ -234,9 +238,13 @@
                             </tr>
                         </table>
                         <table class="tabela2">
-                        <?php while ($podatak = $result->fetch_assoc()) : ?>
+                            <?php
+                            $limit = ($_GET['p'] - 1) * 7;
+                            $radnik = $conn->query("SELECT ID,Ime,Prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE Poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+                                or die($conn->error);
+                            while ($podatak = $radnik->fetch_assoc()) : ?>
                                 <tr class="aa">
-                                    <td onclick="getId(this);" class="majstor2" id="<?= $podatak['ID'] ?>"><?= $podatak['IME'] ?> <?= $podatak['PREZIME'] ?></td>
+                                    <td onclick="getId(this);" class="majstor2" id="<?= $podatak['ID'] ?>"><?= $podatak['Ime'] ?> <?= $podatak['Prezime'] ?></td>
                                     <td class="ocena2">10.0</td>
                                 </tr>
                             <?php endwhile; ?>
@@ -355,16 +363,17 @@
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
     <script>
-
         function getId(element) {
+            var posao = document.getElementById("ImePosla").textContent.toLocaleLowerCase();
             let id = element.id;
             let naziv = element.textContent;
-            window.location.href = "../moler/radnik.php?id="+ id;
+            window.location.href = "./radnik.php?posao=" + posao + "&id=" + id;
         }
 
         function page(element) {
-            var id = element.id;
-            window.location.href = "../gradjevina/moler.php?p=" + id;
+            var posao = document.getElementById("ImePosla").textContent.toLocaleLowerCase();
+            var page = element.id;
+            window.location.href = "./posao.php?posao=" + posao + "&p=" + page;
         }
         flatpickr('#calendar-range', {
             mode: "range",
