@@ -45,7 +45,7 @@
                                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" />
                             </div>
-                            <button type="submit" class="btn btn-light mt-3">
+                            <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
                                 PRIJAVI SE
                             </button>
                             <p id="nisi-korisnik">
