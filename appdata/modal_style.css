@@ -1,0 +1,40 @@
+#reg-right {
+    text-align: right;
+  }
+
+  .reg-space {
+    height: 1rem;
+  }
+
+  #reg-title-top {
+    height: 3rem;
+  }
+
+  .register-textbox {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: #212529;
+    color: white;
+    width: 100%;
+    font-size: 25px;
+  }
+
+  .reg-drop{
+    background-color: #242529;
+    color: white;
+    border: solid 2px white;
+  }
+  .dropdown {
+    position: relative;
+    border: 1px solid #e5e5e5;
+    padding: 0px 10px;
+    border-radius: 10px;
+    height: 42px;
+    width: 100%;
+    font-size: 20px;
+  }
+  .upload-rad{
+    border-radius: 10px;
+    border:solid 2px white;
+    background-color: #212529;
+  }
