@@ -25,11 +25,9 @@
     $dbpassword = ""; //9KD!Co9]B+D*
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-    $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE id_fizicko>7*($_GET[p]-1) and id_fizicko<=7*$_GET[p] and Poslovi.naziv_posla = '$_GET[posao]';")
+    $radnik = $conn->query("SELECT ID,Ime,Prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE ID>7*($_GET[p]-1) and ID<=7*$_GET[p] and Poslovi.naziv_posla = '$_GET[posao]';")
         or die($conn->error);
     $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-        or die($conn->error);
-    $vrstaRada = $conn->query("SELECT ime_opstine FROM opstine")
         or die($conn->error);
     ?>
     <!--#region Modal -->
@@ -97,7 +95,7 @@
         or die($conn->error);
     $podatak = $posao->fetch_assoc();
     ?>
-    <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
+    <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= $podatak['naziv_posla'] ?>.jpg');">
     </div>
     <div class="container">
         <div class="naslov text-uppercase fw-bold mb-5" id="ImePosla"><?= $podatak['naziv_posla'] ?></div>
@@ -200,17 +198,32 @@
                                     <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                                 <?php endwhile; ?>
                             </select>
+                            <h4 class="mt-3 tekst">Vrsta rada</h4>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes2()">
+                                    <select class="rad">
+                                        <option>Odaberi vrstu rada</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes2">
+                                    <label for="jedan2"><input type="checkbox" id="jedan2"> Krecenje</label>
+                                    <label for="dva2"><input type="checkbox" id="dva2"> Gletovanje</label>
+                                    <label for="tri2"><input type="checkbox" id="tri2"> Farbanje stolarije</label>
+                                    <label for="cetiri2"><input type="checkbox" id="cetiri2"> Farbanje radiatora i
+                                        cevi</label>
+                                    <label for="pet2"><input type="checkbox" id="pet2"> Postavljanje zidnih
+                                        lajsni</label>
+                                    <label for="sest2"><input type="checkbox" id="sest2"> Spatulat</label>
+                                </div>
+                            </div>
+
                             <div class="group">
                                 <h4 class="mt-3 tekst">Duzina trajanja radova</h4>
                                 <input type="text" id="calendar-range" class="datum">
                             </div>
-                            <!-- <h4 class="mt-3 tekst">Fizicko lice ili firma</h4>
-                            <div style="font-size:20px;" class="d-flex justify-content-evenly">
-                                <label><input type="radio" name="fizicko_lice" value="fizicko_lice" /> Fizicko Lice</label>
-                                <label><input type="radio" name="firma" value="firma" /> Firma</label>
-                            </div> -->
                             <div class="dugme pt-4">
-                                <button class="btn btn-dark text-white fw-bold px-4 py-2 mb-2">Pretrazi
+                                <button class="btn btn-dark text-white fw-bold px-4 py-2">Pretrazi
                                     Filtrirano</button>
                             </div>
                         </div>
@@ -227,11 +240,11 @@
                         <table class="tabela2">
                             <?php
                             $limit = ($_GET['p'] - 1) * 7;
-                            $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE Poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+                            $radnik = $conn->query("SELECT ID,Ime,Prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE Poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
                                 or die($conn->error);
                             while ($podatak = $radnik->fetch_assoc()) : ?>
                                 <tr class="aa">
-                                    <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id_fizicko'] ?>"><?= $podatak['ime'] ?> <?= $podatak['prezime'] ?></td>
+                                    <td onclick="getId(this);" class="majstor2" id="<?= $podatak['ID'] ?>"><?= $podatak['Ime'] ?> <?= $podatak['Prezime'] ?></td>
                                     <td class="ocena2">10.0</td>
                                 </tr>
                             <?php endwhile; ?>

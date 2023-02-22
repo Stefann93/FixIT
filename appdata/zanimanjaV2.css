@@ -267,6 +267,62 @@ border-radius: 15px;
   font-weight: bold;
 }
 
+.multiselect {
+  width: 100%;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.rad {
+  padding: 0px 10px;
+  border-radius: 10px;
+  height: 42px;
+  font-size: 20px;
+}
+
+.selectBox select {
+  width: 100%;
+  border: none;
+}
+
+.overSelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#checkboxes,
+#checkboxes2 {
+  display: none;
+  padding-left: 5px;
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  background-color: white;
+  z-index: 20;
+  width: 50%;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes2 label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #64B245;
+}
+
+#checkboxes2 label:hover {
+  background-color: #64B245;
+}
+
 .as {
   color: white;
   font-size: 25px;

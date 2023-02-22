@@ -26,7 +26,7 @@
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 
-    $result = $conn->query("select * from fizicko_lice where id_fizicko=($_GET[id])")
+    $result = $conn->query("select * from fizicko_lice where ID=($_GET[id])")
         or die($conn->error);
     while ($podatak = $result->fetch_assoc()) :
     ?>
@@ -96,13 +96,13 @@
                 <div class="row">
                     <div class="col-8 mt-5">
                         <?php
-                        $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE Poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.id_fizicko='$_GET[id]';")
+                        $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE Poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.ID='$_GET[id]';")
                             or die($conn->error);
                         $podatakPosao = $posao->fetch_assoc();
                         ?>
                         <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0"><?= $podatakPosao['naziv_posla'] ?>,
                                 <?= $podatakPosao['ime_opstine'] ?></span>
-                            <span class="ime d-block my-0"><?= $podatak['ime'] ?> <?= $podatak['prezime'] ?></span>
+                            <span class="ime d-block my-0"><?= $podatak['Ime'] ?> <?= $podatak['Prezime'] ?></span>
                         </div>
                     </div>
                     <div class="col-4 fs-1 ocena text-center"><span class="boja bg-primary">10.0</span></div>
@@ -238,7 +238,7 @@
                                     <h4><span class="email"></span>
                                         E-mail
                                     </h4>
-                                    <p class="lead undertext"><?= $podatak['email'] ?></p>
+                                    <p class="lead undertext"><?= $podatak['Email'] ?></p>
                                 </div>
                             </div>
                             <div class="radno-vreme">
