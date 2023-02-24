@@ -38,3 +38,9 @@
     border:solid 2px white;
     background-color: #212529;
   }
+  .radius-register{
+    border-radius: 10px;
+  }
+  .radius-register-mc{
+    border-radius: 20px;
+  }
