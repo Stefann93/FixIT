@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS only -->
     <link href="./appdata/main.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./appdata/radnikV8.css" />
+    <link rel="stylesheet" href="./appdata/radnikV9.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="appdata/modal_style.css"/>
+    <link rel="stylesheet" href="appdata/modal_styleV2.css" />
     <title>FixIT</title>
 </head>
 
@@ -27,233 +27,207 @@
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
     ?>
-      <!--#region Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <div class="myform bg-dark">
-            <h1 id="naslov" class="text-center">Forma za prijavu</h1>
-            <form action="appdata/login.php" method="POST">
-              <div class="mb-3 mt-4">
-                <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="exampleInputEmail1"
-                  aria-describedby="emailHelp" />
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="exampleInputPassword1" />
-              </div>
-              <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
-                Prijavi se
-              </button>
-            </form>
-            <p id="nisi-korisnik">
-              Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--#endregion -->
-  
-  <!--#region Registracija main modal-->
-  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body bg-dark">
-          <div id="reg-right">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div id="reg-title-top"></div>
-          <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
-            <div class="row my-4">
-              <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal"
-                  data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
-              <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal"
-                  data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice</button></div>
-              <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal"
-                  data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--#endregion-->
-  
-  <!--#region Korisnik modal -->
-  <div class="modal fade" id="registerKorisnik" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-      <div class="modal-content radius-register-mc">
-        <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <div class="myform bg-dark radius-register">
-            <div class="row">
-              <div class="col-xl-6"><img src="/register_images/register_korisnik.jpg"
-                  class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-              <div class="col">
-                <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime"
-                  name="IME KORISNIKA" required>
-  
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime"
-                  name="PREZIME KORISNIKA" required>
-  
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email"
-                  name="EMAIL" required>
-  
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra"
-                  name="SIFRA" required>
-  
-                <input style="display: block;" type="password" class="input my-4 register-textbox"
-                  placeholder="Potvrdite sifru" required>
-  
-                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
-                  se</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  <!--#endregion -->
-  
-  <!--#region Fizicko lice modal -->
-  <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered ">
-      <div class="modal-content radius-register-mc">
-        <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <div class="myform bg-dark radius-register">
-            <div class="row">
-              <div class="col-xl-6"><img src="/register_images/register_fizickolice.png"
-                  class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-              <div class="col">
-                <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
-  
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime"
-                  name="IME FIZICKOG LICA" required>
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime"
-                  name="PREZIME FIZICKOG LICA" required>
-  
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email"
-                  name="EMAIL" required>
-  
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Broj telefona"
-                  name="BROJ TELEFONA" required>
-  
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="JMBG"
-                  name="JMBG" required>
-  
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra"
-                  name="SIFRA" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox"
-                  placeholder="Potvrdite sifru" required>
-                <div class="row">
-                  <div class="col">
-                    <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
-                      <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                      <option value="gradjevina">Gradjevina</option>
-                      <option value="elektrika">Elektrika</option>
-                      <option value="fasader">Fasader</option>
-                      <option value="odrzavanje">Odrzavanje</option>
-                      <option value="cevneIntalacije">Cevne intalacije</option>
-                      <option value="obradaMaterijala">Obrada materijala</option>
-                      <option value="odrzavanjeVozila">Odrzavanje vozila</option>
-                      <option value="garderobaINakit">Garderoba i nakit</option>
-                      <option value="ostalo">Ostalo</option>
-                    </select>
-                  </div>
+    <!--#region Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="myform bg-dark">
+                        <h1 id="naslov" class="text-center">Forma za prijavu</h1>
+                        <form action="appdata/login.php" method="POST">
+                            <div class="mb-3 mt-4">
+                                <label for="exampleInputEmail1" class="form-label">Email adresa</label>
+                                <input type="email" name="email" class="form-control login-textbox" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Šifra</label>
+                                <input type="password" name="sifra" class="form-control login-textbox" id="exampleInputPassword1" />
+                            </div>
+                            <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
+                                Prijavi se
+                            </button>
+                        </form>
+                        <p id="nisi-korisnik">
+                            Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
+                        </p>
+                    </div>
                 </div>
-                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
-                  <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
-                </select>
-  
-                <select class="dropdown reg-drop" NAME="OPSTINA">
-                  <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                  <option value="ostalo">Ostalo</option>
-                </select>
-                <button type="submit" name="submit"
-                  class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  </div>
-  <!--#endregion -->
-  
-  <!--#region firma modal -->
-  <div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered ">
-      <div class="modal-content radius-register-mc">
-        <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <div class="myform bg-dark radius-register">
-            <div class="row">
-              <div class="col-xl-6"><img src="/register_images/register_firma.jpg"
-                  class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-              <div class="col">
-                <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme"
-                  name="IME FIRME" required>
-                <input style="display: block;" type="text" class="input my-4 register-textbox"
-                  placeholder="Ime i prezime vlasnika" name="IME I PREZIME VLASNIKA" required>
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email"
-                  name="EMAIL" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra"
-                  name="SIFRA" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox"
-                  placeholder="Potvrdite sifru" required>
-                <div class="row">
-                  <div class="col">
-                    <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
-                      <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                      <option value="gradjevina">Gradjevina</option>
-                      <option value="elektrika">Elektrika</option>
-                      <option value="fasader">Fasader</option>
-                      <option value="odrzavanje">Odrzavanje</option>
-                      <option value="cevneIntalacije">Cevne intalacije</option>
-                      <option value="obradaMaterijala">Obrada materijala</option>
-                      <option value="odrzavanjeVozila">Odrzavanje vozila</option>
-                      <option value="garderobaINakit">Garderoba i nakit</option>
-                      <option value="ostalo">Ostalo</option>
-                    </select>
-                  </div>
+    <!--#endregion -->
+
+    <!--#region Registracija main modal-->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body bg-dark">
+                    <div id="reg-right">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="reg-title-top"></div>
+                    <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
+                        <div class="row my-4">
+                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
+                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice</button></div>
+                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
+                        </div>
                 </div>
-  
-  
-                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
-                  <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla </option>
-                </select>
-  
-                <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
-                  <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                  <option value="ostalo">Ostalo</option>
-                </select>
-  
-                <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
-                  firme:</label>
-                <input type="file" class="form-control upload-rad text-white" id="customFile" />
-  
-                <button type="submit" name="submit"
-                  class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!--#endregion -->
-  
+    <!--#endregion-->
+
+    <!--#region Korisnik modal -->
+    <div class="modal fade" id="registerKorisnik" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content radius-register-mc">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="myform bg-dark radius-register">
+                        <div class="row">
+                            <div class="col-xl-6"><img src="/register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col">
+                                <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
+                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME KORISNIKA" required>
+
+                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME KORISNIKA" required>
+
+                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
+
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+
+                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                                    se</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!--#endregion -->
+
+    <!--#region Fizicko lice modal -->
+    <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered ">
+            <div class="modal-content radius-register-mc">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="myform bg-dark radius-register">
+                        <div class="row">
+                            <div class="col-xl-6"><img src="/register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col">
+                                <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
+
+                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME FIZICKOG LICA" required>
+                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME FIZICKOG LICA" required>
+
+                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
+
+                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ TELEFONA" required>
+
+                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
+
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                                <div class="row">
+                                    <div class="col">
+                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
+                                            <option value="odaberi" disabled selected>Odaberi delatnost</option>
+                                            <option value="gradjevina">Gradjevina</option>
+                                            <option value="elektrika">Elektrika</option>
+                                            <option value="fasader">Fasader</option>
+                                            <option value="odrzavanje">Odrzavanje</option>
+                                            <option value="cevneIntalacije">Cevne intalacije</option>
+                                            <option value="obradaMaterijala">Obrada materijala</option>
+                                            <option value="odrzavanjeVozila">Odrzavanje vozila</option>
+                                            <option value="garderobaINakit">Garderoba i nakit</option>
+                                            <option value="ostalo">Ostalo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
+                                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
+                                </select>
+
+                                <select class="dropdown reg-drop" NAME="OPSTINA">
+                                    <option value="odaberi" disabled selected>Odaberi opstinu</option>
+                                    <option value="ostalo">Ostalo</option>
+                                </select>
+                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--#endregion -->
+
+    <!--#region firma modal -->
+    <div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered ">
+            <div class="modal-content radius-register-mc">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="myform bg-dark radius-register">
+                        <div class="row">
+                            <div class="col-xl-6"><img src="/register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col">
+                                <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
+                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" name="IME FIRME" required>
+                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" name="IME I PREZIME VLASNIKA" required>
+                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                                <div class="row">
+                                    <div class="col">
+                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
+                                            <option value="odaberi" disabled selected>Odaberi delatnost</option>
+                                            <option value="gradjevina">Gradjevina</option>
+                                            <option value="elektrika">Elektrika</option>
+                                            <option value="fasader">Fasader</option>
+                                            <option value="odrzavanje">Odrzavanje</option>
+                                            <option value="cevneIntalacije">Cevne intalacije</option>
+                                            <option value="obradaMaterijala">Obrada materijala</option>
+                                            <option value="odrzavanjeVozila">Odrzavanje vozila</option>
+                                            <option value="garderobaINakit">Garderoba i nakit</option>
+                                            <option value="ostalo">Ostalo</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
+                                    <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla </option>
+                                </select>
+
+                                <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
+                                    <option value="odaberi" disabled selected>Odaberi opstinu</option>
+                                    <option value="ostalo">Ostalo</option>
+                                </select>
+
+                                <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
+                                    firme:</label>
+                                <input type="file" class="form-control upload-rad text-white" id="customFile" />
+
+                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--#endregion -->
+
     <!-- Start popup dialog box -->
     <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
