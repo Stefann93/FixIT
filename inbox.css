@@ -1,0 +1,41 @@
+.chat-selected {
+    border: solid 2px green;
+}
+
+.avvatar {
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    float: left;
+}
+
+.truncate-custom {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 80%;
+    font-style: italic;
+}
+
+.chat-unselected {
+    border: solid 2px gray;
+    cursor: pointer;
+}
+
+.chat-margin {
+    margin-bottom: 20px;
+}
+
+.profession {
+    text-decoration: underline;
+}
+
+.right-message {
+    border-radius:20px;
+    right: 0;
+}
+
+.left-message {
+    text-align: left;
+}
