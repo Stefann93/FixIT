@@ -1,3 +1,6 @@
+<?php
+require_once('./appdata/config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +34,7 @@
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
   ?>
-  <!--#region Modal -->
+  <!--#region Modal-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -60,7 +63,7 @@
       </div>
     </div>
   </div>
-  <!--#endregion -->
+  <!--#endregion-->
 
   <!--#region Registracija main modal-->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,6 +87,17 @@
   <!--#endregion-->
 
   <!--#region Korisnik modal -->
+  <?php
+  if (isset($_POST['submitK'])) {
+    $ime = $_POST['IME-KORISNIKA'];
+    $prezime = $_POST['PREZIME-KORISNIKA'];
+    $email = $_POST['EMAIL-KORISNIKA'];
+    $sifra = $_POST['SIFRA-KORISNIKA'];
+    $sql = "INSERT INTO korisnik (ime, prezime, email, sifra) Values (?,?,?,?)";
+    $stmtinsert = $db->prepare($sql);
+    $result = $stmtinsert->execute([$ime, $prezime, $email, $sifra]);
+  }
+  ?>
   <div class="modal fade" id="registerKorisnik" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content radius-register-mc">
@@ -93,19 +107,21 @@
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME KORISNIKA" required>
+                <form action="index.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
+                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME-KORISNIKA" required>
 
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-KORISNIKA" required>
 
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
+                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-KORISNIKA" required>
 
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA-KORISNIKA" required>
 
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
 
-                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
-                  se</button>
+                  <button type="submit" name="submitK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                    se</button>
+                </form>
               </div>
             </div>
           </div>
@@ -118,6 +134,23 @@
   <!--#endregion -->
 
   <!--#region Fizicko lice modal -->
+  <?php
+  if (isset($_POST['submitFL'])) {
+    $ime = $_POST['IME-FIZICKOG-LICA'];
+    $prezime = $_POST['PREZIME-FIZICKOG-LICA'];
+    $email = $_POST['EMAIL-FIZICKOG-LICA'];
+    $telefon = $_POST['BROJ-TELEFONA'];
+    $jmbg = $_POST['JMBG'];
+    $sifra = $_POST['SIFRA'];
+    $delatnost = $_POST['delatnost'];
+    $posao = $_POST['VRSTA_POSLA'];
+    $opstina = $_POST['OPSTINA'];
+    $adresa = $_POST['ADRESA'];
+    $sql = "INSERT INTO fizicko_lice (ime, prezime, email, sifra, JMBG, id_opstine, adresa, id_delatnosti, posao_id, br_tel) Values (?,?,?,?,?,?,?,?,?,?)";
+    $stmtinsert = $db->prepare($sql);
+    $result = $stmtinsert->execute([$ime, $prezime, $email, $sifra, $jmbg, $opstina, $adresa, $delatnost, $posao, $telefon]);
+  }
+  ?>
   <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content radius-register-mc">
@@ -127,47 +160,45 @@
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
-
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME FIZICKOG LICA" required>
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME FIZICKOG LICA" required>
-
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
-
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ TELEFONA" required>
-
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
-
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
-                <div class="row">
-                  <div class="col">
-                    <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
-                      <option value="odaberi" disabled selected>Odaberi delatnost...</option>
-                      <?php
-                      $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
-                        or die($conn->error);
-                      while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                        <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
-                      <?php endwhile; ?>
-                    </select>
+                <form action="index.php" method="post">
+                  <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
+                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
+                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
+                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+                  <input style="display: block;" id="" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <div class="row">
+                    <div class="col">
+                      <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
+                        <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                        <?php
+                        $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
+                          or die($conn->error);
+                        while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                        <?php endwhile; ?>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
-                  <!-- OPASNOST SQL INJECTIONA -->
-                  <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
-                  <!--  -->
-                </select>
-                <select class="dropdown reg-drop" NAME="OPSTINA">
-                  <option value="odaberi" disabled selected>Odaberi opstinu...</option>
-                  <?php
-                  $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-                    or die($conn->error);
-                  while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                    <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
-                  <?php endwhile; ?>
-                </select>
-                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                  <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
+                    <!-- OPASNOST SQL INJECTIONA -->
+                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
+                    <!--  -->
+                  </select>
+                  <select class="dropdown reg-drop" NAME="OPSTINA">
+                    <option value="odaberi" disabled selected>Odaberi opstinu...</option>
+                    <?php
+                    $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+                      or die($conn->error);
+                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                    <?php endwhile; ?>
+                  </select>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" name="ADRESA" required>
+                  <button type="submit" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                </form>
               </div>
             </div>
           </div>
@@ -247,7 +278,7 @@
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="onama.html" class="nav-link">O nama</a>
+            <a href="onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
@@ -277,19 +308,14 @@
             <button class="btn btn-primary btn-lg text-light search-button" type="button">Pretraži</button>
           </div>
 
-          <div class=" popular pt-4">
+          <div class="popular pt-4 d-md-flex align-items-baseline">
             <strong class="popular-text">Popularno:</strong>
-            <a href="zidar.html" class="btn btn-outlined">Zidar</a>
-            <a href="#" class="btn btn-outlined">Moler</a>
-            <a href="#" class="btn btn-outlined">Električar</a>
-            <a href="#" class="btn btn-outlined">Obućar</a>
-            <a href="#" class="btn btn-outlined">Vulkanizer</a>
+            <a href="./posao.php?posao=moler&p=1" class="btn btn-outlined">Moler</a>
+            <a href="./posao.php?posao=zidar&p=1" class="btn btn-outlined">Zidar</a>
+            <a href="./posao.php?posao=elekricar&p=1" class="btn btn-outlined">Električar</a>
+            <a href="./posao.php?posao=obucar&p=1" class="btn btn-outlined">Obućar</a>
+            <a href="./posao.php?posao=vulkanizer&p=1" class="btn btn-outlined">Vulkanizer</a>
           </div>
-
-          <div class="pt-3">
-            <button class="btn btn-primary search-phone-button">Pretraga</button>
-          </div>
-
           <div class="pt-4 phone2-text">
             <p>Pretražite našu bazu majstora ili ih izlistajte po delatnostima. <span class="hero-text"> Direktno
                 stupite u kontakt sa majstorom i angažujte majstora u vremenskom periodu koji vama odgovara.</span></p>
@@ -419,6 +445,7 @@
     </div>
   </footer>
   <!--#endregion-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -451,6 +478,24 @@
           }
         });
       });
+    });
+  </script>
+  <script>
+    $(function() {
+      $('#RegisterFL').click(function() {
+        var ime = $('#ime-fizicko').val();
+        var prezime = $('#prezime-fizicko').val();
+        var email = $('#email-fizicko').val();
+        var telefon = $('#telefon-fizicko').val();
+        var jmbg = $('#jmbg-fizicko').val();
+        var sifra = $('#sifra-fizicko').val();
+      })
+      Swal.fire({
+        icon: 'success',
+        title: 'Regitracija',
+        text: 'Uspesno ste se registrovali!',
+        type: 'success',
+      })
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

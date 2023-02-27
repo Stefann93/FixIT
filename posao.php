@@ -545,14 +545,14 @@
   <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
   <script>
     function getId(element) {
-      var posao = document.getElementById("ImePosla").textContent.toLocaleLowerCase();
+      var posao = document.getElementById("ImePosla").textContent.trim().toLocaleLowerCase();
       let id = element.id;
       let naziv = element.textContent;
       window.location.href = "./radnik.php?posao=" + posao + "&id=" + id;
     }
 
     function page(element) {
-      var posao = document.getElementById("ImePosla").textContent.toLocaleLowerCase();
+      var posao = document.getElementById("ImePosla").textContent.trim().toLocaleLowerCase();
       var page = element.id;
       window.location.href = "./posao.php?posao=" + posao + "&p=" + page;
     }

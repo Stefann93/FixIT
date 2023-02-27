@@ -14,8 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="appdata/modal_styleV2.css" />
+    <!-- CSS for full calender -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+    <!-- JS for jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JS for full calender -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <title>FixIT</title>
 </head>
 
@@ -27,7 +33,50 @@
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
     ?>
-    <!--#region Modal -->
+    <!-- Start popup dialog box -->
+    <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Add New Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="event_name">Event name</label>
+                                    <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Enter your event name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="event_start_date">Event start</label>
+                                    <input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="event_end_date">Event end</label>
+                                    <input type="date" name="event_end_date" id="event_end_date" class="form-control" placeholder="Event end date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End popup dialog box -->
+    <!--#region Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -69,9 +118,9 @@
                     <div id="reg-title-top"></div>
                     <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
                         <div class="row my-4">
-                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
-                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice</button></div>
-                            <div class="col text-center"><button type="button" class="btn btn-link" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
+                            <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
+                            <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice</button></div>
+                            <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
                         </div>
                 </div>
             </div>
@@ -87,7 +136,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="/register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
                                 <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME KORISNIKA" required>
@@ -121,7 +170,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="/register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
 
@@ -138,29 +187,38 @@
                                 <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
                                 <div class="row">
                                     <div class="col">
-                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
-                                            <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                                            <option value="gradjevina">Gradjevina</option>
-                                            <option value="elektrika">Elektrika</option>
-                                            <option value="fasader">Fasader</option>
-                                            <option value="odrzavanje">Odrzavanje</option>
-                                            <option value="cevneIntalacije">Cevne intalacije</option>
-                                            <option value="obradaMaterijala">Obrada materijala</option>
-                                            <option value="odrzavanjeVozila">Odrzavanje vozila</option>
-                                            <option value="garderobaINakit">Garderoba i nakit</option>
-                                            <option value="ostalo">Ostalo</option>
+                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
+                                            <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                                            <?php
+                                            $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
+                                                or die($conn->error);
+                                            while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                                                <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>">
+                                                    <?= $podatakDelatnost['naziv_delatnosti'] ?>
+                                                </option>
+                                            <?php endwhile; ?>
                                         </select>
                                     </div>
                                 </div>
                                 <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
-                                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
+                                    <!-- OPASNOST SQL INJECTIONA -->
+                                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla
+                                    </option>
+                                    <!--  -->
                                 </select>
-
                                 <select class="dropdown reg-drop" NAME="OPSTINA">
-                                    <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                                    <option value="ostalo">Ostalo</option>
+                                    <option value="odaberi" disabled selected>Odaberi opstinu...</option>
+                                    <?php
+                                    $opstine = $conn->query("SELECT ime_opstine FROM opstine")
+                                        or die($conn->error);
+                                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                                        <option value="<?= $podatakOpstine['ime_opstine'] ?>">
+                                            <?= $podatakOpstine['ime_opstine'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
                                 </select>
-                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj
+                                    se</button>
                             </div>
                         </div>
                     </div>
@@ -179,7 +237,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="/register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
                                 <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" name="IME FIRME" required>
@@ -189,36 +247,43 @@
                                 <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
                                 <div class="row">
                                     <div class="col">
-                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="DELATNOST">
+                                        <select class="dropdown reg-drop" required id="delatnost-firma" NAME="DELATNOST">
                                             <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                                            <option value="gradjevina">Gradjevina</option>
-                                            <option value="elektrika">Elektrika</option>
-                                            <option value="fasader">Fasader</option>
-                                            <option value="odrzavanje">Odrzavanje</option>
-                                            <option value="cevneIntalacije">Cevne intalacije</option>
-                                            <option value="obradaMaterijala">Obrada materijala</option>
-                                            <option value="odrzavanjeVozila">Odrzavanje vozila</option>
-                                            <option value="garderobaINakit">Garderoba i nakit</option>
-                                            <option value="ostalo">Ostalo</option>
+                                            <?php
+                                            $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
+                                                or die($conn->error);
+                                            while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                                                <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>">
+                                                    <?= $podatakDelatnost['naziv_delatnosti'] ?>
+                                                </option>
+                                            <?php endwhile; ?>
                                         </select>
                                     </div>
                                 </div>
 
 
-                                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
+                                <select class="dropdown my-4 reg-drop" required id="vrstaPoslaFirma" name="VRSTA_POSLA">
                                     <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla </option>
                                 </select>
 
                                 <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
                                     <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                                    <option value="ostalo">Ostalo</option>
+                                    <?php
+                                    $opstine = $conn->query("SELECT ime_opstine FROM opstine")
+                                        or die($conn->error);
+                                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                                        <option value="<?= $podatakOpstine['ime_opstine'] ?>">
+                                            <?= $podatakOpstine['ime_opstine'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
                                 </select>
 
                                 <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
                                     firme:</label>
                                 <input type="file" class="form-control upload-rad text-white" id="customFile" />
 
-                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj
+                                    se</button>
                             </div>
                         </div>
                     </div>
@@ -228,53 +293,10 @@
     </div>
     <!--#endregion -->
 
-    <!-- Start popup dialog box -->
-    <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Angazujte majstora</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="img-container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="event_name">Naziv Posla</label>
-                                    <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Krecenje, postavljanje izolacije...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="event_start_date">Event start</label>
-                                    <input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="event_end_date">Event end</label>
-                                    <input type="date" name="event_end_date" id="event_end_date" class="form-control" placeholder="Event end date">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End popup dialog box -->
     <!--#region NavBar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
         <div class="container">
-            <a href="./index.html" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
+            <a href="./index.php" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -283,14 +305,13 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto z">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">Pocetna</a>
+                        <a href="./index.php" class="nav-link">Pocetna</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./onama.html" class="nav-link">O nama</a>
+                        <a href="./onama.php" class="nav-link">O nama</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi
-                            se</a>
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
@@ -516,7 +537,7 @@
                             dan<span class="wrapper-dani"><span class="zauzet-dan"></span><span>- Zauzet
                                     dan</span></span>
                         </p>
-                        <div id="calendar" class="h-100"></div>
+                        <div id="calendar"></div>
                     </div>
 
                     <div class="ostatak-sekcija mt-3">
@@ -559,11 +580,7 @@
             </a>
         </div>
     </footer>
-    <!-- JS for jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- JS for full calender -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://kit.fontawesome.com/3e24ca445f.js" crossorigin="anonymous"></script>
     <script>
@@ -653,7 +670,7 @@
                     }); //end fullCalendar block	
                 }, //end success block
                 error: function(xhr, status) {
-                    alert(xhr.responseText);
+                    alert(response.msg);
                 }
             }); //end ajax block	
         }
@@ -686,7 +703,7 @@
                 },
                 error: function(xhr, status) {
                     console.log('ajax error = ' + xhr.statusText);
-                    alert(xhr.responseText);
+                    alert(response.msg);
                 }
             });
             return false;
