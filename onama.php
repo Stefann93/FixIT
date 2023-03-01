@@ -281,15 +281,15 @@
                     <p class="lead my-4">
                         Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />
                         Svi članovi tima su učenici 4. godine, smera informacione
-                        tehnologije.<br />
-                        Svako od nas raspolaže veštinama programiranja, grafickog dizajna, WEB
-                        dizajna kao i mnogim drugim!
+                        tehnologije.<br /><br />
+                        Svako od nas raspolaže veštinama: <br/><span class="text-primary h4"> PROGRAMIRANJA, GRAFIČKOG DIZAJNA, WEB
+                        DIZAJNA</span> <br>kao i mnogim drugim!
                     </p>
                     <button class="btn btn-primary btn-lg" onclick="location.href='#sekcija'">
                         Zapocni
                     </button>
                 </div>
-                <img class="img-fluid w-25 d-none d-sm-block" src="slike/team.png" />
+                <!--SLIKA DODJE OVDE-->
             </div>
         </div>
     </section>
@@ -300,14 +300,14 @@
             <div class="d-md-flex justify-content-between align-items-center text-center text-sm-start">
                 <h3 class="mt-1">Profili članova tima</h3>
                 <!--DODATI NESTO-->
-                <button type="button" class="btn btn-warning mt-1" onclick="location.href='#a'">
+                <button type="button" class="btn btn-dark mt-1" onclick="location.href='#a'">
                     FRONTEND
                 </button>
-                <button type="button" class="btn btn-warning mt-1" onclick="location.href='#v'">
+                <button type="button" class="btn btn-dark mt-1" onclick="location.href='#v'">
                     BACKEND
                 </button>
-                <button id="a" type="button" class="btn btn-warning mt-1" onclick="location.href='#c'">
-                    FRONTEND
+                <button id="a" type="button" class="btn btn-dark mt-1" onclick="location.href='#c'">
+                    DESIGNERS
                 </button>
             </div>
         </div>
@@ -315,7 +315,7 @@
 
     <section class="p-5">
         <div class="container">
-            <h1>Developers: <span class="text-warning">FRONTEND </span></h1>
+            <h1>Developers: <span class="text-primary">FRONTEND </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -354,12 +354,12 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <div class="card bg-dark text-light">
+                    <div class="card bg-dark text-light h-100">
                         <div class="card-body text-center">
                             <div class="h1 mb-3">
                                 <i class="bi bi-file-earmark-code-fill"></i>
                             </div>
-                            <h3 class="card-title mb-3">Mateja Milentijević</h3>
+                            <h3 class="card-title mb-3 fs-4">Mateja Milentijević</h3>
                             <p class="card-text">Programer</p>
                             <button id="v" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejam">SAZNAJ
                                 VIŠE</button>
@@ -372,7 +372,7 @@
 
     <section class=" p-5">
         <div class="container">
-            <h1>Developer: <span class="text-warning">BACKEND </span></h1>
+            <h1>Developer: <span class="text-primary">BACKEND </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -382,7 +382,19 @@
                             </div>
                             <h3 class="card-title mb-3">Relja Stojanović</h3>
                             <p class="card-text">Database coordinator</p>
-                            <button id="c" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card bg-dark text-light">
+                        <div class="card-body text-center">
+                            <div class="h1 mb-3">
+                                <i class="bi bi-clipboard-data"></i>
+                            </div>
+                            <h3 class="card-title mb-3">Stefan Ilić</h3>
+                            <p class="card-text"> Graphics Designer</p>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -392,7 +404,7 @@
 
     <section class="p-5">
         <div class="container">
-            <h1>Graphics Designers: <span class="text-warning">FRONTEND </span></h1>
+            <h1>Graphics Designers: <span class="text-primary">DESIGNERS </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -429,19 +441,19 @@
                     <img class="img-fluid" src="./slike/programmers2.png" alt="" />
                 </div>
                 <div class="col-md p-5">
-                    <h2>Kako tim funkcioniše?</h2>
+                    <h2><span class="text-primary">PODRŽITE</span> naš tim</h2>
                     <p class="lead">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
-                        omnis ratione non quasi dolore libero!
+                        Ako želite da postanete deo tima, i pomognete razvoju 
+                        možete <span class="text-primary">DONIRATI</span> klikom na dugme ispod!
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Delectus, optio praesentium. Culpa quasi, cumque numquam accusamus
-                        hic veritatis exercitationem vel repellat esse est, labore magni
-                        harum possimus nulla? Ipsum, natus!
+                        Možete da našu neprofitnu ideju pomognete u skladu sa Vašim mogućnostima i željama, kako bi brže i uspješnije ostvarili naše ciljeve.
+                        Sve naše akcije doprinose zajednici u užem i širem smislu i kao takvi su iskreni, zato ste nam važni Vi, kao vrlo bitan učesnik u našim akcijama: sponzor ili donator.
+
+
                     </p>
-                    <a href="#" class="btn btn-light mt-3">
-                        <i class="bi bi-chevron-right"></i>Saznaj više
+                    <a href="#" class="btn btn-light  mt-3 w-35  bg-primary">
+                        <i class="bi bi-chevron-right "></i>DONIRAJ
                     </a>
                 </div>
             </div>
@@ -460,9 +472,10 @@
 
                                 </div>
                                 <div class="col-lg-10 col-md-9 col-sm-9 col-9 w-65">
-                                    <h3 class="font-weight-light text-white mt-5">Lorem ipsum dolor sit amet
-                                        consectetur, adipisicing elit.
-                                        Delectus, optio praesentium.
+                                    <h3 class="font-weight-light text-white mt-5">Kontaktirajte nas! 
+                                        Postavite pitanja ako postoje bilo kakve nedoumice.
+                                        <br/><br/>
+                                        <span class="text-primary">TU SMO ZA VAS!</span>
                                     </h3>
                                 </div>
                             </div>
@@ -471,18 +484,18 @@
                             <form>
                                 <div class="form-row mb-3">
                                     <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-start pb-3">
-                                        <label class="text-white ">Ime</label>
-                                        <input type="text" class="form-control border-secondary w-100 mb-1 " placeholder="Ime...">
+                                        <label class="text-primary">Ime</label>
+                                        <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Ime...">
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-end pb-3">
-                                        <label class="text-white ">Prezime</label>
-                                        <input type="text" class="form-control border-secondary w-100 mb-1" placeholder="Prezime...">
+                                        <label class="text-primary ">Prezime</label>
+                                        <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Prezime...">
                                     </div>
                                 </div>
-                                <label class="pt-3 text-white ">Email</label>
-                                <input type="email" class="form-control border-secondary mb-3" placeholder="Email...">
-                                <label class="pt-3 text-white ">Vasa poruka</label>
-                                <textarea class="form-control mb-4 border-secondary" placeholder="Poruka..." name="" id="" cols="10" rows="5"></textarea>
+                                <label class="pt-3 text-primary ">Email</label>
+                                <input type="email" class="form-control border-primary mb-3 bg-dark text-white" placeholder="Email...">
+                                <label class="pt-3 text-primary ">Vasa poruka</label>
+                                <textarea class="form-control mb-4 border-primary bg-dark text-white" placeholder="Poruka..." name="" id="" cols="10" rows="5"></textarea>
                                 <button class="btn btn-primary mb-5 mt-4 float-end">Posalji</button>
                             </form>
                         </div>
@@ -499,7 +512,7 @@
     <!--#region ViseONamaMateja -->
     <div class="modal fade" id="ImePrezime-matejam">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Mateja Milentijević</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -518,7 +531,7 @@
                                     <h class="broj mb-1">tel: 061/26-34-945
                                 </p>
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -533,7 +546,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Programer</b></p>
                 </div>
             </div>
@@ -543,7 +556,7 @@
     <!--#region ViseONamaStefanI -->
     <div class="modal fade" id="ImePrezime-stefani">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Stefan Ilić</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -562,7 +575,7 @@
                                     <h class="broj mb-1">tel: 064/98-27-168
                                 </p>
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -577,7 +590,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Programer</b></p>
                 </div>
             </div>
@@ -587,7 +600,7 @@
     <!--#region ViseOMihajloJ -->
     <div class="modal fade" id="ImePrezime-mihajloj">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 text-white bg-dark">
                 <div class="modal-header">
                     <h2 class="ime"><b>Mihajlo Jovanović</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -606,7 +619,7 @@
                                     <h class="broj mb-1">tel: 061/25-82-368
                                 </p>
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -621,7 +634,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Programer</b></p>
                 </div>
             </div>
@@ -631,7 +644,7 @@
     <!--#region ViseONamaAndrijaA -->
     <div class="modal fade" id="ImePrezime-andrijaa">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Andrija Andrejić</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -649,7 +662,7 @@
                                     <h class="broj mb-1">tel: 064/33-66-999
                                 </p>
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -664,7 +677,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Programer</b></p>
                 </div>
             </div>
@@ -674,7 +687,7 @@
     <!--#region ViseONamaReljaS-->
     <div class="modal fade" id="ImePrezime-reljas">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Relja Stojanović</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -692,7 +705,7 @@
                                     <h class="broj mb-1">tel: 060/13-52-676
                                 </p>
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -707,7 +720,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Database coordinator</b></p>
                 </div>
             </div>
@@ -718,7 +731,7 @@
     <!--#region ViseONamaMatejaZ -->
     <div class="modal fade" id="ImePrezime-matejaz">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Mateja Živanović</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -736,7 +749,7 @@
                                 </p></br>
                                 <h class="broj mb-1">tel: 064/03-30-611
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -751,7 +764,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Graphics Designer</b></p>
                 </div>
             </div>
@@ -761,7 +774,7 @@
     <!--#region ViseONamaStefanB -->
     <div class="modal fade" id="ImePrezime-stefanb">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
+            <div class="modal-content p-2 bg-dark text-white">
                 <div class="modal-header">
                     <h2 class="ime"><b>Stefan Brkić</b></h2>
                     <button class="btn-close p-4" data-bs-dismiss="modal" data-bs-target="ImePrezime"></button>
@@ -780,7 +793,7 @@
                                 </p></br>
                                 <h class="broj mb-1">tel: 062/87-14-081
                         </div>
-                        <div class="col-4"><img src="slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
                     </div>
 
 
@@ -795,7 +808,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <img src="slike/logo/Logo.svg" class="img-fluid fixit-sv" alt="Responsive image">
+                    <img src="./slike/logo/Logo(white).svg" class="img-fluid fixit-sv" alt="Responsive image">
                     <p style="padding: left 1em;"><b>Graphics Designer</b></p>
                 </div>
             </div>

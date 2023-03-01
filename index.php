@@ -54,6 +54,10 @@ require_once('./appdata/config.php');
               <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
                 Prijavi se
               </button>
+              <div>
+              <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me" >&nbsp; Ostavi me prijavljenim</label>
+              
+              </div>
             </form>
             <p id="nisi-korisnik">
               Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
@@ -134,23 +138,6 @@ require_once('./appdata/config.php');
   <!--#endregion -->
 
   <!--#region Fizicko lice modal -->
-  <?php
-  if (isset($_POST['submitFL'])) {
-    $ime = $_POST['IME-FIZICKOG-LICA'];
-    $prezime = $_POST['PREZIME-FIZICKOG-LICA'];
-    $email = $_POST['EMAIL-FIZICKOG-LICA'];
-    $telefon = $_POST['BROJ-TELEFONA'];
-    $jmbg = $_POST['JMBG'];
-    $sifra = $_POST['SIFRA'];
-    $delatnost = $_POST['delatnost'];
-    $posao = $_POST['VRSTA_POSLA'];
-    $opstina = $_POST['OPSTINA'];
-    $adresa = $_POST['ADRESA'];
-    $sql = "INSERT INTO fizicko_lice (ime, prezime, email, sifra, JMBG, id_opstine, adresa, id_delatnosti, posao_id, br_tel) Values (?,?,?,?,?,?,?,?,?,?)";
-    $stmtinsert = $db->prepare($sql);
-    $result = $stmtinsert->execute([$ime, $prezime, $email, $sifra, $jmbg, $opstina, $adresa, $delatnost, $posao, $telefon]);
-  }
-  ?>
   <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content radius-register-mc">
@@ -168,7 +155,7 @@ require_once('./appdata/config.php');
                   <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
                   <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
                   <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                  <input style="display: block;" id="" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <input style="display: block;" id="potvrda-sifre" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
                       <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
@@ -184,10 +171,10 @@ require_once('./appdata/config.php');
                   </div>
                   <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
                     <!-- OPASNOST SQL INJECTIONA -->
-                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla </option>
+                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
                     <!--  -->
                   </select>
-                  <select class="dropdown reg-drop" NAME="OPSTINA">
+                  <select class="dropdown reg-drop" NAME="OPSTINA" id="opstina">
                     <option value="odaberi" disabled selected>Odaberi opstinu...</option>
                     <?php
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
@@ -196,8 +183,8 @@ require_once('./appdata/config.php');
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" name="ADRESA" required>
-                  <button type="submit" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa"id="adresa" name="ADRESA" required>
+                  <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
                 </form>
               </div>
             </div>
@@ -238,10 +225,8 @@ require_once('./appdata/config.php');
                     </select>
                   </div>
                 </div>
-
-
                 <select class="dropdown my-4 reg-drop" required id="vrstaPoslaFirma" name="VRSTA_POSLA">
-                  <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla </option>
+                  <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla... </option>
                 </select>
 
                 <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
@@ -268,7 +253,7 @@ require_once('./appdata/config.php');
   </div>
   <!--#endregion -->
 
-  <!--#region NavBar -->
+  <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
       <a href="#" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
@@ -432,9 +417,6 @@ require_once('./appdata/config.php');
       </div>
     </div>
   </section>
-
-
-
   <!--#region Footer-->
   <footer class="p-4 bg-dark text-white text-center position-relative">
     <div class="container">
@@ -482,21 +464,62 @@ require_once('./appdata/config.php');
   </script>
   <script>
     $(function() {
-      $('#RegisterFL').click(function() {
+      $('#RegisterFL').click(function(e) {
+      var valid = this.form.checkValidity();
+      
+      if(valid){
+
         var ime = $('#ime-fizicko').val();
         var prezime = $('#prezime-fizicko').val();
         var email = $('#email-fizicko').val();
-        var telefon = $('#telefon-fizicko').val();
-        var jmbg = $('#jmbg-fizicko').val();
+        var br_tel = $('#telefon-fizicko').val();
+        var JMBG = $('#jmbg-fizicko').val();
         var sifra = $('#sifra-fizicko').val();
-      })
-      Swal.fire({
+        var adresa = $('#adresa').val();
+        var id_delatnosti = $('#delatnost-levo').val();
+        var posao_id = $('#vrstaPosla').val();
+        var id_opstine = $('#opstina').val();
+
+        e.preventDefault();
+        
+        $.ajax({
+          type: 'POST',
+          url: 'process.php',
+        data: {ime: ime, prezime: prezime, email: email, sifra: sifra, JMBG: JMBG, id_opstine: id_opstine, adresa: adresa, id_delatnosti: id_delatnosti, posao_id: posao_id, br_tel: br_tel},
+      
+        success: function(data){
+          Swal.fire({
         icon: 'success',
         title: 'Regitracija',
-        text: 'Uspesno ste se registrovali!',
-        type: 'success',
+        text: data,
+        type: 'success'
+
       })
+      document.getElementById('ime-fizicko').value = ''; 
+      document.getElementById('prezime-fizicko').value = ''; 
+      document.getElementById('email-fizicko').value = ''; 
+      document.getElementById('telefon-fizicko').value = ''; 
+      document.getElementById('jmbg-fizicko').value = ''; 
+      document.getElementById('sifra-fizicko').value = ''; 
+      document.getElementById('adresa').value = ''; 
+      document.getElementById('potvrda-sifre').value = '';
+      document.getElementById("delatnost-levo").selectedIndex = 0;
+      document.getElementById('vrstaPosla').selectedIndex = 0;
+      document.getElementById('opstina').selectedIndex = 0;
+    },
+        error: function(data){
+          Swal.fire({
+        icon: 'error',
+        title: 'Regitracija',
+        text: 'Greska tokom cuvanja podataka!',
+        type: 'error'
+        })
+      }
     });
+  }else{
+}
+});		
+});
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="appdata/function.js"></script>
