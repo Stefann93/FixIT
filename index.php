@@ -1,5 +1,12 @@
 <?php
 require_once('./appdata/config.php');
+session_start();
+
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION);
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,18 +52,18 @@ require_once('./appdata/config.php');
             <form action="appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="exampleInputPassword1" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
               </div>
-              <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
+              <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
               </button>
               <div>
-              <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me" >&nbsp; Ostavi me prijavljenim</label>
-              
+                <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me">&nbsp; Ostavi me prijavljenim</label>
+
               </div>
             </form>
             <p id="nisi-korisnik">
@@ -183,7 +190,7 @@ require_once('./appdata/config.php');
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa"id="adresa" name="ADRESA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="adresa" name="ADRESA" required>
                   <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
                 </form>
               </div>
@@ -266,7 +273,17 @@ require_once('./appdata/config.php');
             <a href="onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
+            <a href="#" class="nav-link <?php
+                                        if (isset($_SESSION['userlogin'])) {
+                                          echo 'd-none';
+                                        } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
+          </li>
+          <li class="nav-item">
+            <a href="index.php?logout=true" class="nav-link <?php
+                                                            if (!isset($_SESSION['userlogin'])) {
+                                                              echo 'd-none';
+                                                            }
+                                                            ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
@@ -435,7 +452,7 @@ require_once('./appdata/config.php');
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
@@ -451,7 +468,7 @@ require_once('./appdata/config.php');
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
@@ -465,61 +482,126 @@ require_once('./appdata/config.php');
   <script>
     $(function() {
       $('#RegisterFL').click(function(e) {
-      var valid = this.form.checkValidity();
-      
-      if(valid){
+        var valid = this.form.checkValidity();
 
-        var ime = $('#ime-fizicko').val();
-        var prezime = $('#prezime-fizicko').val();
-        var email = $('#email-fizicko').val();
-        var br_tel = $('#telefon-fizicko').val();
-        var JMBG = $('#jmbg-fizicko').val();
-        var sifra = $('#sifra-fizicko').val();
-        var adresa = $('#adresa').val();
-        var id_delatnosti = $('#delatnost-levo').val();
-        var posao_id = $('#vrstaPosla').val();
-        var id_opstine = $('#opstina').val();
+        if (valid) {
+
+          var ime = $('#ime-fizicko').val();
+          var prezime = $('#prezime-fizicko').val();
+          var email = $('#email-fizicko').val();
+          var br_tel = $('#telefon-fizicko').val();
+          var JMBG = $('#jmbg-fizicko').val();
+          var sifra = $('#sifra-fizicko').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/process.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra,
+              JMBG: JMBG,
+              id_opstine: id_opstine,
+              adresa: adresa,
+              id_delatnosti: id_delatnosti,
+              posao_id: posao_id,
+              br_tel: br_tel
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('ime-fizicko').value = '';
+                  document.getElementById('prezime-fizicko').value = '';
+                  document.getElementById('email-fizicko').value = '';
+                  document.getElementById('telefon-fizicko').value = '';
+                  document.getElementById('jmbg-fizicko').value = '';
+                  document.getElementById('sifra-fizicko').value = '';
+                  document.getElementById('adresa').value = '';
+                  document.getElementById('potvrda-sifre').value = '';
+                  document.getElementById("delatnost-levo").selectedIndex = 0;
+                  document.getElementById('vrstaPosla').selectedIndex = 0;
+                  document.getElementById('opstina').selectedIndex = 0;
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                type: 'error'
+              })
+            }
+          });
+        } else {}
+      });
+    });
+
+    $(function() {
+      $('#prijavi-se').click(function(e) {
+
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+          var email = $('#loginMail').val();
+          var sifra = $('#loginSifra').val();
+        }
 
         e.preventDefault();
-        
+
         $.ajax({
           type: 'POST',
-          url: 'process.php',
-        data: {ime: ime, prezime: prezime, email: email, sifra: sifra, JMBG: JMBG, id_opstine: id_opstine, adresa: adresa, id_delatnosti: id_delatnosti, posao_id: posao_id, br_tel: br_tel},
-      
-        success: function(data){
-          Swal.fire({
-        icon: 'success',
-        title: 'Regitracija',
-        text: data,
-        type: 'success'
+          url: './appdata/login.php',
+          data: {
+            email: email,
+            sifra: sifra
+          },
+          success: function(data) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Prijava',
+              text: data,
+              type: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setTimeout(function() {
+                  window.location.reload();
+                }, 200);
+                document.getElementById('loginMail').value = '';
+                document.getElementById('loginSifra').value = '';
+              }
+            })
+          },
+          error: function(data) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Prijava',
+              text: data,
+              type: 'error'
 
-      })
-      document.getElementById('ime-fizicko').value = ''; 
-      document.getElementById('prezime-fizicko').value = ''; 
-      document.getElementById('email-fizicko').value = ''; 
-      document.getElementById('telefon-fizicko').value = ''; 
-      document.getElementById('jmbg-fizicko').value = ''; 
-      document.getElementById('sifra-fizicko').value = ''; 
-      document.getElementById('adresa').value = ''; 
-      document.getElementById('potvrda-sifre').value = '';
-      document.getElementById("delatnost-levo").selectedIndex = 0;
-      document.getElementById('vrstaPosla').selectedIndex = 0;
-      document.getElementById('opstina').selectedIndex = 0;
-    },
-        error: function(data){
-          Swal.fire({
-        icon: 'error',
-        title: 'Regitracija',
-        text: 'Greska tokom cuvanja podataka!',
-        type: 'error'
-        })
-      }
+            })
+          }
+        });
+      });
     });
-  }else{
-}
-});		
-});
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="appdata/function.js"></script>
