@@ -278,20 +278,20 @@ if (isset($_GET['logout'])) {
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['userlogin'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
             <a href="index.php?logout=true" class="nav-link <?php
-                                                            if (!isset($_SESSION['userlogin'])) {
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
                                                               echo 'd-none';
                                                             }
                                                             ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['userlogin'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
