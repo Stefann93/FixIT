@@ -1,31 +1,34 @@
 <?php
+session_start();
+require_once('./config.php');
+
 $email = $_POST['email'];
 $sifra = $_POST['sifra'];
+$hashed_input_password = sha1($sifra);
+$sql = "SELECT email, sifra, 'korisnik' as tip
+FROM korisnik
+WHERE email=? AND sifra = ?
+UNION
+SELECT email, sifra, 'fizicko lice' as tip
+FROM fizicko_lice
+WHERE email=? AND sifra = ?
+UNION
+SELECT email, sifra, 'firma' as tip
+FROM firma
+WHERE email=? AND sifra = ?
+Limit 1 ";
+$stmtselect = $db->prepare($sql);
+$result = $stmtselect->execute([$email, $sifra, $email, $sifra, $email, $sifra]);
 
-$pokazivac = 0;
-if (!empty($email) || !empty($sifra) || !empty($adresa) || !empty($ime)) {
-    $host = "localhost";
-    $dbusername = "fixitinr_fixit"; //root
-    $dbpassword = "9KD!Co9]B+D*"; //fixit
-    $dbname = "fixitinr_fixit"; //fixit
-    $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-    if (mysqli_connect_error()) {
-        die('Connection Error(' . mysqli_connect_error() . ')' . mysqli_connect_error());
+if ($result) {
+    $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
+    if ($stmtselect->rowCount() > 0) {
+        $tip = $user['tip']; // Get the value of the 'tip' column
+        $_SESSION[$tip] = $user;
+        echo 'Uspesna prijava! Tip korisnika: ' . $tip;
     } else {
-        $stmt = $conn->prepare("SELECT email From korisnik Where email=?");
-        $stmt->bind_param("s", $email);
-        if ($email) {
-            $stmt = $conn->prepare("SELECT sifra From korisnik Where sifra=?");
-            $stmt->bind_param("s", $sifra);
-            if ($sifra) {
-                $pokazivac = 1;
-                echo "cao cao";
-            }
-        }
-
-        $stmt->close();
-        $conn->close();
+        echo 'Neki od podataka nisu tacni!';
     }
 } else {
-    die();
+    echo 'greska prilikom konekcije na bazu';
 }

@@ -1,5 +1,12 @@
 <?php
 require_once('./appdata/config.php');
+session_start();
+
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION);
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,18 +52,18 @@ require_once('./appdata/config.php');
             <form action="appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="exampleInputPassword1" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
               </div>
-              <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
+              <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
               </button>
               <div>
-              <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me" >&nbsp; Ostavi me prijavljenim</label>
-              
+                <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me">&nbsp; Ostavi me prijavljenim</label>
+
               </div>
             </form>
             <p id="nisi-korisnik">
@@ -113,17 +120,17 @@ require_once('./appdata/config.php');
               <div class="col">
                 <form action="index.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
-                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" id="IME-KORISNIKA" required>
 
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
 
-                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-KORISNIKA" required>
+                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-KORISNIKA" required>
 
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA-KORISNIKA" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
 
                   <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
 
-                  <button type="submit" name="submitK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                  <button type="submit" name="submitK" id="RegisterK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
                     se</button>
                 </form>
               </div>
@@ -155,7 +162,7 @@ require_once('./appdata/config.php');
                   <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
                   <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
                   <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                  <input style="display: block;" id="potvrda-sifre" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
                       <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
@@ -183,7 +190,7 @@ require_once('./appdata/config.php');
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa"id="adresa" name="ADRESA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="adresa" name="ADRESA" required>
                   <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
                 </form>
               </div>
@@ -206,44 +213,48 @@ require_once('./appdata/config.php');
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
-                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" name="IME FIRME" required>
-                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" name="IME I PREZIME VLASNIKA" required>
-                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
-                <div class="row">
-                  <div class="col">
-                    <select class="dropdown reg-drop" required id="delatnost-firma" NAME="DELATNOST">
-                      <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                      <?php
-                      $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
-                        or die($conn->error);
-                      while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                        <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
-                      <?php endwhile; ?>
-                    </select>
+                <form action="index.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
+                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" id="IME-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
+                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
+                  <div class="row">
+                    <div class="col">
+                      <select class="dropdown reg-drop" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                        <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                        <?php
+                        $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
+                          or die($conn->error);
+                        while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                        <?php endwhile; ?>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <select class="dropdown my-4 reg-drop" required id="vrstaPoslaFirma" name="VRSTA_POSLA">
-                  <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla... </option>
-                </select>
+                  <select class="dropdown my-4 reg-drop" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
+                    <!-- OPASNOST SQL INJECTIONA -->
+                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
+                    <!--  -->
+                  </select>
 
-                <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
-                  <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                  <?php
-                  $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-                    or die($conn->error);
-                  while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                    <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
-                  <?php endwhile; ?>
-                </select>
-
-                <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
+                  <select class="dropdown reg-drop" NAME="OPSTINA" id="OPSTINA-FIRMA">
+                    <option value="odaberi" disabled selected>Odaberi opstinu...</option>
+                    <?php
+                    $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+                      or die($conn->error);
+                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                    <?php endwhile; ?>
+                  </select>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
+                  <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
                   firme:</label>
-                <input type="file" class="form-control upload-rad text-white" id="customFile" />
+                <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
 
-                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                  <button type="submit" name="submit" id="RegisterF" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                </form>
               </div>
             </div>
           </div>
@@ -266,10 +277,23 @@ require_once('./appdata/config.php');
             <a href="onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
+            <a href="#" class="nav-link <?php
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                          echo 'd-none';
+                                        } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
+            <a href="index.php?logout=true" class="nav-link <?php
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
+                                                              echo 'd-none';
+                                                            }
+                                                            ?>">Odjavi se</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link <?php
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                          echo 'd-none';
+                                        } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
         </ul>
       </div>
@@ -435,7 +459,7 @@ require_once('./appdata/config.php');
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
@@ -447,16 +471,16 @@ require_once('./appdata/config.php');
     });
 
     $(document).ready(function() {
-      $("#delatnost-firma").change(function() {
+      $("#DELATNOST-FIRMA").change(function() {
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
           success: function(response) {
-            $("#vrstaPoslaFirma").html(response); // Update the content of the #result div with the selected value
+            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
           }
         });
       });
@@ -465,61 +489,261 @@ require_once('./appdata/config.php');
   <script>
     $(function() {
       $('#RegisterFL').click(function(e) {
-      var valid = this.form.checkValidity();
-      
-      if(valid){
+        var valid = this.form.checkValidity();
 
-        var ime = $('#ime-fizicko').val();
-        var prezime = $('#prezime-fizicko').val();
-        var email = $('#email-fizicko').val();
-        var br_tel = $('#telefon-fizicko').val();
-        var JMBG = $('#jmbg-fizicko').val();
-        var sifra = $('#sifra-fizicko').val();
-        var adresa = $('#adresa').val();
-        var id_delatnosti = $('#delatnost-levo').val();
-        var posao_id = $('#vrstaPosla').val();
-        var id_opstine = $('#opstina').val();
+        if (valid) {
+
+          var ime = $('#ime-fizicko').val();
+          var prezime = $('#prezime-fizicko').val();
+          var email = $('#email-fizicko').val();
+          var br_tel = $('#telefon-fizicko').val();
+          var JMBG = $('#jmbg-fizicko').val();
+          var sifra = $('#sifra-fizicko').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/process.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra,
+              JMBG: JMBG,
+              id_opstine: id_opstine,
+              adresa: adresa,
+              id_delatnosti: id_delatnosti,
+              posao_id: posao_id,
+              br_tel: br_tel
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('ime-fizicko').value = '';
+                  document.getElementById('prezime-fizicko').value = '';
+                  document.getElementById('email-fizicko').value = '';
+                  document.getElementById('telefon-fizicko').value = '';
+                  document.getElementById('jmbg-fizicko').value = '';
+                  document.getElementById('sifra-fizicko').value = '';
+                  document.getElementById('adresa').value = '';
+                  document.getElementById('potvrda-sifre').value = '';
+                  document.getElementById("delatnost-levo").selectedIndex = 0;
+                  document.getElementById('vrstaPosla').selectedIndex = 0;
+                  document.getElementById('opstina').selectedIndex = 0;
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                type: 'error'
+              })
+            }
+          });
+        } else {}
+      });
+    });
+    $(function() {
+      $('#RegisterK').click(function(e) {
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var ime = $('#IME-KORISNIKA').val();
+          var prezime = $('#PREZIME-KORISNIKA').val();
+          var email = $('#EMAIL-KORISNIKA').val();
+          var sifra = $('#SIFRA-KORISNIKA').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/processKorisnik.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('IME-KORISNIKA').value = '';
+                  document.getElementById('PREZIME-KORISNIKA').value = '';
+                  document.getElementById('EMAIL-KORISNIKA').value = '';
+                  document.getElementById('SIFRA-KORISNIKA').value = '';
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                type: 'error'
+              })
+            }
+          });
+        } else {}
+      });
+    });
+    $(function() {
+      $('#RegisterF').click(function(e) {
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var imeFirme = $('#IME-FIRME').val();
+          var imeVlasnika = $('#IME-I-PREZIME-VLASNIKA').val();
+          var email = $('#EMAIL-FIRME').val();
+          var sifra = $('#SIFRA-FIRME').val();
+          var id_delatnosti = $('#DELATNOST-FIRMA').val();
+          var posao_id = $('#VRSTA-POSLA-FIRMA').val();
+          var id_opstine = $('#OPSTINA-FIRMA').val();
+          var adresa = $('#ADRESA-FIRME').val();
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/processFirma.php',
+            data: {
+              imeFirme: imeFirme,
+              imeVlasnika: imeVlasnika,
+              email: email,
+              sifra: sifra,
+              id_opstine: id_opstine,
+              // adresa: adresa,
+              id_delatnosti: id_delatnosti,
+              posao_id: posao_id,
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('IME-FIRME').value = '';
+                  document.getElementById('IME-I-PREZIME-VLASNIKA').value = '';
+                  document.getElementById('EMAIL-FIRME').value = '';
+                  document.getElementById('SIFRA-FIRME').value = '';
+                  document.getElementById('DELATNOST-FIRMA').value = '';
+                  document.getElementById('VRSTA-POSLA-FIRMA').value = '';
+                  document.getElementById('OPSTINA-FIRMA').value = '';
+                  document.getElementById('ADRESA-FIRME').value = '';
+                  document.getElementById('potvrda-sifre').value = '';
+                  document.getElementById("VRSTA-POSLA-FIRMA").selectedIndex = 0;
+                  document.getElementById('DELATNOST-FIRMA').selectedIndex = 0;
+                  document.getElementById('OPSTINA-FIRMA').selectedIndex = 0;
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                type: 'error'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!',
+            type: 'error'
+          })
+        }
+      });
+    });
+    $(function() {
+      $('#prijavi-se').click(function(e) {
+
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+          var email = $('#loginMail').val();
+          var sifra = $('#loginSifra').val();
+        }
 
         e.preventDefault();
-        
+
         $.ajax({
           type: 'POST',
-          url: 'process.php',
-        data: {ime: ime, prezime: prezime, email: email, sifra: sifra, JMBG: JMBG, id_opstine: id_opstine, adresa: adresa, id_delatnosti: id_delatnosti, posao_id: posao_id, br_tel: br_tel},
-      
-        success: function(data){
-          Swal.fire({
-        icon: 'success',
-        title: 'Regitracija',
-        text: data,
-        type: 'success'
+          url: './appdata/login.php',
+          data: {
+            email: email,
+            sifra: sifra
+          },
+          success: function(data) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Prijava',
+              text: data,
+              type: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setTimeout(function() {
+                  window.location.reload();
+                }, 200);
+                document.getElementById('loginMail').value = '';
+                document.getElementById('loginSifra').value = '';
+              }
+            })
+          },
+          error: function(data) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Prijava',
+              text: data,
+              type: 'error'
 
-      })
-      document.getElementById('ime-fizicko').value = ''; 
-      document.getElementById('prezime-fizicko').value = ''; 
-      document.getElementById('email-fizicko').value = ''; 
-      document.getElementById('telefon-fizicko').value = ''; 
-      document.getElementById('jmbg-fizicko').value = ''; 
-      document.getElementById('sifra-fizicko').value = ''; 
-      document.getElementById('adresa').value = ''; 
-      document.getElementById('potvrda-sifre').value = '';
-      document.getElementById("delatnost-levo").selectedIndex = 0;
-      document.getElementById('vrstaPosla').selectedIndex = 0;
-      document.getElementById('opstina').selectedIndex = 0;
-    },
-        error: function(data){
-          Swal.fire({
-        icon: 'error',
-        title: 'Regitracija',
-        text: 'Greska tokom cuvanja podataka!',
-        type: 'error'
-        })
-      }
+            })
+          }
+        });
+      });
     });
-  }else{
-}
-});		
-});
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="appdata/function.js"></script>
