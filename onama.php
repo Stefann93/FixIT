@@ -282,8 +282,8 @@
                         Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />
                         Svi članovi tima su učenici 4. godine, smera informacione
                         tehnologije.<br /><br />
-                        Svako od nas raspolaže veštinama: <br/><span class="text-primary h4"> PROGRAMIRANJA, GRAFIČKOG DIZAJNA, WEB
-                        DIZAJNA</span> <br>kao i mnogim drugim!
+                        Svako od nas raspolaže veštinama: <br /><span class="text-primary h4"> PROGRAMIRANJA, GRAFIČKOG DIZAJNA, WEB
+                            DIZAJNA</span> <br>kao i mnogim drugim!
                     </p>
                     <button class="btn btn-primary btn-lg" onclick="location.href='#sekcija'">
                         Zapocni
@@ -443,7 +443,7 @@
                 <div class="col-md p-5">
                     <h2><span class="text-primary">PODRŽITE</span> naš tim</h2>
                     <p class="lead">
-                        Ako želite da postanete deo tima, i pomognete razvoju 
+                        Ako želite da postanete deo tima, i pomognete razvoju
                         možete <span class="text-primary">DONIRATI</span> klikom na dugme ispod!
                     </p>
                     <p>
@@ -472,9 +472,9 @@
 
                                 </div>
                                 <div class="col-lg-10 col-md-9 col-sm-9 col-9 w-65">
-                                    <h3 class="font-weight-light text-white mt-5">Kontaktirajte nas! 
+                                    <h3 class="font-weight-light text-white mt-5">Kontaktirajte nas!
                                         Postavite pitanja ako postoje bilo kakve nedoumice.
-                                        <br/><br/>
+                                        <br /><br />
                                         <span class="text-primary">TU SMO ZA VAS!</span>
                                     </h3>
                                 </div>

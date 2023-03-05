@@ -18,14 +18,14 @@ FROM firma
 WHERE email=? AND sifra = ?
 Limit 1 ";
 $stmtselect = $db->prepare($sql);
-$result = $stmtselect->execute([$email, $sifra, $email, $sifra, $email, $sifra]);
+$result = $stmtselect->execute([$email, $hashed_input_password, $email, $hashed_input_password, $email, $hashed_input_password]);
 
 if ($result) {
     $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
     if ($stmtselect->rowCount() > 0) {
         $tip = $user['tip']; // Get the value of the 'tip' column
         $_SESSION[$tip] = $user;
-        echo 'Uspesna prijava! Tip korisnika: ' . $tip;
+        echo 'Uspesna prijava!';
     } else {
         echo 'Neki od podataka nisu tacni!';
     }
