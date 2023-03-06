@@ -4,6 +4,7 @@ require_once('./config.php');
 
 $email = $_POST['email'];
 $sifra = $_POST['sifra'];
+$rememberMe = $_POST['rememberMe'];
 $hashed_input_password = sha1($sifra);
 $sql = "SELECT email, sifra, 'korisnik' as tip
 FROM korisnik
@@ -23,8 +24,12 @@ $result = $stmtselect->execute([$email, $hashed_input_password, $email, $hashed_
 if ($result) {
     $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
     if ($stmtselect->rowCount() > 0) {
-        $tip = $user['tip']; // Get the value of the 'tip' column
+        $tip = $user['tip'];
         $_SESSION[$tip] = $user;
+        if ($rememberMe == 'true') {
+            setcookie('email', $email, time() + (86400 * 30), '/');
+            setcookie('sifra', $sifra, time() + (86400 * 30), '/');
+        }
         echo 'Uspesna prijava!';
     } else {
         echo 'Neki od podataka nisu tacni!';

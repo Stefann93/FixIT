@@ -1,10 +1,11 @@
 <?php
 require_once('./appdata/config.php');
 session_start();
-
 if (isset($_GET['logout'])) {
   session_destroy();
   unset($_SESSION);
+  setcookie('email', '', time() - 3600, "/");
+  setcookie('sifra', '', time() - 3600, "/");
   header("Location: index.php");
 }
 ?>
@@ -52,11 +53,11 @@ if (isset($_GET['logout'])) {
             <form action="appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" required />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" required />
               </div>
               <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
@@ -278,20 +279,20 @@ if (isset($_GET['logout'])) {
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
             <a href="index.php?logout=true" class="nav-link <?php
-                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
                                                               echo 'd-none';
                                                             }
                                                             ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
@@ -519,7 +520,7 @@ if (isset($_GET['logout'])) {
               adresa: adresa,
               id_delatnosti: id_delatnosti,
               posao_id: posao_id,
-              br_tel: br_tel
+              br_tel: br_tel,
             },
 
             success: function(data) {
@@ -553,71 +554,18 @@ if (isset($_GET['logout'])) {
               Swal.fire({
                 icon: 'error',
                 title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!',
-                type: 'error'
+                text: 'Greska tokom cuvanja podataka!'
               })
             }
           });
-        } else {}
-      });
-    });
-    $(function() {
-      $('#RegisterK').click(function(e) {
-        var valid = this.form.checkValidity();
-
-        if (valid) {
-
-          var ime = $('#IME-KORISNIKA').val();
-          var prezime = $('#PREZIME-KORISNIKA').val();
-          var email = $('#EMAIL-KORISNIKA').val();
-          var sifra = $('#SIFRA-KORISNIKA').val();
-          var adresa = $('#adresa').val();
-          var id_delatnosti = $('#delatnost-levo').val();
-          var posao_id = $('#vrstaPosla').val();
-          var id_opstine = $('#opstina').val();
-
-          e.preventDefault();
-
-          $.ajax({
-            type: 'POST',
-            url: './appdata/processKorisnik.php',
-            data: {
-              ime: ime,
-              prezime: prezime,
-              email: email,
-              sifra: sifra
-            },
-
-            success: function(data) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Regitracija',
-                text: data,
-                type: 'success'
-
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  setTimeout(function() {
-                    window.location.reload();
-                  }, 200);
-                  document.getElementById('IME-KORISNIKA').value = '';
-                  document.getElementById('PREZIME-KORISNIKA').value = '';
-                  document.getElementById('EMAIL-KORISNIKA').value = '';
-                  document.getElementById('SIFRA-KORISNIKA').value = '';
-                }
-              })
-
-            },
-            error: function(data) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!',
-                type: 'error'
-              })
-            }
-          });
-        } else {}
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!',
+            confirmButtonColor: '#64B245'
+          })
+        }
       });
     });
     $(function() {
@@ -682,17 +630,81 @@ if (isset($_GET['logout'])) {
               Swal.fire({
                 icon: 'error',
                 title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!',
-                type: 'error'
+                text: 'Greska tokom cuvanja podataka!'
               })
             }
           });
         } else {
           Swal.fire({
-            icon: 'error',
+            icon: 'warning',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!'
+
+          })
+        }
+      });
+    });
+    $(function() {
+      $('#RegisterK').click(function(e) {
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var ime = $('#IME-KORISNIKA').val();
+          var prezime = $('#PREZIME-KORISNIKA').val();
+          var email = $('#EMAIL-KORISNIKA').val();
+          var sifra = $('#SIFRA-KORISNIKA').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/processKorisnik.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('IME-KORISNIKA').value = '';
+                  document.getElementById('PREZIME-KORISNIKA').value = '';
+                  document.getElementById('EMAIL-KORISNIKA').value = '';
+                  document.getElementById('SIFRA-KORISNIKA').value = '';
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
             title: 'Regitracija',
             text: 'Niste uneli neki od podataka!',
-            type: 'error'
+            confirmButtonColor: '#64B245'
           })
         }
       });
@@ -705,43 +717,59 @@ if (isset($_GET['logout'])) {
         if (valid) {
           var email = $('#loginMail').val();
           var sifra = $('#loginSifra').val();
+          if ($('#remember-me').prop('checked')) {
+            var rememberMe = 'true';
+          } else
+            rememberMe = 'false';
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/login.php',
+            data: {
+              email: email,
+              sifra: sifra,
+              rememberMe: rememberMe
+            },
+            success: function(data) {
+              if (data == "Neki od podataka nisu tacni!") {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Prijava',
+                  text: data,
+                })
+              } else
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Prijava',
+                  text: data,
+                  type: 'success'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setTimeout(function() {
+                      window.location.reload();
+                    }, 200);
+                    document.getElementById('loginMail').value = '';
+                    document.getElementById('loginSifra').value = '';
+                  }
+                })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Prijava',
+                text: data,
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Prijava',
+            text: 'Niste uneli podatke!',
+            confirmButtonColor: '#64B245'
+          })
         }
-
-        e.preventDefault();
-
-        $.ajax({
-          type: 'POST',
-          url: './appdata/login.php',
-          data: {
-            email: email,
-            sifra: sifra
-          },
-          success: function(data) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Prijava',
-              text: data,
-              type: 'success'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                setTimeout(function() {
-                  window.location.reload();
-                }, 200);
-                document.getElementById('loginMail').value = '';
-                document.getElementById('loginSifra').value = '';
-              }
-            })
-          },
-          error: function(data) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Prijava',
-              text: data,
-              type: 'error'
-
-            })
-          }
-        });
       });
     });
   </script>

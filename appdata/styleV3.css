@@ -213,11 +213,8 @@ body{
 }
 @media only screen and (max-width: 756px) {
   .search-button {
-      display: none;
+      font-size: 15px;
   }
-  .search-bar {
-    border-radius: 0px;
-}
 .section {
   display: none;
 }
