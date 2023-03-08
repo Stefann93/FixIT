@@ -284,3 +284,8 @@ body{
     height: 60px;
     
   }
+
+  .hover-element:hover{
+  background-color:#212529;
+  opacity: 80%;
+  }

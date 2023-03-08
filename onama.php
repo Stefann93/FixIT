@@ -241,7 +241,7 @@
         </div>
     </div>
     <!--#endregion -->
-
+    
     <!--#region NavBar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
         <div class="container">
@@ -393,7 +393,7 @@
                                 <i class="bi bi-clipboard-data"></i>
                             </div>
                             <h3 class="card-title mb-3">Stefan Ilić</h3>
-                            <p class="card-text"> Graphics Designer</p>
+                            <p class="card-text">Database coordinator</p>
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
                         </div>
                     </div>

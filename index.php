@@ -295,6 +295,17 @@ if (isset($_GET['logout'])) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
+          <li class="nav-item dropdown account-drop">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
+            </a>
+            <ul class="dropdown-menu text-center bg-dark text-white">
+              <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a></li>
+              <li><a class="dropdown-item hover-element text-white" href="#">Sanduče</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
