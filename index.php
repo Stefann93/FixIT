@@ -298,12 +298,14 @@ if (isset($_GET['logout'])) {
           </li>
           <li class="nav-item dropdown account-drop">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
+              <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
             <ul class="dropdown-menu text-center bg-dark text-white">
               <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a></li>
               <li><a class="dropdown-item hover-element text-white" href="#">Sanduče</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
             </ul>
           </li>
@@ -425,25 +427,25 @@ if (isset($_GET['logout'])) {
         <div class="d-sm-flex">
           <div class="row">
             <div class="col-sm-6  col-6 desire-section">
-              <img src="./slike/ikonice/database-icon.png" alt="booking">
+              <img src="./slike/Ikonice/database-icon.png" alt="booking">
               <strong>
                 <p class="icon-text">BAZA MAJSTORA</p>
               </strong>
             </div>
             <div class="col-sm-6 col-6 desire-section">
-              <img src="./slike/ikonice/search-icon.png" alt="booking">
+              <img src="./slike/Ikonice/search-icon.png" alt="booking">
               <strong>
                 <p class="icon-text">LAKA PRETRAGA</p>
               </strong>
             </div>
             <div class="col-sm-6  col-6 desire-section">
-              <img src="./slike/ikonice/contact-icon.png" alt="booking">
+              <img src="./slike/Ikonice/contact-icon.png" alt="booking">
               <strong>
                 <p class="icon-text">RECENZIJE I KONTAKT</p>
               </strong>
             </div>
             <div class="col-sm-6  col-6  desire-section">
-              <img src="./slike/ikonice/booking-icon.png" alt="booking">
+              <img src="./slike/Ikonice/booking-icon.png" alt="booking">
               <strong>
                 <p class="icon-text">ANGAŽOVANJE</p>
               </strong>
