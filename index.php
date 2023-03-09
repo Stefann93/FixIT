@@ -79,22 +79,71 @@ if (isset($_GET['logout'])) {
 
   <!--#region Registracija main modal-->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body bg-dark">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body bg-dark radius-register">
           <div id="reg-right">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="reg-title-top"></div>
-          <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
+          <div class="text-white text-center fw-bold m-3 fs-2">Registracija</div>
+          
+          <div class="d-none d-lg-block"><!--Nestaje-->
+
+            <div class="row">
+              <div class="col"><div class="w-100 bg-white text-center" style="height: 2px;"></div></div>
+            </div>
+
+            <div class="row">
+            <div class="col-8 text-white mb-3">
+              <div class=" fs-3 ms-3 mt-3">Korisnik</div>
+              <div class="text-white fs-6 ms-3 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quas, quod velit nobis labore ducimus,</div>
+            </div>
+            <div class="col-4 d-flex align-items-center text-center">
+              <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button>
+            </div>
+            </div>
+            
+            <div class="row">
+              <div class="col"><div class="w-100 bg-white text-center" style="height: 2px;"></div></div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Fizičko lice</div>
+                <div class="text-white fs-6 ms-3 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quas, quod velit nobis labore ducimus,</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button>
+              </div>
+              </div>
+
+              <div class="row">
+                <div class="col"><div class="w-100 bg-white text-center" style="height: 2px;"></div></div>
+              </div>
+
+              <div class="row">
+                <div class="col-8 text-white mb-3">
+                  <div class=" fs-3 ms-3 mt-3">Firma</div>
+                  <div class="text-white fs-6 ms-3 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quas, quod velit nobis labore ducimus,</div>
+                </div>
+                <div class="col-4 d-flex align-items-center text-center">
+                  <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button>
+                </div>
+                </div>
+
+          </div>
+
+          <div class="d-block d-lg-none">
             <div class="row my-4">
               <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
               <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button></div>
               <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
             </div>
-        </div>
+          </div>
+
       </div>
     </div>
+  </div>
   </div>
   <!--#endregion-->
 
@@ -120,7 +169,7 @@ if (isset($_GET['logout'])) {
               <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="index.php" method="post">
-                  <h1 class="text-center mb-4 fw-bolder">Korisnička registracija</h1>
+                  <h1 class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</h1>
                   <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" id="IME-KORISNIKA" required>
 
                   <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
