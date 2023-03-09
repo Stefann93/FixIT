@@ -13,7 +13,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
-    <link rel="stylesheet" href="./appdata/modal_style.css" />
+    <link rel="stylesheet" href="./appdata/modal_styleV2.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Nunito&family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>O nama</title>
 </head>
 
@@ -25,271 +33,299 @@
     $dbname = "fixitinr_fixit"; //fixitinr_fixit
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
     ?>
-    <!--#region Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="myform bg-dark">
-                        <h1 id="naslov" class="text-center">Forma za prijavu</h1>
-                        <form action="appdata/login.php" method="POST">
-                            <div class="mb-3 mt-4">
-                                <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                                <input type="email" name="email" class="form-control login-textbox" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                                <input type="password" name="sifra" class="form-control login-textbox" id="exampleInputPassword1" />
-                            </div>
-                            <button type="submit" name="submit" class="btn btn-primary text-light mt-3">
-                                Prijavi se
-                            </button>
-                        </form>
-                        <p id="nisi-korisnik">
-                            Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
-                        </p>
+   <!--#region Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark">
+            <h1 id="naslov" class="text-center">Forma za prijavu</h1>
+            <form action="appdata/login.php" method="POST">
+              <div class="mb-3 mt-4">
+                <label for="exampleInputEmail1" class="form-label">Email adresa</label>
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Šifra</label>
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
+              </div>
+              <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
+                Prijavi se
+              </button>
+              <div>
+                <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me">&nbsp; Ostavi me prijavljenim</label>
+
+              </div>
+            </form>
+            <p id="nisi-korisnik">
+              Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--#endregion-->
+
+  <!--#region Registracija main modal-->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body bg-dark">
+          <div id="reg-right">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="reg-title-top"></div>
+          <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
+            <div class="row my-4">
+              <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
+              <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button></div>
+              <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--#endregion-->
+
+  <!--#region Korisnik modal -->
+  <?php
+  if (isset($_POST['submitK'])) {
+    $ime = $_POST['IME-KORISNIKA'];
+    $prezime = $_POST['PREZIME-KORISNIKA'];
+    $email = $_POST['EMAIL-KORISNIKA'];
+    $sifra = $_POST['SIFRA-KORISNIKA'];
+    $sql = "INSERT INTO korisnik (ime, prezime, email, sifra) Values (?,?,?,?)";
+    $stmtinsert = $db->prepare($sql);
+    $result = $stmtinsert->execute([$ime, $prezime, $email, $sifra]);
+  }
+  ?>
+  <div class="modal fade" id="registerKorisnik" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark radius-register">
+            <div class="row">
+              <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col">
+                <form action="index.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder">Korisnička registracija</h1>
+                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" id="IME-KORISNIKA" required>
+
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
+
+                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-KORISNIKA" required>
+
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
+
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+
+                  <button type="submit" name="submitK" id="RegisterK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                    se</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <!--#endregion -->
+
+  <!--#region Fizicko lice modal -->
+  <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark radius-register">
+            <div class="row">
+              <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col">
+                <form action="index.php" method="post">
+                  <h2 class="text-center mb-4 fw-bolder">Registracija fizičkog lica</h2>
+                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
+                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
+                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
+                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <div class="row">
+                    <div class="col">
+                      <select class="dropdown  reg-drop dropdown-register" required id="delatnost-levo" NAME="delatnost">
+                        <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                        <?php
+                        $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
+                          or die($conn->error);
+                        while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                        <?php endwhile; ?>
+                      </select>
                     </div>
-                </div>
+                  </div>
+                  <select class="dropdown my-4 reg-drop dropdown-register" required id="vrstaPosla" name="VRSTA_POSLA">
+                    <!-- OPASNOST SQL INJECTIONA -->
+                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
+                    <!--  -->
+                  </select>
+                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="opstina">
+                    <option value="odaberi" disabled selected>Odaberi opštinu...</option>
+                    <?php
+                    $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+                      or die($conn->error);
+                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                    <?php endwhile; ?>
+                  </select>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="adresa" name="ADRESA" required>
+                  <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!--#endregion -->
+  </div>
+  </div>
+  <!--#endregion -->
 
-    <!--#region Registracija main modal-->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body bg-dark">
-                    <div id="reg-right">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <!--#region firma modal -->
+  <div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark radius-register">
+            <div class="row">
+              <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col">
+                <form action="index.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
+                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" id="IME-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
+                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
+                  <div class="row">
+                    <div class="col">
+                      <select class="dropdown reg-drop dropdown-register" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                        <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                        <?php
+                        $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
+                          or die($conn->error);
+                        while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                        <?php endwhile; ?>
+                      </select>
                     </div>
-                    <div id="reg-title-top"></div>
-                    <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
-                        <div class="row my-4">
-                            <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
-                            <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice</button></div>
-                            <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
-                        </div>
-                </div>
+                  </div>
+                  <select class="dropdown my-4 reg-drop dropdown-register" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
+                    <!-- OPASNOST SQL INJECTIONA -->
+                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
+                    <!--  -->
+                  </select>
+
+                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="OPSTINA-FIRMA">
+                    <option value="odaberi" disabled selected>Odaberi opštinu...</option>
+                    <?php
+                    $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+                      or die($conn->error);
+                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                    <?php endwhile; ?>
+                  </select>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
+                  <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
+                  firme:</label>
+                <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
+
+                  <button type="submit" name="submit" id="RegisterF" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!--#endregion-->
+  </div>
+  <!--#endregion -->
 
-    <!--#region Korisnik modal -->
-    <div class="modal fade" id="registerKorisnik" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content radius-register-mc">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="myform bg-dark radius-register">
-                        <div class="row">
-                            <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-                            <div class="col">
-                                <h1 class="text-center mb-4 fw-bolder">Korisnicka registracija</h1>
-                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME KORISNIKA" required>
-
-                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME KORISNIKA" required>
-
-                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
-
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
-
-                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
-                                    se</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+     <!-- #region NavBar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <div class="container">
+      <a href="#" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="index.php" class="nav-link">Početna</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link <?php
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                          echo 'd-none';
+                                        } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
+          </li>
+          <li class="nav-item">
+            <a href="index.php?logout=true" class="nav-link <?php
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
+                                                              echo 'd-none';
+                                                            }
+                                                            ?>">Odjavi se</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link <?php
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                          echo 'd-none';
+                                        } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
+          </li>
+          <li class="nav-item dropdown account-drop">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
+            </a>
+            <ul class="dropdown-menu text-center bg-dark text-white">
+              <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a></li>
+              <li><a class="dropdown-item hover-element text-white" href="#">Sanduče</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    </div>
-    </div>
-    <!--#endregion -->
-
-    <!--#region Fizicko lice modal -->
-    <div class="modal fade" id="registerFizickoLice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered ">
-            <div class="modal-content radius-register-mc">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="myform bg-dark radius-register">
-                        <div class="row">
-                            <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-                            <div class="col">
-                                <h2 class="text-center mb-4 fw-bolder">Registracija fizickog lica</h2>
-
-                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" name="IME FIZICKOG LICA" required>
-                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME FIZICKOG LICA" required>
-
-                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
-
-                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ TELEFONA" required>
-
-                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
-
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
-                                <div class="row">
-                                    <div class="col">
-                                        <select class="dropdown reg-drop" required id="delatnost-levo" NAME="delatnost">
-                                            <option value="odaberi" disabled selected>Odaberi delatnost...</option>
-                                            <?php
-                                            $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
-                                                or die($conn->error);
-                                            while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                                                <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>">
-                                                    <?= $podatakDelatnost['naziv_delatnosti'] ?>
-                                                </option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <select class="dropdown my-4 reg-drop" required id="vrstaPosla" name="VRSTA_POSLA">
-                                    <!-- OPASNOST SQL INJECTIONA -->
-                                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla
-                                    </option>
-                                    <!--  -->
-                                </select>
-                                <select class="dropdown reg-drop" NAME="OPSTINA">
-                                    <option value="odaberi" disabled selected>Odaberi opstinu...</option>
-                                    <?php
-                                    $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-                                        or die($conn->error);
-                                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                                        <option value="<?= $podatakOpstine['ime_opstine'] ?>">
-                                            <?= $podatakOpstine['ime_opstine'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj
-                                    se</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!--#endregion -->
-
-    <!--#region firma modal -->
-    <div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered ">
-            <div class="modal-content radius-register-mc">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="myform bg-dark radius-register">
-                        <div class="row">
-                            <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-                            <div class="col">
-                                <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
-                                <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" name="IME FIRME" required>
-                                <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" name="IME I PREZIME VLASNIKA" required>
-                                <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" name="EMAIL" required>
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                                <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
-                                <div class="row">
-                                    <div class="col">
-                                        <select class="dropdown reg-drop" required id="delatnost-firma" NAME="DELATNOST">
-                                            <option value="odaberi" disabled selected>Odaberi delatnost</option>
-                                            <?php
-                                            $delatnosti = $conn->query("SELECT naziv_delatnosti FROM delatnosti")
-                                                or die($conn->error);
-                                            while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                                                <option value="<?= $podatakDelatnost['naziv_delatnosti'] ?>">
-                                                    <?= $podatakDelatnost['naziv_delatnosti'] ?>
-                                                </option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <select class="dropdown my-4 reg-drop" required id="vrstaPoslaFirma" name="VRSTA_POSLA">
-                                    <option value="odaberi" id="odaberi" disabled selected>Odaberi vrstu posla </option>
-                                </select>
-
-                                <select class="dropdown reg-drop mb-4" id="firma_opstina" NAME="OPSTINA">
-                                    <option value="odaberi" disabled selected>Odaberi opstinu</option>
-                                    <?php
-                                    $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-                                        or die($conn->error);
-                                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                                        <option value="<?= $podatakOpstine['ime_opstine'] ?>">
-                                            <?= $podatakOpstine['ime_opstine'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-
-                                <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
-                                    firme:</label>
-                                <input type="file" class="form-control upload-rad text-white" id="customFile" />
-
-                                <button type="submit" name="submit" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj
-                                    se</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--#endregion -->
-    
-    <!--#region NavBar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">
-        <div class="container">
-            <a href="./index.php" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav ms-auto z">
-                    <li class="nav-item">
-                        <a href="./index.php" class="nav-link">Pocetna</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./onama.php" class="nav-link">O nama</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--#endregion -->
+  </nav>
+  <!--#endregion -->
+  
     <!--#region UnderNavBar-->
     <section class="bg-dark text-light p-3 pt-0 text-center text-sm-start">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
-                    <h1 class="display-1">
+                    <h1 class="display-2 display-font pt-3">
                         Upoznajte naš <span class="text-primary">TIM</span>
                     </h1>
-                    <p class="lead my-4">
+                    <p class="hero-text pt-3">
                         Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />
                         Svi članovi tima su učenici 4. godine, smera informacione
-                        tehnologije.<br /><br />
-                        Svako od nas raspolaže veštinama: <br /><span class="text-primary h4"> PROGRAMIRANJA, GRAFIČKOG DIZAJNA, WEB
+                        tehnologije.<br />
+                    </p>
+                    <p class="hero-text">
+                        Svako od nas raspolaže veštinama: <br /><span class="text-primary hero-text fs-4"> PROGRAMIRANJA, GRAFIČKOG
+                            DIZAJNA, WEB
                             DIZAJNA</span> <br>kao i mnogim drugim!
                     </p>
-                    <button class="btn btn-primary btn-lg" onclick="location.href='#sekcija'">
-                        Zapocni
-                    </button>
                 </div>
                 <!--SLIKA DODJE OVDE-->
+                <!--DODAT PT=3 U SLIKU-->
+                <img class="img-fluid w-35 d-none d-lg-block pt-3" src="./slike/team1.png" alt="radnik" />
             </div>
         </div>
     </section>
@@ -298,15 +334,15 @@
     <section class="bg-primary text-light p-5 ">
         <div class="container">
             <div class="d-md-flex justify-content-between align-items-center text-center text-sm-start">
-                <h3 class="mt-1">Profili članova tima</h3>
+                <h3 class="mt-1 display-2 display-font fs-2">Profili članova tima</h3>
                 <!--DODATI NESTO-->
-                <button type="button" class="btn btn-dark mt-1" onclick="location.href='#a'">
+                <button type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#a'">
                     FRONTEND
                 </button>
-                <button type="button" class="btn btn-dark mt-1" onclick="location.href='#v'">
+                <button type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#v'">
                     BACKEND
                 </button>
-                <button id="a" type="button" class="btn btn-dark mt-1" onclick="location.href='#c'">
+                <button id="a" type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#c'">
                     DESIGNERS
                 </button>
             </div>
@@ -315,7 +351,7 @@
 
     <section class="p-5">
         <div class="container">
-            <h1>Developers: <span class="text-primary">FRONTEND </span></h1>
+            <h1 class="display-2 display-font fs-1">Developers: <span class="text-primary">FRONTEND </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -325,7 +361,8 @@
                             </div>
                             <h3 class="card-title mb-3 ">Stefan Ilić</h3>
                             <p class="card-text">Programer</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -337,7 +374,8 @@
                             </div>
                             <h3 class="card-title mb-3">Mihajlo Jovanović</h3>
                             <p class="card-text">Programer</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-mihajloj">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-mihajloj">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -349,7 +387,8 @@
                             </div>
                             <h3 class="card-title mb-3">Andrija Andrejić</h3>
                             <p class="card-text">Programer</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-andrijaa">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-andrijaa">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -361,7 +400,8 @@
                             </div>
                             <h3 class="card-title mb-3 fs-4">Mateja Milentijević</h3>
                             <p class="card-text">Programer</p>
-                            <button id="v" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejam">SAZNAJ
+                            <button id="v" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-matejam">SAZNAJ
                                 VIŠE</button>
                         </div>
                     </div>
@@ -372,7 +412,7 @@
 
     <section class=" p-5">
         <div class="container">
-            <h1>Developer: <span class="text-primary">BACKEND </span></h1>
+            <h1 class="display-2 display-font fs-1">Developer: <span class="text-primary">BACKEND </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -382,7 +422,8 @@
                             </div>
                             <h3 class="card-title mb-3">Relja Stojanović</h3>
                             <p class="card-text">Database coordinator</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -394,7 +435,8 @@
                             </div>
                             <h3 class="card-title mb-3">Stefan Ilić</h3>
                             <p class="card-text">Database coordinator</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -404,7 +446,7 @@
 
     <section class="p-5">
         <div class="container">
-            <h1>Graphics Designers: <span class="text-primary">DESIGNERS </span></h1>
+            <h1 class="display-2 display-font fs-1">Graphics Designers: <span class="text-primary">DESIGNERS </span></h1>
             <div class="row text-center g-4">
                 <div class="col-md">
                     <div class="card bg-dark text-light">
@@ -414,7 +456,8 @@
                             </div>
                             <h3 class="card-title mb-3">Stefan Brkić</h3>
                             <p class="card-text">Graphics Designer</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefanb">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-stefanb">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -426,7 +469,8 @@
                             </div>
                             <h3 class="card-title mb-3">Mateja Živanović</h3>
                             <p class="card-text"> Graphics Designer</p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejaz">SAZNAJ VIŠE</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#ImePrezime-matejaz">SAZNAJ VIŠE</button>
                         </div>
                     </div>
                 </div>
@@ -441,14 +485,16 @@
                     <img class="img-fluid" src="./slike/programmers2.png" alt="" />
                 </div>
                 <div class="col-md p-5">
-                    <h2><span class="text-primary">PODRŽITE</span> naš tim</h2>
-                    <p class="lead">
+                    <h2 class="display-2 display-font pt-3 fs-2"><span class="text-primary">PODRŽITE</span> naš tim</h2>
+                    <p class="lead hero-text">
                         Ako želite da postanete deo tima, i pomognete razvoju
                         možete <span class="text-primary">DONIRATI</span> klikom na dugme ispod!
                     </p>
-                    <p>
-                        Možete da našu neprofitnu ideju pomognete u skladu sa Vašim mogućnostima i željama, kako bi brže i uspješnije ostvarili naše ciljeve.
-                        Sve naše akcije doprinose zajednici u užem i širem smislu i kao takvi su iskreni, zato ste nam važni Vi, kao vrlo bitan učesnik u našim akcijama: sponzor ili donator.
+                    <p class="hero-text">
+                        Možete da našu neprofitnu ideju pomognete u skladu sa Vašim mogućnostima i željama, kako bi brže
+                        i uspješnije ostvarili naše ciljeve.
+                        Sve naše akcije doprinose zajednici u užem i širem smislu i kao takvi su iskreni, zato ste nam
+                        važni Vi, kao vrlo bitan učesnik u našim akcijama: sponzor ili donator.
 
 
                     </p>
@@ -464,7 +510,8 @@
         <div class="container">
             <div class="card border-dark bg-dark">
                 <div class="card-body">
-                    <h1 id="r" class="font-weight-light text-center py-4 my-4"><span class="text-primary">Contact</span><span class="text-white"> US</span></h1>
+                    <h1 id="r" class="font-weight-light text-center py-4 my-4 display-2 display-font pt-3 fs-2"><span
+                            class="text-primary">Contact</span><span class="text-white"> US</span></h1>
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="row pt-3">
@@ -483,19 +530,27 @@
                         <div class="col-lg-6 col-md-12 col-sm-12 col-12 px-0">
                             <form>
                                 <div class="form-row mb-3">
-                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-start pb-3">
+                                    <div
+                                        class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-start pb-3">
                                         <label class="text-primary">Ime</label>
-                                        <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Ime...">
+                                        <input type="text"
+                                            class="form-control border-primary w-100 mb-1 bg-dark text-white"
+                                            placeholder="Ime...">
                                     </div>
-                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-end pb-3">
-                                        <label class="text-primary ">Prezime</label>
-                                        <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Prezime...">
+                                    <div
+                                        class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-end pb-3">
+                                        <label class="text-primary">Prezime</label>
+                                        <input type="text"
+                                            class="form-control border-primary w-100 mb-1 bg-dark text-white"
+                                            placeholder="Prezime...">
                                     </div>
                                 </div>
                                 <label class="pt-3 text-primary ">Email</label>
-                                <input type="email" class="form-control border-primary mb-3 bg-dark text-white" placeholder="Email...">
-                                <label class="pt-3 text-primary ">Vasa poruka</label>
-                                <textarea class="form-control mb-4 border-primary bg-dark text-white" placeholder="Poruka..." name="" id="" cols="10" rows="5"></textarea>
+                                <input type="email" class="form-control border-primary mb-3 bg-dark text-white"
+                                    placeholder="Email...">
+                                <label class="pt-3 text-primary ">Vaša poruka</label>
+                                <textarea class="form-control mb-4 border-primary bg-dark text-white"
+                                    placeholder="Poruka..." name="" id="" cols="10" rows="5"></textarea>
                                 <button class="btn btn-primary mb-5 mt-4 float-end">Posalji</button>
                             </form>
                         </div>
@@ -531,7 +586,8 @@
                                     <h class="broj mb-1">tel: 061/26-34-945
                                 </p>
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -575,7 +631,8 @@
                                     <h class="broj mb-1">tel: 064/98-27-168
                                 </p>
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -619,7 +676,8 @@
                                     <h class="broj mb-1">tel: 061/25-82-368
                                 </p>
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -662,7 +720,8 @@
                                     <h class="broj mb-1">tel: 064/33-66-999
                                 </p>
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -705,7 +764,8 @@
                                     <h class="broj mb-1">tel: 060/13-52-676
                                 </p>
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -749,7 +809,8 @@
                                 </p></br>
                                 <h class="broj mb-1">tel: 064/03-30-611
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -793,7 +854,8 @@
                                 </p></br>
                                 <h class="broj mb-1">tel: 062/87-14-081
                         </div>
-                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna" alt="Responsive image"></div>
+                        <div class="col-4"><img src="./slike/Profile Banenr.jpg" class="img-fluid profilna"
+                                alt="Responsive image"></div>
                     </div>
 
 
@@ -825,11 +887,15 @@
     </footer>
     <!--#endregion-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
-            $("#delatnost-levo").change(function() {
+        $(document).ready(function () {
+            $("#delatnost-levo").change(function () {
                 var selectedOption = $(this).children("option:selected").val();
                 $.ajax({
                     type: "POST",
@@ -837,15 +903,15 @@
                     data: {
                         option: selectedOption
                     },
-                    success: function(response) {
+                    success: function (response) {
                         $("#vrstaPosla").html(response); // Update the content of the #result div with the selected value
                     }
                 });
             });
         });
 
-        $(document).ready(function() {
-            $("#delatnost-firma").change(function() {
+        $(document).ready(function () {
+            $("#delatnost-firma").change(function () {
                 var selectedOption = $(this).children("option:selected").val();
                 $.ajax({
                     type: "POST",
@@ -853,7 +919,7 @@
                     data: {
                         option: selectedOption
                     },
-                    success: function(response) {
+                    success: function (response) {
                         $("#vrstaPoslaFirma").html(response); // Update the content of the #result div with the selected value
                     }
                 });
