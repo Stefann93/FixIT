@@ -7,8 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
   <link href="./appdata/main.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./appdata/radnikV9.css" />
+  <link rel="stylesheet" href="./appdata/radnikV10.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -368,13 +370,13 @@
   </section>
   <div class="container" id="nestani">
     <ul class="tabs d-flex text-center" id="crno">
-      <li data-tab-target="#recenzije" class="tab active recenzije-tab fs-3">Recenzije</li>
-      <li data-tab-target="#kontakt" class="tab kontakt  fs-3">Kontakt</li>
-      <li data-tab-target="#angazovanje" class="tab angazovanje fs-3">Angazovanje</li>
+      <li data-tab-target="#angazovanje" class="tab active angazovanje fs-3">Angazovanje</li>
+      <li data-tab-target="#kontakt" class="tab  kontakt fs-3">Kontakt</li>
+      <li data-tab-target="#recenzije" class="tab  recenzije-tab fs-3">Recenzije</li>
     </ul>
     <div class="container">
       <div class="tab-content mb-5">
-        <div id="recenzije" data-tab-content class="active">
+        <div id="recenzije" data-tab-content>
           <div class="d-lg-flex justify-content-between flex-wrap">
             <div class="recenzije">
               <h4><span class="zvezdica"></span>
@@ -513,14 +515,14 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22791.426697029554!2d20.691289773867474!3d44.434632202799015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4750bac18302ae3f%3A0xc6c85658f278872!2z0JzQu9Cw0LTQtdC90L7QstCw0YY!5e0!3m2!1ssr!2srs!4v1673096595731!5m2!1ssr!2srs" width="100%" height="450" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-        <div id="angazovanje" data-tab-content>
+        <div id="angazovanje" data-tab-content class="active">
           <div class="ostatak-sekcija mt-3 pb-4">
             <h4><span class="kliper"></span>
               Vrsta posla
             </h4>
 
             <p class="lead undertext">Odaberite koja vam je usluga potrebna.</p>
-            <select class="dropdown mb-3">
+            <select class="dropdownOnPage mb-3">
               <option value="odaberi" disabled selected>Odaberi uslugu...</option>
               <?php
               $usluga = $conn->query("SELECT vrsta_rada.ime_posla from vrsta_rada INNER JOIN poslovi on vrsta_rada.posao_id = poslovi.posao_id where poslovi.naziv_posla ='$_GET[posao]';")
@@ -537,7 +539,7 @@
               Lokacija
             </h4>
             <p class="lead undertext">Unesite lokaciju radova</p>
-            <select class="dropdown mt-2 mb-3">
+            <select class="dropdownOnPage mt-2 mb-3">
               <option value="odaberi" disabled selected>Odaberi Lokaciju</option>
               <?php
               $opstine = $conn->query("SELECT ime_opstine FROM opstine")
@@ -555,11 +557,12 @@
             <p class="lead undertext ">Odaberite zeljeni dan/period za izvrsenje usluga i pogledajte zauzete
               dane
               majstora.</p>
-            <p class="lead dani d-flex pb-4 justify-content-center"><span class="slobodan-dan"></span> -
-              Slobodan
+            <p class="lead dani d-flex pb-4 justify-content-center"><span class="danasnji-dan"></span> -
+              Danasnji
               dan<span class="wrapper-dani"><span class="zauzet-dan"></span><span>- Zauzet
                   dan</span></span>
             </p>
+            <div id="calendar"></div>
           </div>
 
           <div class="ostatak-sekcija mt-3">
@@ -603,7 +606,44 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://kit.fontawesome.com/3e24ca445f.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale-all.min.js'></script>
+  <script>
+    $(document).ready(function() {
+      var calendar = $('#calendar').fullCalendar({
+        plugins: ['dayGrid', 'interaction'],
+        locale: 'sr-latn',
+        selectable: true,
+        selectHelper: true,
+        editable: true,
+        eventLimit: true,
+        eventOverlap: false,
+        events: './appdata/load-events.php',
+        select: function(start, end) {
+          var title = prompt('Unesite naziv događaja:');
+          var eventData;
+          if (title) {
+            eventData = {
+              title: title,
+              start: start,
+              end: end
+            };
+            calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
+            $.ajax({
+              url: './appdata/add-event.php',
+              data: 'title=' + title + '&start=' + start.format() + '&end=' + end.format(),
+              type: 'POST',
+              dataType: 'json',
+              success: function(response) {}
+            });
+          }
+          calendar.fullCalendar('unselect');
+        },
+      });
+    });
+  </script>
   <script>
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
