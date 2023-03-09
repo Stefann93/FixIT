@@ -26,13 +26,13 @@
   $dbpassword = ""; //9KD!Co9]B+D*
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-  $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE id_fizicko>7*($_GET[p]-1) and id_fizicko<=7*$_GET[p] and Poslovi.naziv_posla = '$_GET[posao]';")
+  $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE id_fizicko>7*($_GET[p]-1) and id_fizicko<=7*$_GET[p] and poslovi.naziv_posla = '$_GET[posao]';")
     or die($conn->error);
   $vrstaRada = $conn->query("SELECT ime_opstine FROM opstine")
     or die($conn->error);
   ?>
-<!--#region Modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!--#region Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
@@ -254,8 +254,8 @@
   </div>
   <!--#endregion -->
 
-     <!-- #region NavBar -->
-     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+  <!-- #region NavBar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
       <a href="#" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
@@ -290,12 +290,14 @@
           </li>
           <li class="nav-item dropdown account-drop">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
+              <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
             <ul class="dropdown-menu text-center bg-dark text-white">
               <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a></li>
               <li><a class="dropdown-item hover-element text-white" href="#">Sanduče</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
             </ul>
           </li>
@@ -305,7 +307,7 @@
   </nav>
   <!--#endregion -->
   <?php
-  $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE Poslovi.naziv_posla = '$_GET[posao]';")
+  $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
     or die($conn->error);
   $podatak = $posao->fetch_assoc();
   ?>
@@ -446,7 +448,7 @@
             <table class="tabela2">
               <?php
               $limit = ($_GET['p'] - 1) * 7;
-              $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE Poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+              $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
                 or die($conn->error);
               while ($podatak = $radnik->fetch_assoc()) : ?>
                 <tr class="aa">
