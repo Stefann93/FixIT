@@ -18,19 +18,15 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
   <link href="appdata/main.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Nunito&family=Rowdies:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500&family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <!--#region Tekst-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="appdata/styleV3.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!--#endregion-->
+  <link rel="stylesheet" href="appdata/styleV4.css" />
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
-  <link rel="stylesheet" href="./appdata/modal_styleV2.css" />
+  <link rel="stylesheet" href="./appdata/modal_styleV3.css" />
   <title>FixIT</title>
 </head>
 
@@ -68,7 +64,7 @@ if (isset($_GET['logout'])) {
               </div>
             </form>
             <p id="nisi-korisnik">
-              Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
+              Nemaš nalog? <a id="prijava-mini" href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Napravi nalog!</a>
             </p>
           </div>
         </div>
@@ -79,19 +75,77 @@ if (isset($_GET['logout'])) {
 
   <!--#region Registracija main modal-->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body bg-dark">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body bg-dark radius-register">
           <div id="reg-right">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="reg-title-top"></div>
-          <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
-            <div class="row my-4">
-              <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
-              <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button></div>
-              <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
+          <div class="text-white text-center fw-bold m-3 fs-2">Registracija</div>
+
+          <div class="d-none d-lg-block"><!--Nestaje-->
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
             </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Korisnik usluga</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Fizičko lice</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Firma</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-block d-lg-none">
+            <div class="row my-2">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
+            </div>
+            <div class="row my-2">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
+            </div>
+            <div class="row my-2 mb-4">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -120,18 +174,24 @@ if (isset($_GET['logout'])) {
               <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="index.php" method="post">
-                  <h1 class="text-center mb-4 fw-bolder">Korisnička registracija</h1>
-                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" id="IME-KORISNIKA" required>
+                  <div class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</div>
+                  <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime" id="IME-KORISNIKA" required>
 
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
 
-                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="JMBG" id="JMBG-KORISNIKA" required>
 
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
+                  <input style="display: block;" type="number" inputmode="tel" class="input my-4 register-textbox fs-6" placeholder="Kontakt telefon" id="TELEFON-KORISNIKA" required>
 
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <input style="display: block;" type="email" class="input register-textbox  fs-6" placeholder="Email" id="EMAIL-KORISNIKA" required>
 
-                  <button type="submit" name="submitK" id="RegisterK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
+
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Potvrdite sifru" required>
+
+
+
+                  <button type="submit" name="submitK" id="RegisterK" class="btn fs-6 btn-primary text-center text-white fw-bold w-100">Registruj
                     se</button>
                 </form>
               </div>
@@ -156,17 +216,17 @@ if (isset($_GET['logout'])) {
               <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="index.php" method="post">
-                  <h2 class="text-center mb-4 fw-bolder">Registracija fizičkog lica</h2>
-                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
-                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
-                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
+                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox  fs-6" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox fs-6" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
+                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="JMBG" name="JMBG" required>
+                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" name="SIFRA" required>
+                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox fs-6" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
-                      <select class="dropdown  reg-drop dropdown-register" required id="delatnost-levo" NAME="delatnost">
+                      <select class="dropdown  reg-drop dropdown-register fs-6" required id="delatnost-levo" NAME="delatnost">
                         <option value="odaberi" disabled selected>Odaberi delatnost...</option>
                         <?php
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
@@ -177,12 +237,12 @@ if (isset($_GET['logout'])) {
                       </select>
                     </div>
                   </div>
-                  <select class="dropdown my-4 reg-drop dropdown-register" required id="vrstaPosla" name="VRSTA_POSLA">
+                  <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="vrstaPosla" name="VRSTA_POSLA">
                     <!-- OPASNOST SQL INJECTIONA -->
                     <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
                     <!--  -->
                   </select>
-                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="opstina">
+                  <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="opstina">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
                     <?php
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
@@ -191,7 +251,7 @@ if (isset($_GET['logout'])) {
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="adresa" name="ADRESA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="adresa" name="ADRESA" required>
                   <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
                 </form>
               </div>
@@ -215,15 +275,15 @@ if (isset($_GET['logout'])) {
               <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="index.php" method="post">
-                  <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
-                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
-                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-FIRME" required>
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-FIRME" required>
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
+                  <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
+                  <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
+                  <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
-                      <select class="dropdown reg-drop dropdown-register" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                      <select class="dropdown reg-drop dropdown-register fs-6" required id="DELATNOST-FIRMA" NAME="DELATNOST">
                         <option value="odaberi" disabled selected>Odaberi delatnost...</option>
                         <?php
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
@@ -234,13 +294,13 @@ if (isset($_GET['logout'])) {
                       </select>
                     </div>
                   </div>
-                  <select class="dropdown my-4 reg-drop dropdown-register" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
+                  <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
                     <!-- OPASNOST SQL INJECTIONA -->
                     <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
                     <!--  -->
                   </select>
 
-                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="OPSTINA-FIRMA">
+                  <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
                     <?php
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
@@ -249,7 +309,7 @@ if (isset($_GET['logout'])) {
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
                   <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
                   firme:</label>
                 <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
@@ -268,14 +328,14 @@ if (isset($_GET['logout'])) {
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
-      <a href="#" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
+      <a href="./index.php" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto text-uppercase">
           <li class="nav-item">
-            <a href="onama.php" class="nav-link">O nama</a>
+            <a href="./onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
@@ -296,7 +356,7 @@ if (isset($_GET['logout'])) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
-          <li class="nav-item dropdown account-drop">
+          <li class="nav-item dropdown account-drop me-lg-5">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
@@ -361,50 +421,50 @@ if (isset($_GET['logout'])) {
         <div class="text-center mt-5 pt-2">
           <h1 class="naslov1"><span class="text-primary naslov1">MAJSTORI</span> PO DELATNOSTIMA</h1>
         </div>
-        <a href="delatnosti/gradjevina.html" class="col-6 col-lg-3 ada mt-3">
+        <a href="delatnosti/gradjevina.php" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/GRADJEVINA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Građevina</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/elektrika.html" class="col-6 col-lg-3 ada mt-3">
+        <a href="delatnosti/elektrika.php" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/ELEKTRONIKA.svg" alt="" class="img-fluid ikonice " />
             <h5 class="text-dark pt-4"><strong>Elektrika</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/odrzavanje.html" class="col-6 col-lg-3 ada mt-3">
+        <a href="delatnosti/odrzavanje.php" class="col-6 col-lg-3 ada mt-3">
           <div>
             <img src="slike/Ikonice/ODRZAVANJE.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Održavanje</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/cevne-instalacije.html" class="col-6 col-lg-3 ada mt-3 ">
+        <a href="delatnosti/cevne-instalacije.php" class="col-6 col-lg-3 ada mt-3 ">
           <div>
             <img src="slike/Ikonice/CEVNEINSTALACIJE.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Cevne instalacije</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/obrada-materijala.html" class="col-6 col-lg-3 ada mb-lg-5">
+        <a href="delatnosti/obrada-materijala.php" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
             <img src="slike/Ikonice/OBRADA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Obrada materijala</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/vozila.html" class="col-6 col-lg-3 ada mb-lg-5">
+        <a href="delatnosti/vozila.php" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
             <img src="slike/Ikonice/VOZILA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong> Održavanje vozila</strong></h5>
           </div>
         </a>
-        <a href="delatnosti/garderoba.html" class="col-6 col-lg-3 ada mb-5">
+        <a href="delatnosti/garderoba.php" class="col-6 col-lg-3 ada mb-5">
           <div>
 
             <img src="slike/Ikonice/GARDEROBA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong> Garderoba i nakit</strong></h5>
           </div>
         </a>
-        <a href="delatnosti/ostalo.html" class="col-6 col-lg-3 ada mb-5">
+        <a href="delatnosti/ostalo.php" class="col-6 col-lg-3 ada mb-5">
           <div>
             <img src="slike/Ikonice/NEKATEGORIZOVANO.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Ostalo</strong> </h5>
@@ -503,6 +563,7 @@ if (isset($_GET['logout'])) {
   <script>
     $(function() {
       $('#RegisterFL').click(function(e) {
+
         var valid = this.form.checkValidity();
 
         if (valid) {
@@ -541,7 +602,8 @@ if (isset($_GET['logout'])) {
                 icon: 'success',
                 title: 'Regitracija',
                 text: data,
-                type: 'success'
+                type: 'success',
+                confirmButtonColor: '#64B245'
 
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -561,13 +623,13 @@ if (isset($_GET['logout'])) {
                   document.getElementById('opstina').selectedIndex = 0;
                 }
               })
-
             },
             error: function(data) {
               Swal.fire({
                 icon: 'error',
                 title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!'
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
               })
             }
           });
@@ -583,6 +645,7 @@ if (isset($_GET['logout'])) {
     });
     $(function() {
       $('#RegisterF').click(function(e) {
+
         var valid = this.form.checkValidity();
 
         if (valid) {
@@ -616,7 +679,8 @@ if (isset($_GET['logout'])) {
                 icon: 'success',
                 title: 'Regitracija',
                 text: data,
-                type: 'success'
+                type: 'success',
+                confirmButtonColor: '#64B245'
 
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -637,13 +701,13 @@ if (isset($_GET['logout'])) {
                   document.getElementById('OPSTINA-FIRMA').selectedIndex = 0;
                 }
               })
-
             },
             error: function(data) {
               Swal.fire({
                 icon: 'error',
                 title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!'
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
               })
             }
           });
@@ -651,8 +715,8 @@ if (isset($_GET['logout'])) {
           Swal.fire({
             icon: 'warning',
             title: 'Regitracija',
-            text: 'Niste uneli neki od podataka!'
-
+            text: 'Niste uneli neki od podataka!',
+            confirmButtonColor: '#64B245'
           })
         }
       });
@@ -689,7 +753,8 @@ if (isset($_GET['logout'])) {
                 icon: 'success',
                 title: 'Regitracija',
                 text: data,
-                type: 'success'
+                type: 'success',
+                confirmButtonColor: '#64B245'
 
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -708,7 +773,8 @@ if (isset($_GET['logout'])) {
               Swal.fire({
                 icon: 'error',
                 title: 'Regitracija',
-                text: 'Greska tokom cuvanja podataka!'
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
               })
             }
           });
@@ -750,13 +816,15 @@ if (isset($_GET['logout'])) {
                   icon: 'warning',
                   title: 'Prijava',
                   text: data,
+                  confirmButtonColor: '#64B245'
                 })
               } else
                 Swal.fire({
                   icon: 'success',
                   title: 'Prijava',
                   text: data,
-                  type: 'success'
+                  type: 'success',
+                  confirmButtonColor: '#64B245'
                 }).then((result) => {
                   if (result.isConfirmed) {
                     setTimeout(function() {
@@ -772,6 +840,7 @@ if (isset($_GET['logout'])) {
                 icon: 'warning',
                 title: 'Prijava',
                 text: data,
+                confirmButtonColor: '#64B245'
               })
             }
           });
@@ -787,7 +856,6 @@ if (isset($_GET['logout'])) {
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  <script src="appdata/function.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,7 @@
+@font-face{
+  font-family: Grifter;
+  src: url(../font/grifterbold.otf);
+}
 #reg-right {
   text-align: right;
 }
