@@ -85,6 +85,11 @@
     font-family: "Roboto";
 }
 
+a{
+    text-decoration: none;
+    color:#212529;
+}
+
 .bread {
     text-decoration: none;
 }
@@ -456,7 +461,7 @@
     border-radius: 20px;
 }
 
-.slobodan-dan,
+.danasnji-dan,
 .zauzet-dan {
     display: inline-block;
     width: 30px;
@@ -465,9 +470,27 @@
     border-radius: 20px;
     margin-right: 5px;
 }
-
-.slobodan-dan {
-    background-image: url('../slike/Ikonice/slobodan-dan.svg');
+.fc-day-today {
+    background-color: #64b245ce !important;
+  }
+  .fc-bg-event{
+    background-color: red !important;
+    opacity: 1 !important;
+    color: white !important;
+    font-weight: bold;
+  }
+  .fc-event-title{
+    font-size: 15px !important;
+  }
+  .fc-daygrid-day-number{
+    font-size: 25px;
+    font-weight:bold;
+  }
+  .fc-daygrid-day-number:hover{
+color:black;
+  }
+.danasnji-dan {
+    background-image: url('../slike/Ikonice/danasnji-dan.svg');
 }
 
 .zauzet-dan {
@@ -607,14 +630,14 @@
     }   
      .recenzije-tab{
         background-image: url('../slike/Ikonice/ocena.svg');
-        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
     }   
      .kontakt{
         background-image: url('../slike/Ikonice/contact.svg');
     }  
       .angazovanje{
         background-image: url('../slike/Ikonice/angazuj.svg');
-        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
     }
 }
 

@@ -1,14 +1,31 @@
+<?php
+require_once('./appdata/config.php');
+session_start();
+$url = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$newStr = substr($url, 0, -12);
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION);
+  setcookie('email', '', time() - 3600, "/");
+  setcookie('sifra', '', time() - 3600, "/");
+  header("Location:" . $newStr);
+}
+if (isset($_SESSION['korisnik'])) {
+  $email = $_SESSION['korisnik'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
   <link href="./appdata/main.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./appdata/radnikV9.css" />
+  <link rel="stylesheet" href="./appdata/radnikV10.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -17,7 +34,6 @@
   <link rel="stylesheet" href="appdata/modal_styleV2.css" />
   <title>FixIT</title>
 </head>
-
 <body>
   <?php
   $host = "localhost";
@@ -26,49 +42,6 @@
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
   ?>
-  <!-- Start popup dialog box -->
-  <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">Add New Event</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="img-container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label for="event_name">Event name</label>
-                  <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Enter your event name">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="event_start_date">Event start</label>
-                  <input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="event_end_date">Event end</label>
-                  <input type="date" name="event_end_date" id="event_end_date" class="form-control" placeholder="Event end date">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End popup dialog box -->
   <!--#region Modal-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -80,11 +53,11 @@
             <form action="appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" required />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" required />
               </div>
               <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
@@ -302,27 +275,25 @@
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="index.php" class="nav-link">Početna</a>
-          </li>
-          <li class="nav-item">
             <a href="onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="index.php?logout=true" class="nav-link <?php
-                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
+            <a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+echo $fullUrl . "&logout=true" ?>" class="nav-link <?php
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
                                                               echo 'd-none';
                                                             }
                                                             ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
@@ -368,13 +339,13 @@
   </section>
   <div class="container" id="nestani">
     <ul class="tabs d-flex text-center" id="crno">
-      <li data-tab-target="#recenzije" class="tab active recenzije-tab fs-3">Recenzije</li>
-      <li data-tab-target="#kontakt" class="tab kontakt  fs-3">Kontakt</li>
-      <li data-tab-target="#angazovanje" class="tab angazovanje fs-3">Angazovanje</li>
+      <li data-tab-target="#angazovanje" class="tab active angazovanje fs-3">Angazovanje</li>
+      <li data-tab-target="#kontakt" class="tab  kontakt fs-3">Kontakt</li>
+      <li data-tab-target="#recenzije" class="tab  recenzije-tab fs-3">Recenzije</li>
     </ul>
     <div class="container">
       <div class="tab-content mb-5">
-        <div id="recenzije" data-tab-content class="active">
+        <div id="recenzije" data-tab-content>
           <div class="d-lg-flex justify-content-between flex-wrap">
             <div class="recenzije">
               <h4><span class="zvezdica"></span>
@@ -513,14 +484,14 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22791.426697029554!2d20.691289773867474!3d44.434632202799015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4750bac18302ae3f%3A0xc6c85658f278872!2z0JzQu9Cw0LTQtdC90L7QstCw0YY!5e0!3m2!1ssr!2srs!4v1673096595731!5m2!1ssr!2srs" width="100%" height="450" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-        <div id="angazovanje" data-tab-content>
+        <div id="angazovanje" data-tab-content class="active">
           <div class="ostatak-sekcija mt-3 pb-4">
             <h4><span class="kliper"></span>
               Vrsta posla
             </h4>
 
             <p class="lead undertext">Odaberite koja vam je usluga potrebna.</p>
-            <select class="dropdown mb-3">
+            <select class="dropdownOnPage mb-3">
               <option value="odaberi" disabled selected>Odaberi uslugu...</option>
               <?php
               $usluga = $conn->query("SELECT vrsta_rada.ime_posla from vrsta_rada INNER JOIN poslovi on vrsta_rada.posao_id = poslovi.posao_id where poslovi.naziv_posla ='$_GET[posao]';")
@@ -537,7 +508,7 @@
               Lokacija
             </h4>
             <p class="lead undertext">Unesite lokaciju radova</p>
-            <select class="dropdown mt-2 mb-3">
+            <select class="dropdownOnPage mt-2 mb-3">
               <option value="odaberi" disabled selected>Odaberi Lokaciju</option>
               <?php
               $opstine = $conn->query("SELECT ime_opstine FROM opstine")
@@ -555,11 +526,14 @@
             <p class="lead undertext ">Odaberite zeljeni dan/period za izvrsenje usluga i pogledajte zauzete
               dane
               majstora.</p>
-            <p class="lead dani d-flex pb-4 justify-content-center"><span class="slobodan-dan"></span> -
-              Slobodan
+            <p class="lead dani d-flex pb-4 justify-content-center"><span class="danasnji-dan"></span> -
+              Danasnji
               dan<span class="wrapper-dani"><span class="zauzet-dan"></span><span>- Zauzet
                   dan</span></span>
             </p>
+            <div id="calendar" <?php if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra'])))
+            echo 'class="d-none"'
+            ?>></div>
           </div>
 
           <div class="ostatak-sekcija mt-3">
@@ -603,7 +577,64 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://kit.fontawesome.com/3e24ca445f.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+  <script src='fullcalendar/core/index.global.js'></script>
+<script src='fullcalendar/core/locales/es.global.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale: 'sr-latn',
+          selectable:true,
+           validRange: {
+        start:moment().format('YYYY-MM-DD')
+    },
+    selectOverlap:false,
+     events: "./appdata/load-events.php",
+           buttonText: {
+              today: 'Danas'
+     },
+       select: function(selectionInfo) {
+        var start = selectionInfo.start.getDate();
+        var end = selectionInfo.end.getDate();
+        var event = {
+    title: "REZERVISANO",
+    start: selectionInfo.startStr,
+    end: selectionInfo.endStr,
+    display: "background"
+  };
+  Swal.fire({
+                icon: 'question',
+                title: 'Angazovanje radnika',
+                text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end-1),
+                confirmButtonColor: '#64B245',
+                confirmButtonText: 'Da',
+                showCancelButton: true,
+                cancelButtonText: 'Ne',
+                cancelButtonColor: 'red',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  calendar.addEvent(event);
+                  $.ajax({
+            type: 'POST',
+            url: './appdata/add-event.php',
+            data: {
+              title: 'REZERVISANO',
+              start: selectionInfo.startStr,
+              end: selectionInfo.endStr,
+            }
+                })
+                }
+              })
+       },
+        });
+        
+        calendar.render();
+      });
+    </script>
   <script>
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
@@ -646,6 +677,85 @@
       )
     }
   </script>
-</body>
+  <script>
+        $(function() {
+      $('#prijavi-se').click(function(e) {
 
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+          var email = $('#loginMail').val();
+          var sifra = $('#loginSifra').val();
+          if ($('#remember-me').prop('checked')) {
+            var rememberMe = 'true';
+          } else
+            rememberMe = 'false';
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/login.php',
+            data: {
+              email: email,
+              sifra: sifra,
+              rememberMe: rememberMe
+            },
+            success: function(data) {
+              if (data == "Neki od podataka nisu tacni!") {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Prijava',
+                  text: data,
+                })
+              } else
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Prijava',
+                  text: data,
+                  type: 'success'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setTimeout(function() {
+                      window.location.reload();
+                    }, 200);
+                    document.getElementById('loginMail').value = '';
+                    document.getElementById('loginSifra').value = '';
+                  }
+                })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Prijava',
+                text: data,
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Prijava',
+            text: 'Niste uneli podatke!',
+            confirmButtonColor: '#64B245'
+          })
+        }
+      });
+    });
+    function checkSession() {
+   $.ajax({
+     url: "./appdata/check_session.php",
+     type: "GET",
+     success: function(data) {
+       if (data === "active") {
+         console.log("U sessionu");
+       } else {
+        console.log("nije u sessionu");}
+     }
+   })
+  }
+  $(document).ready(function() {
+  checkSession();
+  })
+    </script>
+</body>
 </html>
