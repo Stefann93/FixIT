@@ -1,6 +1,21 @@
+<?php
+require_once('./appdata/config.php');
+session_start();
+$url = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$newStr = substr($url, 0, -12);
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION);
+  setcookie('email', '', time() - 3600, "/");
+  setcookie('sifra', '', time() - 3600, "/");
+  header("Location:" . $newStr);
+}
+if (isset($_SESSION['korisnik'])) {
+  $email = $_SESSION['korisnik'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +34,6 @@
   <link rel="stylesheet" href="appdata/modal_styleV2.css" />
   <title>FixIT</title>
 </head>
-
 <body>
   <?php
   $host = "localhost";
@@ -28,49 +42,6 @@
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
   ?>
-  <!-- Start popup dialog box -->
-  <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">Add New Event</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="img-container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label for="event_name">Event name</label>
-                  <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Enter your event name">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="event_start_date">Event start</label>
-                  <input type="date" name="event_start_date" id="event_start_date" class="form-control onlydatepicker" placeholder="Event start date">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="event_end_date">Event end</label>
-                  <input type="date" name="event_end_date" id="event_end_date" class="form-control" placeholder="Event end date">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End popup dialog box -->
   <!--#region Modal-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -82,11 +53,11 @@
             <form action="appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" required />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" required />
               </div>
               <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
@@ -304,27 +275,25 @@
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="index.php" class="nav-link">Početna</a>
-          </li>
-          <li class="nav-item">
             <a href="onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="index.php?logout=true" class="nav-link <?php
-                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
+            <a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+echo $fullUrl . "&logout=true" ?>" class="nav-link <?php
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
                                                               echo 'd-none';
                                                             }
                                                             ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
@@ -562,7 +531,9 @@
               dan<span class="wrapper-dani"><span class="zauzet-dan"></span><span>- Zauzet
                   dan</span></span>
             </p>
-            <div id="calendar"></div>
+            <div id="calendar" <?php if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra'])))
+            echo 'class="d-none"'
+            ?>></div>
           </div>
 
           <div class="ostatak-sekcija mt-3">
@@ -606,44 +577,64 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://kit.fontawesome.com/3e24ca445f.js" crossorigin="anonymous"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale-all.min.js'></script>
-  <script>
-    $(document).ready(function() {
-      var calendar = $('#calendar').fullCalendar({
-        plugins: ['dayGrid', 'interaction'],
-        locale: 'sr-latn',
-        selectable: true,
-        selectHelper: true,
-        editable: true,
-        eventLimit: true,
-        eventOverlap: false,
-        events: './appdata/load-events.php',
-        select: function(start, end) {
-          var title = prompt('Unesite naziv događaja:');
-          var eventData;
-          if (title) {
-            eventData = {
-              title: title,
-              start: start,
-              end: end
-            };
-            calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
-            $.ajax({
-              url: './appdata/add-event.php',
-              data: 'title=' + title + '&start=' + start.format() + '&end=' + end.format(),
-              type: 'POST',
-              dataType: 'json',
-              success: function(response) {}
-            });
-          }
-          calendar.fullCalendar('unselect');
-        },
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+  <script src='fullcalendar/core/index.global.js'></script>
+<script src='fullcalendar/core/locales/es.global.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale: 'sr-latn',
+          selectable:true,
+           validRange: {
+        start:moment().format('YYYY-MM-DD')
+    },
+    selectOverlap:false,
+     events: "./appdata/load-events.php",
+           buttonText: {
+              today: 'Danas'
+     },
+       select: function(selectionInfo) {
+        var start = selectionInfo.start.getDate();
+        var end = selectionInfo.end.getDate();
+        var event = {
+    title: "REZERVISANO",
+    start: selectionInfo.startStr,
+    end: selectionInfo.endStr,
+    display: "background"
+  };
+  Swal.fire({
+                icon: 'question',
+                title: 'Angazovanje radnika',
+                text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end-1),
+                confirmButtonColor: '#64B245',
+                confirmButtonText: 'Da',
+                showCancelButton: true,
+                cancelButtonText: 'Ne',
+                cancelButtonColor: 'red',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  calendar.addEvent(event);
+                  $.ajax({
+            type: 'POST',
+            url: './appdata/add-event.php',
+            data: {
+              title: 'REZERVISANO',
+              start: selectionInfo.startStr,
+              end: selectionInfo.endStr,
+            }
+                })
+                }
+              })
+       },
+        });
+        
+        calendar.render();
       });
-    });
-  </script>
+    </script>
   <script>
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
@@ -686,6 +677,85 @@
       )
     }
   </script>
-</body>
+  <script>
+        $(function() {
+      $('#prijavi-se').click(function(e) {
 
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+          var email = $('#loginMail').val();
+          var sifra = $('#loginSifra').val();
+          if ($('#remember-me').prop('checked')) {
+            var rememberMe = 'true';
+          } else
+            rememberMe = 'false';
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/login.php',
+            data: {
+              email: email,
+              sifra: sifra,
+              rememberMe: rememberMe
+            },
+            success: function(data) {
+              if (data == "Neki od podataka nisu tacni!") {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Prijava',
+                  text: data,
+                })
+              } else
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Prijava',
+                  text: data,
+                  type: 'success'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setTimeout(function() {
+                      window.location.reload();
+                    }, 200);
+                    document.getElementById('loginMail').value = '';
+                    document.getElementById('loginSifra').value = '';
+                  }
+                })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Prijava',
+                text: data,
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Prijava',
+            text: 'Niste uneli podatke!',
+            confirmButtonColor: '#64B245'
+          })
+        }
+      });
+    });
+    function checkSession() {
+   $.ajax({
+     url: "./appdata/check_session.php",
+     type: "GET",
+     success: function(data) {
+       if (data === "active") {
+         console.log("U sessionu");
+       } else {
+        console.log("nije u sessionu");}
+     }
+   })
+  }
+  $(document).ready(function() {
+  checkSession();
+  })
+    </script>
+</body>
 </html>
