@@ -18,7 +18,7 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="appdata/main.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="appdata/styleV4.css" />
+  <link rel="stylesheet" href="appdata/styleV5.css" />
   <link rel="stylesheet" href="appdata/saznajVise.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -350,7 +350,7 @@ if (isset($_GET['logout'])) {
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="index.php?logout=true" class="nav-link <?php
+            <a href="onama.php?logout=true" class="nav-link <?php
                                                             if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
                                                               echo 'd-none';
                                                             }
@@ -387,7 +387,7 @@ if (isset($_GET['logout'])) {
       <div class="d-sm-flex align-items-center justify-content-between">
         <div>
           <h1 class="display-2 display-font pt-3">
-            Upoznajte naš <span class="text-primary">TIM</span>
+            Upoznajte naš <span class="text-primary" style="font-family:Grifter">TIM</span>
           </h1>
           <p class="hero-text pt-3">
             Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />

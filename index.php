@@ -24,7 +24,7 @@ if (isset($_GET['logout'])) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <!--#endregion-->
-  <link rel="stylesheet" href="appdata/styleV4.css" />
+  <link rel="stylesheet" href="appdata/styleV5.css" />
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="./appdata/modal_styleV3.css" />
   <title>FixIT</title>

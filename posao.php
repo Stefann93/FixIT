@@ -24,7 +24,7 @@ if (isset($_GET['logout'])) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./appdata/zanimanjaV5.css" />
+  <link rel="stylesheet" href="./appdata/zanimanjaV6.css" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

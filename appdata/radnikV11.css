@@ -1,9 +1,6 @@
 @font-face {
     font-family: 'customFont';
-    src: url('../GothamBlackRegular/gotham_black_regular-webfont.woff2') format('woff2'),
-        url('../GothamBlackRegular/gotham_black_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    src: url(../font/grifterbold.otf);
 }
 
 #naslov {
@@ -33,34 +30,20 @@
     padding: 1em;
 }
 
-.form-control:focus {
-    box-shadow: inset 0 -1px 0 #7e7e7e;
-    background-color: inherit;
-    color: #fff;
-}
-
 .form-control {
-    background-color: inherit;
-    color: #fff;
-    padding-left: 0;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid #fff;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding-left: 10px;
 }
 
 .myform .btn {
     width: 100%;
     font-weight: 800;
-    background-color: #fff;
-    border-radius: 0;
     padding: 0.5em 0;
 }
 
-.myform .btn:hover {
-    background-color: inherit;
-    color: #fff;
-    border-color: #fff;
-}
 
 #nisi-korisnik {
     text-align: center;
@@ -69,7 +52,7 @@
 }
 
 #prijava-mini {
-    color: #e1e1e1;
+    color: #64B245;
     text-decoration: none;
 }
 
@@ -82,7 +65,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Roboto";
+    font-family:'Montserrat', sans-serif;
 }
 
 a{
