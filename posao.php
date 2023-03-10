@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once('./appdata/config.php');
+session_start();
+$url = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$newStr = substr($url, 0, -12);
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION);
+  setcookie('email', '', time() - 3600, "/");
+  setcookie('sifra', '', time() - 3600, "/");
+  header("Location:" . $newStr);
+}
+?>
 
 <head>
   <meta charset="UTF-8" />
@@ -11,11 +24,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./appdata/zanimanjaV3.css" />
+  <link rel="stylesheet" href="./appdata/zanimanjaV5.css" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="appdata/modal_styleV2.css" />
+  <link rel="stylesheet" href="appdata/modal_styleV3.css" />
+  <!--#region Tekst-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!--#endregion-->
   <title>FixIT</title>
 </head>
 
@@ -39,14 +57,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark">
             <h1 id="naslov" class="text-center">Forma za prijavu</h1>
-            <form action="appdata/login.php" method="POST">
+            <form action="./appdata/login.php" method="POST">
               <div class="mb-3 mt-4">
                 <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-                <input type="email" name="email" class="form-control login-textbox" id="loginMail" aria-describedby="emailHelp" />
+                <input type="email" name="email" class="form-control login-textbox" id="loginMail" required />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Šifra</label>
-                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" />
+                <input type="password" name="sifra" class="form-control login-textbox" id="loginSifra" required />
               </div>
               <button type="submit" name="submit" id="prijavi-se" class="btn btn-primary text-light mt-3">
                 Prijavi se
@@ -57,7 +75,7 @@
               </div>
             </form>
             <p id="nisi-korisnik">
-              Nemaš nalog? <a id="prijava-mini" href="#">Napravi nalog!</a>
+              Nemaš nalog? <a id="prijava-mini" href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Napravi nalog!</a>
             </p>
           </div>
         </div>
@@ -68,19 +86,77 @@
 
   <!--#region Registracija main modal-->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body bg-dark">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body bg-dark radius-register">
           <div id="reg-right">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="reg-title-top"></div>
-          <h3 class="text-white text-center fw-bold">Registrujte se kao:</h2>
-            <div class="row my-4">
-              <div class="col-sm  text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button></div>
-              <div class="col-sm razmak text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button></div>
-              <div class="col-sm text-center"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button></div>
+          <div class="text-white text-center fw-bold m-3 fs-2">Registracija</div>
+
+          <div class="d-none d-lg-block"><!--Nestaje-->
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
             </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Korisnik usluga</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Fizičko lice</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 text-white mb-3">
+                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Firma</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+              </div>
+              <div class="col-4 d-flex align-items-center text-center">
+                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-block d-lg-none">
+            <div class="row my-2">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
+            </div>
+            <div class="row my-2">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
+            </div>
+            <div class="row my-2 mb-4">
+              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -108,19 +184,25 @@
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <form action="index.php" method="post">
-                  <h1 class="text-center mb-4 fw-bolder">Korisnička registracija</h1>
-                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime" id="IME-KORISNIKA" required>
+                <form action="posao.php" method="post">
+                  <div class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</div>
+                  <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime" id="IME-KORISNIKA" required>
 
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Prezime" id="PREZIME-KORISNIKA" required>
 
-                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-KORISNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="JMBG" id="JMBG-KORISNIKA" required>
 
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
+                  <input style="display: block;" type="number" inputmode="tel" class="input my-4 register-textbox fs-6" placeholder="Kontakt telefon" id="TELEFON-KORISNIKA" required>
 
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                  <input style="display: block;" type="email" class="input register-textbox  fs-6" placeholder="Email" id="EMAIL-KORISNIKA" required>
 
-                  <button type="submit" name="submitK" id="RegisterK" class="btn btn-primary text-center text-white fw-bold w-100">Registruj
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-KORISNIKA" required>
+
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Potvrdite sifru" required>
+
+
+
+                  <button type="submit" name="submitK" id="RegisterK" class="btn fs-6 btn-primary text-center text-white fw-bold w-100">Registruj
                     se</button>
                 </form>
               </div>
@@ -144,18 +226,18 @@
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <form action="index.php" method="post">
-                  <h2 class="text-center mb-4 fw-bolder">Registracija fizičkog lica</h2>
-                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
-                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
-                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox" placeholder="JMBG" name="JMBG" required>
-                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox" placeholder="Sifra" name="SIFRA" required>
-                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox" placeholder="Potvrdite sifru" required>
+                <form action="posao.php" method="post">
+                  <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
+                  <input style="display: block;" id="ime-fizicko" type="text" class="input register-textbox  fs-6" placeholder="Ime" name="IME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="prezime-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="Prezime" name="PREZIME-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="email-fizicko" type="email" class="input register-textbox fs-6" placeholder="Email" name="EMAIL-FIZICKOG-LICA" required>
+                  <input style="display: block;" id="telefon-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="Broj telefona" name="BROJ-TELEFONA" required>
+                  <input style="display: block;" id="jmbg-fizicko" type="text" class="input my-4 register-textbox fs-6" placeholder="JMBG" name="JMBG" required>
+                  <input style="display: block;" id="sifra-fizicko" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" name="SIFRA" required>
+                  <input style="display: block;" id="POTVRDA-SIFRA-FIRMA" type="password" class="input my-4 register-textbox fs-6" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
-                      <select class="dropdown  reg-drop dropdown-register" required id="delatnost-levo" NAME="delatnost">
+                      <select class="dropdown  reg-drop dropdown-register fs-6" required id="delatnost-levo" NAME="delatnost">
                         <option value="odaberi" disabled selected>Odaberi delatnost...</option>
                         <?php
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
@@ -166,12 +248,12 @@
                       </select>
                     </div>
                   </div>
-                  <select class="dropdown my-4 reg-drop dropdown-register" required id="vrstaPosla" name="VRSTA_POSLA">
+                  <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="vrstaPosla" name="VRSTA_POSLA">
                     <!-- OPASNOST SQL INJECTIONA -->
                     <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
                     <!--  -->
                   </select>
-                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="opstina">
+                  <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="opstina">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
                     <?php
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
@@ -180,7 +262,7 @@
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="adresa" name="ADRESA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="adresa" name="ADRESA" required>
                   <button type="reset" name="submitFL" id="RegisterFL" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
                 </form>
               </div>
@@ -203,16 +285,16 @@
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
-                <form action="index.php" method="post">
-                  <h1 class="text-center mb-4 fw-bolder">Registracija firme</h1>
-                  <input style="display: block;" type="text" class="input register-textbox" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
-                  <input style="display: block;" type="email" class="input register-textbox" placeholder="Email" id="EMAIL-FIRME" required>
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" placeholder="Sifra" id="SIFRA-FIRME" required>
-                  <input style="display: block;" type="password" class="input my-4 register-textbox" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
+                <form action="posao.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
+                  <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
+                  <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
-                      <select class="dropdown reg-drop dropdown-register" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                      <select class="dropdown reg-drop dropdown-register fs-6" required id="DELATNOST-FIRMA" NAME="DELATNOST">
                         <option value="odaberi" disabled selected>Odaberi delatnost...</option>
                         <?php
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
@@ -223,13 +305,13 @@
                       </select>
                     </div>
                   </div>
-                  <select class="dropdown my-4 reg-drop dropdown-register" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
+                  <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
                     <!-- OPASNOST SQL INJECTIONA -->
                     <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
                     <!--  -->
                   </select>
 
-                  <select class="dropdown reg-drop dropdown-register" NAME="OPSTINA" id="OPSTINA-FIRMA">
+                  <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
                     <?php
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
@@ -238,7 +320,7 @@
                       <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
                     <?php endwhile; ?>
                   </select>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
                   <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
                   firme:</label>
                 <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
@@ -257,38 +339,39 @@
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
-      <a href="#" class="nav brand"><img class="image" src="slike/logo/Logo(white).svg" alt="logo" /></a>
+      <a href="./index.php" class="nav brand"><img class="image" src="./slike/logo/Logo(white).svg" alt="logo" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto text-uppercase">
           <li class="nav-item">
-            <a href="index.php" class="nav-link">Početna</a>
+            <a href="./index.php" class="nav-link">Početna</a>
           </li>
           <li class="nav-item">
-            <a href="onama.php" class="nav-link">O nama</a>
+            <a href="./onama.php" class="nav-link">O nama</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="index.php?logout=true" class="nav-link <?php
-                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma'])) {
-                                                              echo 'd-none';
-                                                            }
-                                                            ?>">Odjavi se</a>
+            <a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                      echo $fullUrl . "&logout=true" ?>" class="nav-link <?php
+                                                                          if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                                            echo 'd-none';
+                                                                          }
+                                                                          ?>">Odjavi se</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link <?php
-                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma'])) {
+                                        if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
-          <li class="nav-item dropdown account-drop">
+          <li class="nav-item dropdown account-drop me-lg-5">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
@@ -410,7 +493,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class=" tekst">Opstina</h4>
-              <select class="dropdown">
+              <select class="dropdownOnPage">
                 <option value="odaberi" disabled selected>Odaberi Opstinu...</option>
                 <?php
                 $opstine = $conn->query("SELECT ime_opstine FROM opstine")
@@ -573,6 +656,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
   <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     function getId(element) {
       var posao = document.getElementById("ImePosla").textContent.trim().toLocaleLowerCase();
@@ -628,7 +712,7 @@
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
@@ -640,18 +724,313 @@
     });
 
     $(document).ready(function() {
-      $("#delatnost-firma").change(function() {
+      $("#DELATNOST-FIRMA").change(function() {
         var selectedOption = $(this).children("option:selected").val();
         $.ajax({
           type: "POST",
-          url: "ajax.php",
+          url: "./appdata/ajax.php",
           data: {
             option: selectedOption
           },
           success: function(response) {
-            $("#vrstaPoslaFirma").html(response); // Update the content of the #result div with the selected value
+            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
           }
         });
+      });
+    });
+  </script>
+  <script>
+    $(function() {
+      $('#RegisterFL').click(function(e) {
+
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var ime = $('#ime-fizicko').val();
+          var prezime = $('#prezime-fizicko').val();
+          var email = $('#email-fizicko').val();
+          var br_tel = $('#telefon-fizicko').val();
+          var JMBG = $('#jmbg-fizicko').val();
+          var sifra = $('#sifra-fizicko').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/process.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra,
+              JMBG: JMBG,
+              id_opstine: id_opstine,
+              adresa: adresa,
+              id_delatnosti: id_delatnosti,
+              posao_id: posao_id,
+              br_tel: br_tel,
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success',
+                confirmButtonColor: '#64B245'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('ime-fizicko').value = '';
+                  document.getElementById('prezime-fizicko').value = '';
+                  document.getElementById('email-fizicko').value = '';
+                  document.getElementById('telefon-fizicko').value = '';
+                  document.getElementById('jmbg-fizicko').value = '';
+                  document.getElementById('sifra-fizicko').value = '';
+                  document.getElementById('adresa').value = '';
+                  document.getElementById('potvrda-sifre').value = '';
+                  document.getElementById("delatnost-levo").selectedIndex = 0;
+                  document.getElementById('vrstaPosla').selectedIndex = 0;
+                  document.getElementById('opstina').selectedIndex = 0;
+                }
+              })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!',
+            confirmButtonColor: '#64B245'
+          })
+        }
+      });
+    });
+    $(function() {
+      $('#RegisterF').click(function(e) {
+
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var imeFirme = $('#IME-FIRME').val();
+          var imeVlasnika = $('#IME-I-PREZIME-VLASNIKA').val();
+          var email = $('#EMAIL-FIRME').val();
+          var sifra = $('#SIFRA-FIRME').val();
+          var id_delatnosti = $('#DELATNOST-FIRMA').val();
+          var posao_id = $('#VRSTA-POSLA-FIRMA').val();
+          var id_opstine = $('#OPSTINA-FIRMA').val();
+          var adresa = $('#ADRESA-FIRME').val();
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/processFirma.php',
+            data: {
+              imeFirme: imeFirme,
+              imeVlasnika: imeVlasnika,
+              email: email,
+              sifra: sifra,
+              id_opstine: id_opstine,
+              // adresa: adresa,
+              id_delatnosti: id_delatnosti,
+              posao_id: posao_id,
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success',
+                confirmButtonColor: '#64B245'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('IME-FIRME').value = '';
+                  document.getElementById('IME-I-PREZIME-VLASNIKA').value = '';
+                  document.getElementById('EMAIL-FIRME').value = '';
+                  document.getElementById('SIFRA-FIRME').value = '';
+                  document.getElementById('DELATNOST-FIRMA').value = '';
+                  document.getElementById('VRSTA-POSLA-FIRMA').value = '';
+                  document.getElementById('OPSTINA-FIRMA').value = '';
+                  document.getElementById('ADRESA-FIRME').value = '';
+                  document.getElementById('potvrda-sifre').value = '';
+                  document.getElementById("VRSTA-POSLA-FIRMA").selectedIndex = 0;
+                  document.getElementById('DELATNOST-FIRMA').selectedIndex = 0;
+                  document.getElementById('OPSTINA-FIRMA').selectedIndex = 0;
+                }
+              })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!',
+            confirmButtonColor: '#64B245'
+          })
+        }
+      });
+    });
+    $(function() {
+      $('#RegisterK').click(function(e) {
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+
+          var ime = $('#IME-KORISNIKA').val();
+          var prezime = $('#PREZIME-KORISNIKA').val();
+          var email = $('#EMAIL-KORISNIKA').val();
+          var sifra = $('#SIFRA-KORISNIKA').val();
+          var adresa = $('#adresa').val();
+          var id_delatnosti = $('#delatnost-levo').val();
+          var posao_id = $('#vrstaPosla').val();
+          var id_opstine = $('#opstina').val();
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/processKorisnik.php',
+            data: {
+              ime: ime,
+              prezime: prezime,
+              email: email,
+              sifra: sifra
+            },
+
+            success: function(data) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Regitracija',
+                text: data,
+                type: 'success',
+                confirmButtonColor: '#64B245'
+
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setTimeout(function() {
+                    window.location.reload();
+                  }, 200);
+                  document.getElementById('IME-KORISNIKA').value = '';
+                  document.getElementById('PREZIME-KORISNIKA').value = '';
+                  document.getElementById('EMAIL-KORISNIKA').value = '';
+                  document.getElementById('SIFRA-KORISNIKA').value = '';
+                }
+              })
+
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Regitracija',
+                text: 'Greska tokom cuvanja podataka!',
+                confirmButtonColor: '#64B245'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Regitracija',
+            text: 'Niste uneli neki od podataka!',
+            confirmButtonColor: '#64B245'
+          })
+        }
+      });
+    });
+    $(function() {
+      $('#prijavi-se').click(function(e) {
+
+        var valid = this.form.checkValidity();
+
+        if (valid) {
+          var email = $('#loginMail').val();
+          var sifra = $('#loginSifra').val();
+          if ($('#remember-me').prop('checked')) {
+            var rememberMe = 'true';
+          } else
+            rememberMe = 'false';
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: './appdata/login.php',
+            data: {
+              email: email,
+              sifra: sifra,
+              rememberMe: rememberMe
+            },
+            success: function(data) {
+              if (data == "Neki od podataka nisu tacni!") {
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'Prijava',
+                  text: data,
+                  confirmButtonColor: '#64B245'
+                })
+              } else
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Prijava',
+                  text: data,
+                  type: 'success',
+                  confirmButtonColor: '#64B245'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setTimeout(function() {
+                      window.location.reload();
+                    }, 200);
+                    document.getElementById('loginMail').value = '';
+                    document.getElementById('loginSifra').value = '';
+                  }
+                })
+            },
+            error: function(data) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Prijava',
+                text: data,
+                confirmButtonColor: '#64B245'
+              })
+            }
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Prijava',
+            text: 'Niste uneli podatke!',
+            confirmButtonColor: '#64B245'
+          })
+        }
       });
     });
   </script>
