@@ -22,7 +22,7 @@ if (isset($_GET['logout'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../appdata/delatnostiStyleV2.css" />
+    <link rel="stylesheet" href="../appdata/delatnostiStyleV3.css" />
     <link rel="shortcut icon" href="../slike/Ikonice/FAVICON2.png" type="image/x-icon">
     <!--#region Tekst-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
