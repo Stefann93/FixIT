@@ -18,13 +18,13 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="appdata/main.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="appdata/styleV5.css" />
+  <link rel="stylesheet" href="appdata/styleV6.css" />
   <link rel="stylesheet" href="appdata/saznajVise.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
-  <link rel="stylesheet" href="./appdata/modal_styleV3.css" />
+  <link rel="stylesheet" href="./appdata/modal_styleV4.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Nunito&family=Rowdies:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
@@ -103,7 +103,9 @@ if (isset($_GET['logout'])) {
                 <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
-                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button>
+                <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+              </svg></button>
               </div>
             </div>
 
@@ -119,7 +121,9 @@ if (isset($_GET['logout'])) {
                 <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
-                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button>
+                <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+              </svg></button>
               </div>
             </div>
 
@@ -135,7 +139,9 @@ if (isset($_GET['logout'])) {
                 <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
-                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button>
+                <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+              </svg></button>
               </div>
             </div>
           </div>
@@ -177,7 +183,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <div class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</div>
@@ -219,7 +225,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/register_fizickolice.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
@@ -278,7 +284,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img alt="Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
@@ -382,22 +388,17 @@ if (isset($_GET['logout'])) {
   <!--#endregion -->
 
   <!--#region UnderNavBar-->
-  <section class="bg-dark text-light p-3 pt-0 text-center text-sm-start">
+  <section class="bg-dark text-light p-3 pt-0 text-center text-sm-start pb-5">
     <div class="container">
       <div class="d-sm-flex align-items-center justify-content-between">
         <div>
           <h1 class="display-2 display-font pt-3">
-            Upoznajte naš <span class="text-primary" style="font-family:Grifter">TIM</span>
+            UPOZNAJTE <span class="text-primary" style="font-family:Grifter">NAS</span>
           </h1>
           <p class="hero-text pt-3">
             Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />
-            Svi članovi tima su učenici 4. godine, smera informacione
-            tehnologije.<br />
-          </p>
-          <p class="hero-text">
-            Svako od nas raspolaže veštinama: <br /><span class="text-primary hero-text fs-4"> PROGRAMIRANJA, GRAFIČKOG
-              DIZAJNA, WEB
-              DIZAJNA</span> <br>kao i mnogim drugim!
+            Svi članovi tima su učenici 4. godine, smera Elektrotehničar Informacionih
+            Tehnologija.<br />
           </p>
         </div>
         <!--SLIKA DODJE OVDE-->
@@ -411,7 +412,7 @@ if (isset($_GET['logout'])) {
   <section class="bg-primary text-light p-5 ">
     <div class="container">
       <div class="d-md-flex justify-content-between align-items-center text-center text-sm-start">
-        <h3 class="mt-1 display-2 display-font fs-2">Profili članova tima</h3>
+        <h3 class="mt-1 display-2 display-font fs-2">PROFILI TIMA</h3>
         <!--DODATI NESTO-->
         <button type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#a'">
           FRONTEND
@@ -428,7 +429,7 @@ if (isset($_GET['logout'])) {
 
   <section class="p-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1">Developers: <span class="text-primary">FRONTEND </span></h1>
+      <h1 class="display-2 display-font fs-1 pt-5">DEVELOPERS: <span class="text-primary">FRONTEND </span></h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -485,7 +486,7 @@ if (isset($_GET['logout'])) {
 
   <section class=" p-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1">Developers: <span class="text-primary">BACKEND </span></h1>
+      <h1 class="display-2 display-font fs-1">DEVELOPERS: <span class="text-primary">BACKEND </span></h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -515,9 +516,9 @@ if (isset($_GET['logout'])) {
     </div>
   </section>
 
-  <section class="p-5">
+  <section class="p-5 pb-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1">Graphics Designers: <span class="text-primary">DESIGNERS </span></h1>
+      <h1 class="display-2 display-font fs-1">WEB DESIGNERS: </h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -554,7 +555,7 @@ if (isset($_GET['logout'])) {
           <img class="img-fluid" src="./slike/programmers2.png" alt="" />
         </div>
         <div class="col-md p-5">
-          <h2 class="display-2 display-font pt-3 fs-2"><span class="text-primary">PODRŽITE</span> naš tim</h2>
+          <h2 class="display-2 display-font pt-3 fs-2">PODRZITE NAS</h2>
           <p class="lead hero-text">
             Ako želite da postanete deo tima, i pomognete razvoju
             možete <span class="text-primary">DONIRATI</span> klikom na dugme ispod!
