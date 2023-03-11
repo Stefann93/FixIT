@@ -22,13 +22,13 @@ if (isset($_GET['logout'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../appdata/delatnostiStyleV3.css" />
+    <link rel="stylesheet" href="../appdata/delatnostiStyleV4.css" />
     <link rel="shortcut icon" href="../slike/Ikonice/FAVICON2.png" type="image/x-icon">
     <!--#region Tekst-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../appdata/modal_styleV3.css" />
+    <link rel="stylesheet" href="../appdata/modal_styleV4.css" />
     <!--#endregion-->
     <title>FixIT</title>
 </head>
@@ -80,85 +80,86 @@ if (isset($_GET['logout'])) {
     <!--#region Registracija main modal-->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content radius-register-mc">
-                <div class="modal-body bg-dark radius-register">
-                    <div id="reg-right">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="text-white text-center fw-bold m-3 fs-2">Registracija</div>
-
-                    <div class="d-none d-lg-block"><!--Nestaje-->
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-8 text-white mb-3">
-                                <div class=" fs-3 ms-3 mt-3">Korisnik usluga</div>
-                                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin
-                                    koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
-                            </div>
-                            <div class="col-4 d-flex align-items-center text-center">
-                                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik</button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-8 text-white mb-3">
-                                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Fizičko lice</div>
-                                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte
-                                    usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše
-                                    usluge potrebne</div>
-                            </div>
-                            <div class="col-4 d-flex align-items-center text-center">
-                                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizičko lice</button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="w-100 bg-white text-center" style="height: 2px;"></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-8 text-white mb-3">
-                                <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Firma</div>
-                                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše
-                                    resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge
-                                    potrebne</div>
-                            </div>
-                            <div class="col-4 d-flex align-items-center text-center">
-                                <button type="button" class="btn btn-primary w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-block d-lg-none">
-                        <div class="row my-2">
-                            <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
-                        </div>
-                        <div class="row my-2">
-                            <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
-                        </div>
-                        <div class="row my-2 mb-4">
-                            <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
-                        </div>
-                    </div>
-
+          <div class="modal-content radius-register-mc">
+            <div class="modal-body bg-dark radius-register">
+              <div id="reg-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="text-white text-center fw-bold m-3 fs-2">Registracija</div>
+    
+              <div class="d-none d-lg-block"><!--Nestaje-->
+    
+                <div class="row">
+                  <div class="col">
+                    <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+                  </div>
                 </div>
+    
+                <div class="row">
+                  <div class="col-8 text-white mb-3">
+                    <div class=" fs-3 ms-3 mt-3">Korisnik usluga</div>
+                    <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
+                  </div>
+                  <div class="col-4 d-flex align-items-center text-center">
+                    <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col">
+                    <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-8 text-white mb-3">
+                    <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Fizičko lice</div>
+                    <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+                  </div>
+                  <div class="col-4 d-flex align-items-center text-center">
+                    <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col">
+                    <div class="w-100 bg-white text-center" style="height: 2px;"></div>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-8 text-white mb-3">
+                    <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Firma</div>
+                    <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+                  </div>
+                  <div class="col-4 d-flex align-items-center text-center">
+                    <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="d-block d-lg-none">
+                <div class="row my-2">
+                  <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
+                </div>
+                <div class="row my-2">
+                  <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
+                </div>
+                <div class="row my-2 mb-4">
+                  <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
+                </div>
+              </div>
+    
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     <!--#endregion-->
 
     <!--#region Korisnik modal -->
@@ -180,7 +181,7 @@ if (isset($_GET['logout'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="../register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="../register_images/register_korisnik.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <form action="odrzavanje.php" method="post">
                                     <div class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</div>
@@ -222,7 +223,7 @@ if (isset($_GET['logout'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="../register_images/register_fizickolice.png" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="../register_images/register_fizickolice.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <form action="odrzavanje.php" method="post">
                                     <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
@@ -287,7 +288,7 @@ if (isset($_GET['logout'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="myform bg-dark radius-register">
                         <div class="row">
-                            <div class="col-xl-6"><img src="../register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+                            <div class="col-xl-6"><img src="../register_images/register_firma.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
                             <div class="col">
                                 <form action="odrzavanje.php" method="post">
                                     <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
