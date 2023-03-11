@@ -461,17 +461,28 @@ a{
     opacity: 1 !important;
     color: white !important;
     font-weight: bold;
+
   }
   .fc-event-title{
-    font-size: 15px !important;
+    position:absolute;
+    font-size: 1.2vw !important;
+    top:40%;
   }
   .fc-daygrid-day-number{
-    font-size: 25px;
+    font-size: 2.2vw;
     font-weight:bold;
   }
   .fc-daygrid-day-number:hover{
 color:black;
   }
+  @media (max-width: 550px) {
+    .fc-event-title{
+        font-size: 2vw !important;
+      }
+      .fc-daygrid-day-number{
+        font-size: 5vw; 
+      }
+}
 .danasnji-dan {
     background-image: url('../slike/Ikonice/danasnji-dan.svg');
 }
