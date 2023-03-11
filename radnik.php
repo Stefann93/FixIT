@@ -598,11 +598,6 @@ if (isset($_GET['logout'])) {
             <p class="lead undertext ">Odaberite zeljeni dan/period za izvrsenje usluga i pogledajte zauzete
               dane
               majstora.</p>
-            <p class="lead dani d-flex pb-4 justify-content-center"><span class="danasnji-dan"></span> -
-              Danasnji
-              dan<span class="wrapper-dani"><span class="zauzet-dan"></span><span>- Zauzet
-                  dan</span></span>
-            </p>
             <div id="calendar" <?php if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra'])))
                                   echo 'class="d-none"'
                                 ?>></div>
