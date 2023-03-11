@@ -758,3 +758,47 @@ color:black;
         padding-bottom: 40px;
     }
 }
+
+.register-img{
+    border-radius: 5px;
+  }
+
+
+
+
+
+  .btn-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    background: #8dc63f;
+    color: #fff;
+  }
+  
+  svg {
+    margin: 0 0 0 10px;
+  }
+  
+  .btn-custom:hover svg {
+    margin: 0 0 0 25px;
+    transition: 0.3s;
+  }
+  
+  .btn-custom:not(:hover) svg {
+    transition: 0.3s;
+  }
+  
+  .btn-custom:active {
+    transform: scale(0.9, 0.9);
+    transition: 200ms;
+  }
+  
+  .btn-custom:not(:active) {
+    transition: 200ms;
+  }
