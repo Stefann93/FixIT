@@ -649,6 +649,21 @@ if (isset($_GET['logout'])) {
   <script src='fullcalendar/core/locales/es.global.js'></script>
   <script>
     var isSessionActive
+    var posao = getUrlParameter('posao');
+    var id = getUrlParameter('id');
+
+    $.ajax({
+      url: './appdata/load-events.php',
+      type: 'POST',
+      data: {
+        posao: posao,
+        id: id
+      },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+
 
     function checkSession() {
       $.ajax({
@@ -679,60 +694,80 @@ if (isset($_GET['logout'])) {
     $(document).ready(function() {
       checkSession();
     })
+
+    function getUrlParameter(name) {
+      name = name.replace(/[[]/, "\[").replace(/[]]/, "\]");
+      var regex = new RegExp("[\?&]" + name + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          locale: 'sr-latn',
-          selectable: isSessionActive,
-          validRange: {
-            start: moment().format('YYYY-MM-DD')
-          },
-          selectOverlap: false,
-          events: "./appdata/load-events.php",
-          buttonText: {
-            today: 'Danas'
-          },
-          select: function(selectionInfo) {
-            var start = selectionInfo.start.getDate();
-            var end = selectionInfo.end.getDate();
-            var event = {
-              title: "REZERVISANO",
-              start: selectionInfo.startStr,
-              end: selectionInfo.endStr,
-              display: "background"
-            };
-            Swal.fire({
-              icon: 'question',
-              title: 'Angazovanje radnika',
-              text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
-              confirmButtonColor: '#64B245',
-              confirmButtonText: 'Da',
-              showCancelButton: true,
-              cancelButtonText: 'Ne',
-              cancelButtonColor: 'red',
-            }).then((result) => {
-              if (result.isConfirmed) {
-                calendar.addEvent(event);
-                $.ajax({
-                  type: 'POST',
-                  url: './appdata/add-event.php',
-                  data: {
-                    title: 'REZERVISANO',
-                    start: selectionInfo.startStr,
-                    end: selectionInfo.endStr,
-                  }
-                })
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'sr-latn',
+            selectable: isSessionActive,
+            validRange: {
+              start: moment().format('YYYY-MM-DD')
+            },
+            selectOverlap: false,
+            events: {
+              url: './appdata/load-events.php',
+              type: 'POST',
+              data: function() {
+                return {
+                  posao: 'your_posao_value',
+                  id: 'your_id_value'
+                };
+              },
+              error: function() {
+                alert('There was an error fetching events!');
               }
-            })
-          },
-        });
-        calendar.render();
-        console.log(isSessionActive);
-      }, 500)
+            },
+            buttonText: {
+              today: 'Danas'
+            },
+            select: function(selectionInfo) {
+              var start = selectionInfo.start.getDate();
+              var end = selectionInfo.end.getDate();
+              var event = {
+                title: "REZERVISANO",
+                start: selectionInfo.startStr,
+                end: selectionInfo.endStr,
+                display: "background"
+              };
+              Swal.fire({
+                icon: 'question',
+                title: 'Angazovanje radnika',
+                text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
+                confirmButtonColor: '#64B245',
+                confirmButtonText: 'Da',
+                showCancelButton: true,
+                cancelButtonText: 'Ne',
+                cancelButtonColor: 'red',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  calendar.addEvent(event);
+                  $.ajax({
+                    type: 'POST',
+                    url: './appdata/add-event.php',
+                    data: {
+                      start: selectionInfo.startStr,
+                      end: selectionInfo.endStr,
+                      posao: posao,
+                      id: id
+                    }
+                  })
+                }
+              })
+            }
+          });
+          calendar.render();
+        },
+        500)
     });
   </script>
   <script>
