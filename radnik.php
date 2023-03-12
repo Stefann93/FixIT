@@ -101,8 +101,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
 
@@ -119,8 +119,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
 
@@ -137,8 +137,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_fizickolice.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img"  alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/register_fizickolice.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
               <div class="col">
                 <form action="radnik.php" method="post">
                   <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
@@ -569,7 +569,7 @@ if (isset($_GET['logout'])) {
             </h4>
 
             <p class="lead undertext">Odaberite koja vam je usluga potrebna.</p>
-            <select class="dropdownOnPage mb-3">
+            <select class="dropdownOnPage mb-3" id="testt">
               <option value="odaberi" disabled selected>Odaberi uslugu...</option>
               <?php
               $usluga = $conn->query("SELECT vrsta_rada.ime_posla from vrsta_rada INNER JOIN poslovi on vrsta_rada.posao_id = poslovi.posao_id where poslovi.naziv_posla ='$_GET[posao]';")
@@ -586,7 +586,7 @@ if (isset($_GET['logout'])) {
               Lokacija
             </h4>
             <p class="lead undertext">Unesite lokaciju radova</p>
-            <select class="dropdownOnPage mt-2 mb-3">
+            <select class="dropdownOnPage mt-2 mb-3" id="test">
               <option value="odaberi" disabled selected>Odaberi Lokaciju</option>
               <?php
               $opstine = $conn->query("SELECT ime_opstine FROM opstine")
@@ -604,9 +604,7 @@ if (isset($_GET['logout'])) {
             <p class="lead undertext ">Odaberite zeljeni dan/period za izvrsenje usluga i pogledajte zauzete
               dane
               majstora.</p>
-            <div id="calendar" <?php if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra'])))
-                                  echo 'class="d-none"'
-                                ?>></div>
+            <div id="calendar"></div>
           </div>
 
           <div class="ostatak-sekcija mt-3">
@@ -619,7 +617,7 @@ if (isset($_GET['logout'])) {
             <textarea name="opis" class="opis-tekst  mb-4" id="opis" rows="7" placeholder="Type..."></textarea>
           </div>
           <div class="text-center">
-            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" onclick="Angazovanje()">ANGAZUJ</button>
+            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" onclick="Angazovanje()" id="angazuj">ANGAZUJ</button>
           </div>
         </div>
       </div>
@@ -656,56 +654,126 @@ if (isset($_GET['logout'])) {
   <script src='fullcalendar/core/index.global.js'></script>
   <script src='fullcalendar/core/locales/es.global.js'></script>
   <script>
+    var isSessionActive
+    var posao = getUrlParameter('posao');
+    var id = getUrlParameter('id');
+
+    $.ajax({
+      url: './appdata/load-events.php',
+      type: 'POST',
+      data: {
+        posao: posao,
+        id: id
+      },
+      success: function(response) {
+        console.log(response);
+      }
+    });
+
+
+    function checkSession() {
+      $.ajax({
+        url: "./appdata/check_session.php",
+        type: "GET",
+        success: function(data) {
+          if (data === "active") {
+            isSessionActive = true;
+            var dugme = document.getElementById("angazuj");
+            dugme.addEventListener('click', Angazovanje);
+          } else {
+            isSessionActive = false;
+            var dropdowns = document.getElementsByClassName("dropdownOnPage");
+            for (var i = 0; i < dropdowns.length; i++) {
+              dropdowns[i].disabled = true;
+              var firstOption = dropdowns[i].getElementsByTagName("option")[0];
+              firstOption.textContent = "Morate se prijaviti kako biste angazovali radnika";
+            }
+            var opis = document.getElementById("opis");
+            opis.innerHTML = "Morate se prijaviti kako biste angazovali radnika";
+            opis.disabled = true;
+            var dugme = document.getElementById("angazuj");
+            dugme.addEventListener('click', AngazovanjeError);
+          }
+        }
+      })
+    }
+    $(document).ready(function() {
+      checkSession();
+    })
+
+    function getUrlParameter(name) {
+      name = name.replace(/[[]/, "\[").replace(/[]]/, "\]");
+      var regex = new RegExp("[\?&]" + name + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+  </script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'sr-latn',
-        selectable: true,
-        validRange: {
-          start: moment().format('YYYY-MM-DD')
-        },
-        selectOverlap: false,
-        events: "./appdata/load-events.php",
-        buttonText: {
-          today: 'Danas'
-        },
-        select: function(selectionInfo) {
-          var start = selectionInfo.start.getDate();
-          var end = selectionInfo.end.getDate();
-          var event = {
-            title: "REZERVISANO",
-            start: selectionInfo.startStr,
-            end: selectionInfo.endStr,
-            display: "background"
-          };
-          Swal.fire({
-            icon: 'question',
-            title: 'Angazovanje radnika',
-            text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
-            confirmButtonColor: '#64B245',
-            confirmButtonText: 'Da',
-            showCancelButton: true,
-            cancelButtonText: 'Ne',
-            cancelButtonColor: 'red',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              calendar.addEvent(event);
-              $.ajax({
-                type: 'POST',
-                url: './appdata/add-event.php',
-                data: {
-                  title: 'REZERVISANO',
-                  start: selectionInfo.startStr,
-                  end: selectionInfo.endStr,
+      setTimeout(function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'sr-latn',
+            selectable: isSessionActive,
+            validRange: {
+              start: moment().format('YYYY-MM-DD')
+            },
+            selectOverlap: false,
+            events: {
+              url: './appdata/load-events.php',
+              type: 'POST',
+              data: function() {
+                return {
+                  posao: 'your_posao_value',
+                  id: 'your_id_value'
+                };
+              },
+              error: function() {
+                alert('There was an error fetching events!');
+              }
+            },
+            buttonText: {
+              today: 'Danas'
+            },
+            select: function(selectionInfo) {
+              var start = selectionInfo.start.getDate();
+              var end = selectionInfo.end.getDate();
+              var event = {
+                title: "REZERVISANO",
+                start: selectionInfo.startStr,
+                end: selectionInfo.endStr,
+                display: "background"
+              };
+              Swal.fire({
+                icon: 'question',
+                title: 'Angazovanje radnika',
+                text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
+                confirmButtonColor: '#64B245',
+                confirmButtonText: 'Da',
+                showCancelButton: true,
+                cancelButtonText: 'Ne',
+                cancelButtonColor: 'red',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  calendar.addEvent(event);
+                  $.ajax({
+                    type: 'POST',
+                    url: './appdata/add-event.php',
+                    data: {
+                      start: selectionInfo.startStr,
+                      end: selectionInfo.endStr,
+                      posao: posao,
+                      id: id
+                    }
+                  })
                 }
               })
             }
-          })
+          });
+          calendar.render();
         },
-      });
-
-      calendar.render();
+        500)
     });
   </script>
   <script>
@@ -743,11 +811,23 @@ if (isset($_GET['logout'])) {
     window.addEventListener('resize', updateElementClass);
 
     function Angazovanje() {
-      Swal.fire(
-        'Uspesno ste angazovali radnika!',
-        'Ocekujte odgovor radnika na mail-u',
-        'success'
-      )
+      Swal.fire({
+        icon: 'success',
+        title: 'Angazovanje radnika',
+        text: 'Uspesno ste angazovali radnika, ocekujte odgovor na elektronskoj posti!',
+        type: 'success',
+        confirmButtonColor: '#64B245'
+      })
+    }
+
+    function AngazovanjeError() {
+      Swal.fire({
+        icon: 'error',
+        title: 'Angazovanje radnika',
+        text: 'Morate se prijaviti kako biste angazovali radnika',
+        type: 'error',
+        confirmButtonColor: '#64B245'
+      })
     }
   </script>
   <script>
@@ -1077,24 +1157,6 @@ if (isset($_GET['logout'])) {
         }
       });
     });
-  </script>
-  <script>
-    function checkSession() {
-      $.ajax({
-        url: "./appdata/check_session.php",
-        type: "GET",
-        success: function(data) {
-          if (data === "active") {
-            console.log("U sessionu");
-          } else {
-            console.log("nije u sessionu");
-          }
-        }
-      })
-    }
-    $(document).ready(function() {
-      checkSession();
-    })
   </script>
 </body>
 
