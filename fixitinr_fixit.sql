@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2023 at 11:51 PM
+-- Generation Time: Mar 12, 2023 at 10:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -54,10 +54,19 @@ INSERT INTO `delatnosti` (`id_delatnosti`, `naziv_delatnosti`) VALUES
 
 CREATE TABLE `events` (
   `id_event` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
   `start` date NOT NULL,
-  `end` date NOT NULL
+  `end` date NOT NULL,
+  `id_radnika` int(11) DEFAULT NULL,
+  `naziv_posla` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id_event`, `start`, `end`, `id_radnika`, `naziv_posla`) VALUES
+(57, '2023-03-20', '2023-03-24', 1, 'moler'),
+(58, '2023-03-27', '2023-04-01', 1, 'moler');
 
 -- --------------------------------------------------------
 
@@ -133,7 +142,12 @@ CREATE TABLE `korisnik` (
 --
 
 INSERT INTO `korisnik` (`korisnik_id`, `ime`, `prezime`, `email`, `sifra`) VALUES
-(3, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab');
+(3, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab'),
+(8, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab'),
+(9, NULL, NULL, NULL, NULL),
+(10, NULL, NULL, NULL, NULL),
+(11, NULL, NULL, NULL, NULL),
+(12, '2', '2', '2@gmail.com', 'da4b9237bacccdf19c0760cab7aec4a8359010b0');
 
 -- --------------------------------------------------------
 
@@ -878,25 +892,25 @@ ALTER TABLE `vrsta_rada`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `firma`
 --
 ALTER TABLE `firma`
-  MODIFY `id_firme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_firme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `fizicko_lice`
 --
 ALTER TABLE `fizicko_lice`
-  MODIFY `id_fizicko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_fizicko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `korisnik`
 --
 ALTER TABLE `korisnik`
-  MODIFY `korisnik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `korisnik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `vrsta_rada`
