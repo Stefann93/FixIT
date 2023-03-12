@@ -104,8 +104,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
 
@@ -122,8 +122,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
 
@@ -140,8 +140,8 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-              </svg></button>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button>
               </div>
             </div>
           </div>
@@ -149,18 +149,18 @@ if (isset($_GET['logout'])) {
           <div class="d-block d-lg-none justify-content-center">
             <div class="row">
               <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-            </svg></button></div>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button></div>
             </div>
             <div class="row">
               <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-            </svg></button></div>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button></div>
             </div>
             <div class="row mb-4">
               <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
-            </svg></button></div>
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+                  </svg></button></div>
             </div>
           </div>
 
@@ -189,7 +189,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_korisnik.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/korisnik_register.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <div class="text-center mb-4 fw-bolder fs-3">Korisnička registracija</div>
@@ -231,7 +231,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_fizickolice.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/fizickolice_register.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <h2 class="text-center mb-4 fw-bolder fs-3">Registracija fizičkog lica</h2>
@@ -290,7 +290,7 @@ if (isset($_GET['logout'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="myform bg-dark radius-register">
             <div class="row">
-              <div class="col-xl-6"><img src="./register_images/register_firma.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img alt="Responsive image"></div>
+              <div class="col-xl-6"><img src="./register_images/firma_register.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img alt=" Responsive image"></div>
               <div class="col">
                 <form action="onama.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
@@ -416,16 +416,16 @@ if (isset($_GET['logout'])) {
   <section class="bg-primary p-5 ">
     <div class="container">
       <div class="d-sm-flex team-profiles">
-       
+
         <!--DODATI NESTO-->
         <button type="button" class="btn-custom3 mt-1 mx-auto" onclick="location.href='#a'">
           FRONTEND
         </button>
-        <button type="button" class="btn-custom3 mt-1 mx-auto onclick="location.href='#v'">
+        <button type="button" class="btn-custom3 mt-1 mx-auto onclick=" location.href='#v'">
           BACKEND
         </button>
-        <button id="a" type="button" class="btn-custom3 mt-1 mx-auto" onclick="location.href='#c'">
-         UI/UX DESIGNERS
+        <button id=" a" type="button" class="btn-custom3 mt-1 mx-auto" onclick="location.href='#c'">
+          UI/UX DESIGNERS
         </button>
       </div>
     </div>
@@ -560,14 +560,14 @@ if (isset($_GET['logout'])) {
         </div>
         <div class="col-md">
           <h1 class="display-2 display-font pt-5 pb-4 fs-2">PODRZITE <span class="display-font text-primary">NAS</span> </h2>
-        
-          <p class="hero-text">
-            Vaša podrška nam omogućava da doprinesemo zajednici kroz nove i inovativne projekte. Vaša donacija je od vitalnog značaja za nas i svaki iznos se ceni. Za donaciju, jednostavno kliknite na dugme ispod i pratite uputstva. Za više informacija ili pitanja o našem radu, slobodno nas kontaktirajte. Hvala Vam na podršci i poverenju.
 
-          </p>
-          <div class="btn-doniraj text-center">
-          <button class="btn-custom4 btn-custom4-1">DONIRAJ</button>
-        </div>
+            <p class="hero-text">
+              Vaša podrška nam omogućava da doprinesemo zajednici kroz nove i inovativne projekte. Vaša donacija je od vitalnog značaja za nas i svaki iznos se ceni. Za donaciju, jednostavno kliknite na dugme ispod i pratite uputstva. Za više informacija ili pitanja o našem radu, slobodno nas kontaktirajte. Hvala Vam na podršci i poverenju.
+
+            </p>
+            <div class="btn-doniraj text-center">
+              <button class="btn-custom4 btn-custom4-1">DONIRAJ</button>
+            </div>
         </div>
       </div>
     </div>
@@ -620,11 +620,11 @@ if (isset($_GET['logout'])) {
                   <textarea class="form-control" id="message" rows="3"></textarea>
                 </div>
                 <div class="text-center">
-                <button type="submit" class="btn-custom4 btn-custom4-1 btn-doniraj">Pošalji</button>
-              </div>
+                  <button type="submit" class="btn-custom4 btn-custom4-1 btn-doniraj">Pošalji</button>
+                </div>
               </form>
-              
-              
+
+
             </div>
           </div>
         </div>
