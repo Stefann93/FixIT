@@ -29,7 +29,7 @@ if (isset($_GET['logout'])) {
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
-  <link rel="stylesheet" href="./appdata/modal_styleV4.css" />
+  <link rel="stylesheet" href="./appdata/modal_styleV5.css" />
   <title>FixIT</title>
 </head>
 
@@ -143,15 +143,21 @@ if (isset($_GET['logout'])) {
             </div>
           </div>
 
-          <div class="d-block d-lg-none">
-            <div class="row my-2">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
+          <div class="d-block d-lg-none justify-content-center">
+            <div class="row">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
-            <div class="row my-2">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
+            <div class="row">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
-            <div class="row my-2 mb-4">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
+            <div class="row mb-4">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
           </div>
 

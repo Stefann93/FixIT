@@ -18,13 +18,13 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="appdata/main.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="appdata/styleV6.css" />
+  <link rel="stylesheet" href="appdata/styleV7.css" />
   <link rel="stylesheet" href="appdata/saznajVise.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
-  <link rel="stylesheet" href="./appdata/modal_styleV4.css" />
+  <link rel="stylesheet" href="./appdata/modal_styleV5.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Nunito&family=Rowdies:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Fugaz+One&family=Inter&family=Montserrat:wght@500&family=Rowdies:wght@700&family=Russo+One&display=swap" rel="stylesheet">
@@ -146,15 +146,21 @@ if (isset($_GET['logout'])) {
             </div>
           </div>
 
-          <div class="d-block d-lg-none">
-            <div class="row my-2">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik usluga</button></div>
+          <div class="d-block d-lg-none justify-content-center">
+            <div class="row">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Korisnik<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
-            <div class="row my-2">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Izvođač usluga - Fizičko lice</button></div>
+            <div class="row">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Fizicko lice<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
-            <div class="row my-2 mb-4">
-              <div class="col text-center"><button type="button" class="btn btn-primary w-75" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Izvođač usluga - Firma</button></div>
+            <div class="row mb-4">
+              <div class="col text-center m-2"><button type="button" class="btn-custom2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Firma<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill-rule="evenodd"></path>
+            </svg></button></div>
             </div>
           </div>
 
@@ -395,33 +401,31 @@ if (isset($_GET['logout'])) {
           <h1 class="display-2 display-font pt-3">
             UPOZNAJTE <span class="text-primary" style="font-family:Grifter">NAS</span>
           </h1>
-          <p class="hero-text pt-3">
-            Tim se sastoji iz učenika Tehničke škole Mladenovac.<br />
-            Svi članovi tima su učenici 4. godine, smera Elektrotehničar Informacionih
-            Tehnologija.<br />
+          <p class="hero-text pt-1">
+            Tim čine učenici Tehničke škole Mladenovac četvrte godine smera <br>Elektrotehničar Informacionih Tehnologija.<br />
           </p>
         </div>
         <!--SLIKA DODJE OVDE-->
         <!--DODAT PT=3 U SLIKU-->
-        <img class="img-fluid w-35 d-none d-lg-block pt-3" src="./slike/team1.png" alt="radnik" />
+        <img class="img-fluid w-35 d-none d-lg-block pt-4 pb-4" src="./slike/team1.png" alt="radnik" />
       </div>
     </div>
   </section>
   <!-- #endregion -->
   <!-- #region Ostatak-->
-  <section class="bg-primary text-light p-5 ">
+  <section class="bg-primary p-5 ">
     <div class="container">
-      <div class="d-md-flex justify-content-between align-items-center text-center text-sm-start">
-        <h3 class="mt-1 display-2 display-font fs-2">PROFILI TIMA</h3>
+      <div class="d-sm-flex team-profiles">
+       
         <!--DODATI NESTO-->
-        <button type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#a'">
+        <button type="button" class="btn-custom3 mt-1 mx-auto" onclick="location.href='#a'">
           FRONTEND
         </button>
-        <button type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#v'">
+        <button type="button" class="btn-custom3 mt-1 mx-auto onclick="location.href='#v'">
           BACKEND
         </button>
-        <button id="a" type="button" class="btn btn-dark mt-1 hero-text" onclick="location.href='#c'">
-          DESIGNERS
+        <button id="a" type="button" class="btn-custom3 mt-1 mx-auto" onclick="location.href='#c'">
+         UI/UX DESIGNERS
         </button>
       </div>
     </div>
@@ -429,7 +433,7 @@ if (isset($_GET['logout'])) {
 
   <section class="p-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1 pt-5">DEVELOPERS: <span class="text-primary">FRONTEND </span></h1>
+      <h1 class="display-2 display-font fs-1 pt-5 pb-4">DEVELOPERS: <span class="text-primary display-font">FRONTEND </span></h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -439,7 +443,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3 ">Stefan <span class="imeDrugiRed">Ilić</span></h3>
               <p class="card-text">Programer</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
+              <button class="btn btn-primary text-light " data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -451,7 +455,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3">Mihajlo <span class="imeDrugiRed"></span>Jovanović</span></h3>
               <p class="card-text">Programer</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-mihajloj">SAZNAJ VIŠE</button>
+              <button class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-mihajloj">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -463,7 +467,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3">Andrija <span class="imeDrugiRed">Andrejić</span></h3>
               <p class="card-text">Programer</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-andrijaa">SAZNAJ VIŠE</button>
+              <button class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-andrijaa">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -475,7 +479,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3 fs-4">Mateja <span class="imeDrugiRed"> Milentijević</span></h3>
               <p class="card-text">Programer</p>
-              <button id="v" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejam">SAZNAJ
+              <button id="v" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejam">SAZNAJ
                 VIŠE</button>
             </div>
           </div>
@@ -486,7 +490,7 @@ if (isset($_GET['logout'])) {
 
   <section class=" p-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1">DEVELOPERS: <span class="text-primary">BACKEND </span></h1>
+      <h1 class="display-2 display-font fs-1 pb-4">DEVELOPERS: <span class="text-primary display-font">BACKEND </span></h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -496,7 +500,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3">Relja Stojanović</h3>
               <p class="card-text">Database coordinator</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
+              <button class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-reljas">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -508,7 +512,7 @@ if (isset($_GET['logout'])) {
               </div>
               <h3 class="card-title mb-3">Stefan Ilić</h3>
               <p class="card-text">Database coordinator</p>
-              <button class="btn btn-primary" id="c" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
+              <button class="btn btn-primary text-light" id="c" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefani">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -518,7 +522,7 @@ if (isset($_GET['logout'])) {
 
   <section class="p-5 pb-5">
     <div class="container">
-      <h1 class="display-2 display-font fs-1">WEB DESIGNERS: </h1>
+      <h1 class="display-2 display-font fs-1 pb-4">WEB DESIGNERS: <span class="text-primary display-font">UI/UX</span> </h1>
       <div class="row text-center g-4">
         <div class="col-md">
           <div class="card bg-dark text-light">
@@ -527,8 +531,8 @@ if (isset($_GET['logout'])) {
                 <i class="bi bi-brush"></i>
               </div>
               <h3 class="card-title mb-3">Stefan Brkić</h3>
-              <p class="card-text">Graphics Designer</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefanb">SAZNAJ VIŠE</button>
+              <p class="card-text">UI/UX & Graphic Designer</p>
+              <button class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-stefanb">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -539,8 +543,8 @@ if (isset($_GET['logout'])) {
                 <i class="bi bi-brush"></i>
               </div>
               <h3 class="card-title mb-3">Mateja Živanović</h3>
-              <p class="card-text"> Graphics Designer</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejaz">SAZNAJ VIŠE</button>
+              <p class="card-text">UI/UX & Graphic Designer</p>
+              <button class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#ImePrezime-matejaz">SAZNAJ VIŠE</button>
             </div>
           </div>
         </div>
@@ -552,25 +556,18 @@ if (isset($_GET['logout'])) {
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <div class="col-md">
-          <img class="img-fluid" src="./slike/programmers2.png" alt="" />
+          <img class="img-fluid pb-3" src="./slike/programmers2.png" alt="" />
         </div>
-        <div class="col-md p-5">
-          <h2 class="display-2 display-font pt-3 fs-2">PODRZITE NAS</h2>
-          <p class="lead hero-text">
-            Ako želite da postanete deo tima, i pomognete razvoju
-            možete <span class="text-primary">DONIRATI</span> klikom na dugme ispod!
-          </p>
+        <div class="col-md">
+          <h1 class="display-2 display-font pt-5 pb-4 fs-2">PODRZITE <span class="display-font text-primary">NAS</span> </h2>
+        
           <p class="hero-text">
-            Možete da našu neprofitnu ideju pomognete u skladu sa Vašim mogućnostima i željama, kako bi brže
-            i uspješnije ostvarili naše ciljeve.
-            Sve naše akcije doprinose zajednici u užem i širem smislu i kao takvi su iskreni, zato ste nam
-            važni Vi, kao vrlo bitan učesnik u našim akcijama: sponzor ili donator.
-
+            Vaša podrška nam omogućava da doprinesemo zajednici kroz nove i inovativne projekte. Vaša donacija je od vitalnog značaja za nas i svaki iznos se ceni. Za donaciju, jednostavno kliknite na dugme ispod i pratite uputstva. Za više informacija ili pitanja o našem radu, slobodno nas kontaktirajte. Hvala Vam na podršci i poverenju.
 
           </p>
-          <a href="#" class="btn btn-light  mt-3 w-35  bg-primary">
-            <i class="bi bi-chevron-right "></i>DONIRAJ
-          </a>
+          <div class="btn-doniraj text-center">
+          <button class="btn-custom4 btn-custom4-1">DONIRAJ</button>
+        </div>
         </div>
       </div>
     </div>
@@ -580,40 +577,54 @@ if (isset($_GET['logout'])) {
     <div class="container">
       <div class="card border-dark bg-dark">
         <div class="card-body">
-          <h1 id="r" class="font-weight-light text-center py-4 my-4 display-2 display-font pt-3 fs-2"><span class="text-primary">Contact</span><span class="text-white"> US</span></h1>
+          <h1 id="r" class="font-weight-light text-center py-3 my-3 display-2 display-font pt-3 fs-2"><span class="text-primary display-font">CONTACT</span><span class="text-white display-font"> US</span></h1>
           <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
               <div class="row pt-3">
                 <div class="col-lg-1 offset-1 col-md-2 col-sm-2 col-2">
 
                 </div>
-                <div class="col-lg-10 col-md-9 col-sm-9 col-9 w-65">
-                  <h3 class="font-weight-light text-white mt-5">Kontaktirajte nas!
-                    Postavite pitanja ako postoje bilo kakve nedoumice.
+                <div class="col-12">
+                  <h3 class="text-white contact-text pb-4">
+                    Slobodno nas kontaktirajte za bilo kakva pitanja, predloge ili saradnju - mi smo tu da vam pomognemo!
                     <br /><br />
-                    <span class="text-primary">TU SMO ZA VAS!</span>
+                    <span class="text-primary display-font">TU SMO ZA VAS!</span>
                   </h3>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 px-0">
+            <div class="col-lg-6">
+
+
               <form>
-                <div class="form-row mb-3">
-                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-start pb-3">
-                    <label class="text-primary">Ime</label>
-                    <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Ime...">
+                <div class="d-sm-flex flex-wrap">
+                  <div class="flex-fill me-md-3">
+                    <div class="form-group">
+                      <label for="name" class="form-label">Ime</label>
+                      <input type="text" class="form-control" id="name" placeholder="Unesite ime">
+                    </div>
                   </div>
-                  <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12 d-inline-block float-end pb-3">
-                    <label class="text-primary">Prezime</label>
-                    <input type="text" class="form-control border-primary w-100 mb-1 bg-dark text-white" placeholder="Prezime...">
+                  <div class="flex-fill ">
+                    <div class="form-group ">
+                      <label for="surname" class="form-label">Prezime</label>
+                      <input type="text" class="form-control" id="surname" placeholder="Unesite prezime">
+                    </div>
                   </div>
                 </div>
-                <label class="pt-3 text-primary ">Email</label>
-                <input type="email" class="form-control border-primary mb-3 bg-dark text-white" placeholder="Email...">
-                <label class="pt-3 text-primary ">Vaša poruka</label>
-                <textarea class="form-control mb-4 border-primary bg-dark text-white" placeholder="Poruka..." name="" id="" cols="10" rows="5"></textarea>
-                <button class="btn btn-primary mb-5 mt-4 float-end">Posalji</button>
+                <div class="form-group">
+                  <label for="email" class="form-label">Email adresa</label>
+                  <input type="email" class="form-control" id="email" placeholder="Unesite email adresu">
+                </div>
+                <div class="form-group">
+                  <label for="message" class="form-label">Poruka</label>
+                  <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn-custom4 btn-custom4-1 btn-doniraj">Pošalji</button>
+              </div>
               </form>
+              
+              
             </div>
           </div>
         </div>
