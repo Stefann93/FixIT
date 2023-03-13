@@ -153,3 +153,8 @@ svg {
 .btn-custom2:not(:active) {
   transition: 200ms;
 }
+.ta-work:focus{
+  border-color: white;
+  box-shadow: none;
+  outline: 0 none;
+}

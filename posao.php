@@ -297,16 +297,16 @@ if (isset($_GET['logout'])) {
             <div class="row">
               <div class="col-xl-6"><img src="./register_images/firma_register.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
               <div class="col">
-                <form action="posao.php" method="post">
+                <form action="radnik.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
                   <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="KONTAKT-IZVODJACA" required>
                   <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
                   <div class="row">
                     <div class="col">
-                      <select class="dropdown reg-drop dropdown-register fs-6" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                      <select class="dropdown reg-drop dropdown-register fs-6 mb-4" required id="DELATNOST-FIRMA" NAME="DELATNOST">
                         <option value="odaberi" disabled selected>Odaberi delatnost...</option>
                         <?php
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
@@ -317,11 +317,8 @@ if (isset($_GET['logout'])) {
                       </select>
                     </div>
                   </div>
-                  <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
-                    <!-- OPASNOST SQL INJECTIONA -->
-                    <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu posla... </option>
-                    <!--  -->
-                  </select>
+
+                    <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -347,6 +344,7 @@ if (isset($_GET['logout'])) {
     </div>
   </div>
   <!--#endregion -->
+
 
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
