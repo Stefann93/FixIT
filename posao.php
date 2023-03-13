@@ -368,21 +368,17 @@ if (isset($_GET['logout'])) {
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-                      echo $fullUrl . "&logout=true" ?>" class="nav-link <?php
-                                                                          if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
-                                                                            echo 'd-none';
-                                                                          }
-                                                                          ?>">Odjavi se</a>
-          </li>
-          <li class="nav-item">
             <a href="#" class="nav-link <?php
                                         if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
           <li class="nav-item dropdown account-drop me-lg-5">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle <?php
+                                                if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                  echo 'd-none';
+                                                }
+                                                ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
             <ul class="dropdown-menu text-center bg-dark text-white">
@@ -391,7 +387,12 @@ if (isset($_GET['logout'])) {
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
+              <li><a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                            echo $fullUrl . "&logout=true" ?>" class="dropdown-item hover-element text-white <?php
+                                                                                                              if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                                                                                echo 'd-none';
+                                                                                                              }
+                                                                                                              ?>">Odjavi se</a></li>
             </ul>
           </li>
         </ul>
@@ -410,170 +411,85 @@ if (isset($_GET['logout'])) {
     <div class="naslov text-uppercase fw-bold mb-5" id="ImePosla">
       <?= $podatak['naziv_posla'] ?>
     </div>
-    <table style="width:100%">
-      <tr class="nafonu">
-        <td>
-          <div class=" searchbar w-100" style="background-color: #212529;">
-            <table class="tabela">
-              <tr>
-                <td>
-                  <input type="text" placeholder="Pretrazi..." class="search">
-                </td>
-                <td>
-                  <a href="#"><i class="fa fa-solid fa-magnifying-glass"></i></a>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </td>
-      </tr>
-      <tr class="nafonu">
-        <td style="text-align: center;">
-          <p class="tekstnafonu mb-4 bg-primary text-white fw-bold" data-bs-toggle="modal" data-bs-target="#filternafonu">Dodate
-            opcije
-            pretrazivanja
-          </p>
-        </td>
-      </tr>
-      <div id="filternafonu" class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content filtermodal">
-            <div class="modal-header">
-              <h1 class="modal-title">Dodatne Opcije</h1>
-              <button type="button" class="btn-close p-4" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="tekst">Opstina</h4>
-                  <select class="dropdown-opstina dropdown">
-                    <option value="odaberi" disabled selected>Odaberi Opstinu...</option>
-                    <option value="beograd">Beograd</option>
-                    <option value="beograd">Sopot</option>
-                    <option value="beograd">Mladenovac</option>
-                  </select>
-                  <h4 class="mt-3 tekst">Vrsta rada</h4>
-                  <div class="multiselect">
-                    <div class="selectBox" onclick="showCheckboxes()">
-                      <select class="rad">
-                        <option>Odaberi vrstu rada</option>
-                      </select>
-                      <div class="overSelect"></div>
-                    </div>
-                    <div id="checkboxes">
-                      <label for="jedan"><input type="checkbox" id="jedan"> Krecenje</label>
-                      <label for="dva"><input type="checkbox" id="dva"> Gletovanje</label>
-                      <label for="tri"><input type="checkbox" id="tri"> Farbanje stolarije</label>
-                      <label for="cetiri"><input type="checkbox" id="cetiri"> Farbanje radiatora i
-                        cevi</label>
-                      <label for="pet"><input type="checkbox" id="pet"> Postavljanje zidnih
-                        lajsni</label>
-                      <label for="sest"><input type="checkbox" id="sest"> Spatulat</label>
-                    </div>
-                  </div>
 
-                  <div class="group">
-                    <h4 class="mt-3 tekst">Duzina trajanja radova</h4>
-                    <input type="text" id="calendar-range" class="datum">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn buttonn btn-dark text-white fw-bold px-4 py-2">Pretrazi
-                Filtrirano</button>
-            </div>
-          </div>
-        </div>
+
+    <div class="d-sm-flex w-100">
+      <div class="input-group mb-3 aa52 ">
+        <input type="text" class="form-control border-dark" placeholder="Pretraga majstora" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary search-button" type="button" id="button-addon2">Pretraži</button>
       </div>
-      <tr>
-        <td style="vertical-align: top; width: 50%;" class="nakompu">
-          <div class="searchbar w-100 mb-3" style="background-color: #212529;">
-            <table class="tabela">
-              <tr>
-                <td>
-                  <input type="text" placeholder="Pretrazi..." class="search">
-                </td>
-                <td>
-                  <a href="#"><i class="fa fa-solid fa-magnifying-glass"></i></a>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class=" tekst">Opstina</h4>
-              <select class="dropdownOnPage">
-                <option value="odaberi" disabled selected>Odaberi Opstinu...</option>
-                <?php
-                $opstine = $conn->query("SELECT ime_opstine FROM opstine")
-                  or die($conn->error);
-                while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                  <option value="<?= $podatakOpstine['ime_opstine'] ?>">
-                    <?= $podatakOpstine['ime_opstine'] ?>
-                  </option>
-                <?php endwhile; ?>
-              </select>
-              <div class="group">
-                <h4 class="mt-3 tekst">Duzina trajanja radova</h4>
-                <input type="text" id="calendar-range" class="datum">
-              </div>
-              <h4 class="mt-3 tekst">Fizicko lice ili firma</h4>
-              <div style="font-size:20px;" class="d-flex justify-content-evenly">
-                <label><input type="radio" name="group1" value="fizicko_lice" /> Fizicko Lice</label>
-                <label><input type="radio" name="group1" value="firma" /> Firma</label>
-              </div>
-              <div class="dugme pt-4">
-                <button class="btn buttonn btn-dark text-white fw-bold px-4 py-2 mb-2">Pretrazi
-                  Filtrirano</button>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="as">
-            <table class="tabelaa">
-              <tr class="aa1">
-                <td class="majstor">Majstor</td>
-                <td class="ocena">Prosecna ocena</td>
-              </tr>
-            </table>
-            <table class="tabela2">
-              <?php
-              $limit = ($_GET['p'] - 1) * 7;
-              $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
-                or die($conn->error);
-              while ($podatak = $radnik->fetch_assoc()) : ?>
-                <tr class="aa">
-                  <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id_fizicko'] ?>">
-                    <?= $podatak['ime'] ?>
-                    <?= $podatak['prezime'] ?>
-                  </td>
-                  <td class="ocena2">10.0</td>
-                </tr>
-              <?php endwhile; ?>
-              <tr>
-                <td colspan="2" class="page">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-md-end justify-content-center">
-                      <li class="page-item"><a class="page-link  fs-5" href="#">Nazad</a></li>
-                      <li class="page-item"><a class="page-link fs-5" id="1" onclick="page(this);">1</a>
-                      </li>
-                      <li class="page-item"><a class="page-link fs-5" id="2" onclick="page(this);">2</a>
-                      </li>
-                      <li class="page-item"><a class="page-link  fs-5" id="3" onclick="page(this);">3</a>
-                      </li>
-                      <li class="page-item"><a class="page-link  fs-5" href="./moler-p2.php">Napred</a>
-                      </li>
-                    </ul>
-                  </nav>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </td>
-      </tr>
-    </table>
+
+      <div class="btn-group">
+        <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Opština
+        </button>
+        <ul class="dropdown-menu">
+          <li class="tip">Mladenovac</li>
+          <li class="tip">Sopot</li>
+          <li class="tip">Beograd</li>
+          <li class="tip">Ducina</li>
+        </ul>
+      </div>
+
+      <div class="btn-group flatpickr-input" id="calendar-range">
+        <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Kalendar
+        </button>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Tip
+        </button>
+        <ul class="dropdown-menu">
+          <li class="tip">Fizičko Lice</li>
+          <li class="tip">Firma</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="as">
+      <table class="tabelaa">
+        <tr class="aa1">
+          <td class="majstor">Majstor</td>
+          <td class="ocena">Prosecna ocena</td>
+        </tr>
+      </table>
+      <table class="tabela2">
+        <?php
+        $limit = ($_GET['p'] - 1) * 7;
+        $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+          or die($conn->error);
+        while ($podatak = $radnik->fetch_assoc()) : ?>
+          <tr class="aa">
+            <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id_fizicko'] ?>">
+              <?= $podatak['ime'] ?>
+              <?= $podatak['prezime'] ?>
+            </td>
+            <td class="ocena2">10.0</td>
+          </tr>
+        <?php endwhile; ?>
+        <tr>
+          <td colspan="2" class="page">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-md-end justify-content-center">
+                <li class="page-item"><a class="page-link  fs-5" href="#">Nazad</a></li>
+                <li class="page-item"><a class="page-link fs-5" id="1" onclick="page(this);">1</a>
+                </li>
+                <li class="page-item"><a class="page-link fs-5" id="2" onclick="page(this);">2</a>
+                </li>
+                <li class="page-item"><a class="page-link  fs-5" id="3" onclick="page(this);">3</a>
+                </li>
+                <li class="page-item"><a class="page-link  fs-5" href="./moler-p2.php">Napred</a>
+                </li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
   </div>
   <section id="instructors" class="p-5 bg-primary">
     <div class="container">

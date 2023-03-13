@@ -1,27 +1,26 @@
 <?php
 include('./connect-to-base-calendar.php');
 
-$sql;
+// if (isset($_POST['posao']) && isset($_POST['id'])) {
+//     $posao = $_POST['posao'];
+//     $id = $_POST['id'];
+// }
 
-if (isset($_POST['posao']) && isset($_POST['id'])) {
-    $posao = $_POST['posao'];
-    $id = $_POST['id'];
-    $sql = "SELECT * FROM events where id_radnika = $id and naziv_posla = '$posao'";
-    $result = mysqli_query($conn, $sql);
 
-    $events = array();
+$sql = "SELECT * FROM events";
+$result = mysqli_query($conn, $sql);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $start = $row['start'];
-        $end = $row['end'];
+$events = array();
 
-        $events[] = array(
-            'title' => 'REZERVISANO',
-            'start' => $start,
-            'end' => $end,
-            'display' => 'background'
-        );
-    }
-    echo json_encode($events);
-} else
-    echo 'Error: Missing posao or id parameter';
+while ($row = mysqli_fetch_assoc($result)) {
+    $start = $row['start'];
+    $end = $row['end'];
+
+    $events[] = array(
+        'title' => 'REZERVISANO',
+        'start' => $start,
+        'end' => $end,
+        'display' => 'background'
+    );
+}
+echo json_encode($events);
