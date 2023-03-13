@@ -300,7 +300,7 @@ if (isset($_GET['logout'])) {
                 <form action="radnik.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
                   <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="KONTAKT-IZVODJACA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="IME-I-PREZIME-VLASNIKA" required>
                   <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
@@ -318,7 +318,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   </div>
 
-                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="VRSTA-POSLA-FIRMA" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -414,20 +414,22 @@ if (isset($_GET['logout'])) {
 
 
     <div class="d-sm-flex w-100">
-      <div class="input-group mb-3 aa52 ">
+      <div class="input-group mb-3 prviRed">
         <input type="text" class="form-control border-dark" placeholder="Pretraga majstora" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-primary search-button" type="button" id="button-addon2">Pretraži</button>
+        <button class="btn btn-primary text-light search-button" type="button" id="button-addon2">Pretraži</button>
       </div>
 
       <div class="btn-group">
         <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Opština
         </button>
-        <ul class="dropdown-menu">
-          <li class="tip">Mladenovac</li>
-          <li class="tip">Sopot</li>
-          <li class="tip">Beograd</li>
-          <li class="tip">Ducina</li>
+        <ul class="dropdown-menu" id="opstineFilter">
+          <?php
+          $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+            or die($conn->error);
+          while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+            <li class="tip ps-2"><?= $podatakOpstine['ime_opstine'] ?></li>
+          <?php endwhile; ?>
         </ul>
       </div>
 
@@ -441,13 +443,26 @@ if (isset($_GET['logout'])) {
         <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Tip
         </button>
-        <ul class="dropdown-menu">
-          <li class="tip">Fizičko Lice</li>
-          <li class="tip">Firma</li>
+        <ul class="dropdown-menu" id="tipFilter">
+          <li class="tip ps-2">Fizičko Lice</li>
+          <li class="tip ps-2">Firma</li>
         </ul>
       </div>
-
     </div>
+    <div class="popular mb-3 align-items-baseline <?php if (!isset($_GET['opstina']) && !isset($_GET['tip'])) {
+                                                    echo 'd-none';
+                                                  } else {
+                                                    echo 'd-md-flex';
+                                                  } ?>">
+      <strong class="popular-text">Filteri:</strong>
+      <button class="btn btn-outlined <?php if (!isset($_GET['opstina'])) {
+                                        echo 'd-none';
+                                      } ?>" onclick="Nazad()"><?php echo $_GET['opstina'] ?><span class="text-primary">&nbsp;X</span></button>
+      <button class="btn btn-outlined <?php if (!isset($_GET['tip'])) {
+                                        echo 'd-none';
+                                      } ?>" onclick="Nazad()"><?php echo $_GET['tip'] ?><span class="text-primary">&nbsp;X</span></button>
+    </div>
+
     <div class="as">
       <table class="tabelaa">
         <tr class="aa1">
@@ -458,8 +473,13 @@ if (isset($_GET['logout'])) {
       <table class="tabela2">
         <?php
         $limit = ($_GET['p'] - 1) * 7;
-        $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
-          or die($conn->error);
+        if (isset($_GET['opstina'])) {
+          $radnik = $conn->query("SELECT id_fizicko,ime,prezime from ((fizicko_lice INNER JOIN opstine on fizicko_lice.id_opstine = opstine.id_opstine) inner join poslovi on fizicko_lice.posao_id = poslovi.posao_id) where opstine.ime_opstine = '$_GET[opstina]' and poslovi.naziv_posla = '$_GET[posao]';")
+            or die($conn->error);
+        } else {
+          $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+            or die($conn->error);
+        }
         while ($podatak = $radnik->fetch_assoc()) : ?>
           <tr class="aa">
             <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id_fizicko'] ?>">
@@ -584,6 +604,48 @@ if (isset($_GET['logout'])) {
   <script src="https://npmcdn.com/flatpickr/dist/l10n/sr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
+    var tip = document.getElementById('tipFilter');
+    tip.addEventListener('click', function(event) {
+      if (event.target.tagName === 'LI') {
+        var odabranTip = event.target.textContent;
+        if (odabranTip.includes(" ")) {
+          odabranTip = odabranTip.replace(/ /g, "-");
+        }
+        localStorage.setItem('start', window.location.href);
+        url = window.location.href + "&tip=" + odabranTip;
+        window.location.href = url;
+      }
+    });
+
+    var dropdownMenu = document.getElementById('opstineFilter');
+    if (window.location.search.indexOf('opstina=') > -1) {
+      dropdownMenu.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          let searchParams = new URLSearchParams(window.location.search);
+          let currentOpstina = searchParams.get('opstina');
+          var newOpstina = event.target.textContent;
+          searchParams.set('opstina', newOpstina);
+          let newSearchString = searchParams.toString();
+          let currentUrlWithoutSearch = window.location.href.split('?')[0];
+          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
+          window.location.href = newUrl;
+        }
+      });
+    } else {
+      dropdownMenu.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          var opstina = event.target.textContent;
+          localStorage.setItem('start', window.location.href);
+          url = window.location.href + "&opstina=" + opstina;
+          window.location.href = url;
+        }
+      });
+    }
+
+    function Nazad() {
+      window.location.href = localStorage.getItem('start');
+    }
+
     function getId(element) {
       var posao = document.getElementById("ImePosla").textContent.trim().toLocaleLowerCase();
       let id = element.id;
@@ -644,22 +706,6 @@ if (isset($_GET['logout'])) {
           },
           success: function(response) {
             $("#vrstaPosla").html(response); // Update the content of the #result div with the selected value
-          }
-        });
-      });
-    });
-
-    $(document).ready(function() {
-      $("#DELATNOST-FIRMA").change(function() {
-        var selectedOption = $(this).children("option:selected").val();
-        $.ajax({
-          type: "POST",
-          url: "./appdata/ajax.php",
-          data: {
-            option: selectedOption
-          },
-          success: function(response) {
-            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
           }
         });
       });
@@ -760,9 +806,10 @@ if (isset($_GET['logout'])) {
           var email = $('#EMAIL-FIRME').val();
           var sifra = $('#SIFRA-FIRME').val();
           var id_delatnosti = $('#DELATNOST-FIRMA').val();
-          var posao_id = $('#VRSTA-POSLA-FIRMA').val();
+          var posao = $('#VRSTA-POSLA-FIRMA').val();
           var id_opstine = $('#OPSTINA-FIRMA').val();
           var adresa = $('#ADRESA-FIRME').val();
+
           e.preventDefault();
 
           $.ajax({
@@ -774,9 +821,9 @@ if (isset($_GET['logout'])) {
               email: email,
               sifra: sifra,
               id_opstine: id_opstine,
-              // adresa: adresa,
+              adresa: adresa,
               id_delatnosti: id_delatnosti,
-              posao_id: posao_id,
+              posao: posao,
             },
 
             success: function(data) {

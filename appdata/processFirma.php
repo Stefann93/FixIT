@@ -10,9 +10,10 @@ if (isset($_POST)) {
   $id_delatnosti = $_POST['id_delatnosti'];
   $adresa = $_POST['adresa'];
   $id_opstine = $_POST['id_opstine'];
-  $sql = "INSERT INTO firma (ime_firme, ime_vlasnika, email, sifra, id_opstine, id_delatnosti, adresa) Values (?,?,?,?,?,?,?)";
+  $posao = $_POST['posao'];
+  $sql = "INSERT INTO firma (ime_firme, ime_vlasnika, email, sifra, id_opstine, id_delatnosti, adresa,vrsta_rada) Values (?,?,?,?,?,?,?,?)";
   $stmtinsert = $db->prepare($sql);
-  $result = $stmtinsert->execute([$ime_firme, $ime_vlasnika, $email, $sifra, $id_opstine, $id_delatnosti, $adresa]);
+  $result = $stmtinsert->execute([$ime_firme, $ime_vlasnika, $email, $sifra, $id_opstine, $id_delatnosti, $adresa, $posao]);
   if ($result) {
     echo 'Uspesna Registracija!';
   } else {
