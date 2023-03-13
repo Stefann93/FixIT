@@ -1,12 +1,3 @@
-@font-face {
-  font-family: 'customFont';
-  src: url('../GothamBlackRegular/gotham_black_regular-webfont.woff2') format('woff2'),
-    url('../GothamBlackRegular/gotham_black_regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
 #naslov {
   font-size: 2.3em;
   font-weight: bold;
@@ -255,7 +246,6 @@ border-radius: 15px;
 .as {
   color: white;
   font-size: 25px;
-  padding-left: 15px;
 }
 
 .majstor {
@@ -452,4 +442,36 @@ svg {
 
 .btn-custom:not(:active) {
   transition: 200ms;
+}
+.search-button:hover{
+  color:white;
+}
+
+.btn-filter{
+  height: 2.4rem;
+}
+.btn-gap-filter{
+  margin-left: 0.5rem;
+}
+.kalendar {
+  background-image: url('../slike/Ikonice/kalendar.svg');
+}
+.tip:hover{
+  background-color: #64b245;
+  color:white;
+  cursor:pointer;
+ }
+ .aa52{
+  width: 75%;
+ }
+ @media (max-width: 767px) {
+  .aa52{
+    width: 100%;
+   }
+}
+.filter-dugme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
 }

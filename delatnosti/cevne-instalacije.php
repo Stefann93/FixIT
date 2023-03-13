@@ -363,10 +363,10 @@ if (isset($_GET['logout'])) {
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto text-uppercase">
                     <li class="nav-item">
-                        <a href="../index.php" class="nav-link">Početna</a>
+                        <a href="./index.php" class="nav-link">Početna</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../onama.php" class="nav-link">O nama</a>
+                        <a href="./onama.php" class="nav-link">O nama</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link <?php
@@ -375,30 +375,30 @@ if (isset($_GET['logout'])) {
                                                     } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
                     </li>
                     <li class="nav-item">
-                        <a href="cevne-instalacije.php?logout=true" class="nav-link <?php
-                                                                                    if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
-                                                                                        echo 'd-none';
-                                                                                    }
-                                                                                    ?>">Odjavi se</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#" class="nav-link <?php
                                                     if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                                         echo 'd-none';
                                                     } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
                     </li>
                     <li class="nav-item dropdown account-drop me-lg-5">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle <?php
+                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                                echo 'd-none';
+                                                            }
+                                                            ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="../slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
                         </a>
                         <ul class="dropdown-menu text-center bg-dark text-white">
-                            <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a>
-                            </li>
+                            <li><a class="dropdown-item hover-element text-white" onmouseover="" href="#">Moj profil</a></li>
                             <li><a class="dropdown-item hover-element text-white" href="#">Sanduče</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
+                            <li><a href="cevne-instalacije.php?logout=true" class="dropdown-item hover-element text-white <?php
+                                                                                                                            if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                                                                                                echo 'd-none';
+                                                                                                                            }
+                                                                                                                            ?>">Odjavi se</a></li>
                         </ul>
                     </li>
                 </ul>
