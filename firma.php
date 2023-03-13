@@ -292,7 +292,7 @@ if (isset($_GET['logout'])) {
                 <form action="radnik.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
                   <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="KONTAKT-IZVODJACA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="IME-I-PREZIME-VLASNIKA" required>
                   <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
@@ -310,7 +310,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   </div>
 
-                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="VRSTA-POSLA-FIRMA" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -337,6 +337,7 @@ if (isset($_GET['logout'])) {
   </div>
   <!--#endregion -->
 
+
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
@@ -359,21 +360,17 @@ if (isset($_GET['logout'])) {
                                         } ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">Prijavi se</a>
           </li>
           <li class="nav-item">
-            <a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-                      echo $fullUrl . "&logout=true" ?>" class="nav-link <?php
-                                                                          if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
-                                                                            echo 'd-none';
-                                                                          }
-                                                                          ?>">Odjavi se</a>
-          </li>
-          <li class="nav-item">
             <a href="#" class="nav-link <?php
                                         if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra']))) {
                                           echo 'd-none';
                                         } ?>" data-bs-toggle="modal" data-bs-target="#registerModal">Registruj se</a>
           </li>
           <li class="nav-item dropdown account-drop me-lg-5">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle <?php
+                                                if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                  echo 'd-none';
+                                                }
+                                                ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="./slike/registericon.png" style="height: 30px;" class="img-fluid" alt="Responsive image">
             </a>
             <ul class="dropdown-menu text-center bg-dark text-white">
@@ -382,7 +379,8 @@ if (isset($_GET['logout'])) {
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item hover-element text-white" href="#">Odjavi se</a></li>
+              <li><a class="dropdown-item hover-element text-white" href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                                                                          echo $fullUrl . "&logout=true" ?>">Odjavi se</a></li>
             </ul>
           </li>
         </ul>
@@ -395,16 +393,16 @@ if (isset($_GET['logout'])) {
     <div class="container text-white">
       <div class="row">
         <div class="col-8 mt-5">
-          <?php $result = $conn->query("select * from fizicko_lice where id_fizicko=($_GET[id])")
+          <?php $result = $conn->query("select * from firma where id_firme=($_GET[id])")
             or die($conn->error);
           $podatak = $result->fetch_assoc();
-          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.id_fizicko='$_GET[id]';")
+          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`firma` INNER JOIN poslovi ON firma.vrsta_rada = poslovi.posao_id) inner join opstine on firma.id_opstine = opstine.id_opstine)  WHERE poslovi.naziv_posla = '$_GET[posao]' and firma.id_firme=$_GET[id];")
             or die($conn->error);
           $podatakPosao = $posao->fetch_assoc();
           ?>
           <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0"><?= $podatakPosao['naziv_posla'] ?>,
               <?= $podatakPosao['ime_opstine'] ?></span>
-            <span class="ime d-block my-0"><?= $podatak['ime'] ?> <?= $podatak['prezime'] ?></span>
+            <span class="ime d-block my-0"><?= $podatak['ime_firme'] ?></span>
 
           </div>
         </div>
@@ -507,11 +505,11 @@ if (isset($_GET['logout'])) {
                 <h4><span class="telefon"></span>
                   Kontakt telefon
                 </h4>
-                <?php
-                $telefon = $conn->query("SELECT br_tel FROM fizicko_lice where id_fizicko='$_GET[id]';")
-                  or die($conn->error);
-                $podatakTelefon = $telefon->fetch_assoc();
-                ?>
+                <!-- <?php
+                      $telefon = $conn->query("SELECT br_tel FROM firma where id_fizicko='$_GET[id]';")
+                        or die($conn->error);
+                      $podatakTelefon = $telefon->fetch_assoc();
+                      ?> --> brtel
                 <p class="lead undertext">+<?= $podatakTelefon['br_tel'] ?></p>
               </div>
               <div class="email-sekcija">
@@ -546,7 +544,7 @@ if (isset($_GET['logout'])) {
               Lokacija
             </h4>
             <?php
-            $adresa = $conn->query("SELECT fizicko_lice.adresa,opstine.ime_opstine FROM fizicko_lice inner join opstine on fizicko_lice.id_opstine = opstine.id_opstine where fizicko_lice.id_fizicko='$_GET[id]';")
+            $adresa = $conn->query("SELECT firma.adresa,opstine.ime_opstine FROM firma inner join opstine on firma.id_opstine = opstine.id_opstine where firma.id_='$_GET[id]';")
               or die($conn->error);
             $podatakAdresa = $adresa->fetch_assoc();
             ?>
@@ -602,9 +600,7 @@ if (isset($_GET['logout'])) {
             <p class="lead undertext ">Odaberite zeljeni dan/period za izvrsenje usluga i pogledajte zauzete
               dane
               majstora.</p>
-            <div id="calendar" <?php if (isset($_SESSION['korisnik']) || isset($_SESSION['fizicko lice']) || isset($_SESSION['firma']) || (isset($_COOKIE['email']) && isset($_COOKIE['sifra'])))
-                                  echo 'class="d-none"'
-                                ?>></div>
+            <div id="calendar"></div>
           </div>
 
           <div class="ostatak-sekcija mt-3">
@@ -668,56 +664,101 @@ if (isset($_GET['logout'])) {
   <script src='fullcalendar/core/index.global.js'></script>
   <script src='fullcalendar/core/locales/es.global.js'></script>
   <script>
+    var isSessionActive
+    var posao = getUrlParameter('posao');
+    var id = getUrlParameter('id');
+
+    function checkSession() {
+      $.ajax({
+        url: "./appdata/check_session.php",
+        type: "GET",
+        success: function(data) {
+          if (data === "active") {
+            isSessionActive = true;
+            var dugme = document.getElementById("angazuj");
+            dugme.addEventListener('click', Angazovanje);
+          } else {
+            isSessionActive = false;
+            var dropdowns = document.getElementsByClassName("dropdownOnPage");
+            for (var i = 0; i < dropdowns.length; i++) {
+              dropdowns[i].disabled = true;
+              var firstOption = dropdowns[i].getElementsByTagName("option")[0];
+              firstOption.textContent = "Morate se prijaviti kako biste angazovali radnika";
+            }
+            var opis = document.getElementById("opis");
+            opis.innerHTML = "Morate se prijaviti kako biste angazovali radnika";
+            opis.disabled = true;
+            var dugme = document.getElementById("angazuj");
+            dugme.addEventListener('click', AngazovanjeError);
+          }
+        }
+      })
+    }
+    $(document).ready(function() {
+      checkSession();
+    })
+
+    function getUrlParameter(name) {
+      name = name.replace(/[[]/, "\[").replace(/[]]/, "\]");
+      var regex = new RegExp("[\?&]" + name + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+  </script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'sr-latn',
-        selectable: true,
-        validRange: {
-          start: moment().format('YYYY-MM-DD')
-        },
-        selectOverlap: false,
-        events: "./appdata/load-events.php",
-        buttonText: {
-          today: 'Danas'
-        },
-        select: function(selectionInfo) {
-          var start = selectionInfo.start.getDate();
-          var end = selectionInfo.end.getDate();
-          var event = {
-            title: "REZERVISANO",
-            start: selectionInfo.startStr,
-            end: selectionInfo.endStr,
-            display: "background"
-          };
-          Swal.fire({
-            icon: 'question',
-            title: 'Angazovanje radnika',
-            text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
-            confirmButtonColor: '#64B245',
-            confirmButtonText: 'Da',
-            showCancelButton: true,
-            cancelButtonText: 'Ne',
-            cancelButtonColor: 'red',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              calendar.addEvent(event);
-              $.ajax({
-                type: 'POST',
-                url: './appdata/add-event.php',
-                data: {
-                  title: 'REZERVISANO',
-                  start: selectionInfo.startStr,
-                  end: selectionInfo.endStr,
+      setTimeout(function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'sr-latn',
+            selectable: isSessionActive,
+            validRange: {
+              start: moment().format('YYYY-MM-DD')
+            },
+            selectOverlap: false,
+            events: './appdata/load-events.php',
+            buttonText: {
+              today: 'Danas'
+            },
+            select: function(selectionInfo) {
+              var start = selectionInfo.start.getDate();
+              var end = selectionInfo.end.getDate();
+              var event = {
+                title: "REZERVISANO",
+                start: selectionInfo.startStr,
+                end: selectionInfo.endStr,
+                display: "background"
+              };
+              Swal.fire({
+                icon: 'question',
+                title: 'Angazovanje radnika',
+                text: 'Da li ste sigurni da zelite da angazujete radnika od ' + start + ' do ' + (end - 1),
+                confirmButtonColor: '#64B245',
+                confirmButtonText: 'Da',
+                showCancelButton: true,
+                cancelButtonText: 'Ne',
+                cancelButtonColor: 'red',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  calendar.addEvent(event);
+                  $.ajax({
+                    type: 'POST',
+                    url: './appdata/add-event.php',
+                    data: {
+                      start: selectionInfo.startStr,
+                      end: selectionInfo.endStr,
+                      posao: posao,
+                      id: id
+                    }
+                  })
                 }
               })
             }
-          })
+          });
+          calendar.render();
         },
-      });
-
-      calendar.render();
+        500)
     });
   </script>
   <script>
@@ -774,22 +815,6 @@ if (isset($_GET['logout'])) {
           },
           success: function(response) {
             $("#vrstaPosla").html(response); // Update the content of the #result div with the selected value
-          }
-        });
-      });
-    });
-
-    $(document).ready(function() {
-      $("#DELATNOST-FIRMA").change(function() {
-        var selectedOption = $(this).children("option:selected").val();
-        $.ajax({
-          type: "POST",
-          url: "./appdata/ajax.php",
-          data: {
-            option: selectedOption
-          },
-          success: function(response) {
-            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
           }
         });
       });
@@ -890,9 +915,10 @@ if (isset($_GET['logout'])) {
           var email = $('#EMAIL-FIRME').val();
           var sifra = $('#SIFRA-FIRME').val();
           var id_delatnosti = $('#DELATNOST-FIRMA').val();
-          var posao_id = $('#VRSTA-POSLA-FIRMA').val();
+          var posao = $('#VRSTA-POSLA-FIRMA').val();
           var id_opstine = $('#OPSTINA-FIRMA').val();
           var adresa = $('#ADRESA-FIRME').val();
+
           e.preventDefault();
 
           $.ajax({
@@ -904,9 +930,9 @@ if (isset($_GET['logout'])) {
               email: email,
               sifra: sifra,
               id_opstine: id_opstine,
-              // adresa: adresa,
+              adresa: adresa,
               id_delatnosti: id_delatnosti,
-              posao_id: posao_id,
+              posao: posao,
             },
 
             success: function(data) {
@@ -1091,22 +1117,25 @@ if (isset($_GET['logout'])) {
     });
   </script>
   <script>
-    function checkSession() {
-      $.ajax({
-        url: "./appdata/check_session.php",
-        type: "GET",
-        success: function(data) {
-          if (data === "active") {
-            console.log("U sessionu");
-          } else {
-            console.log("nije u sessionu");
-          }
-        }
+    function Angazovanje() {
+      Swal.fire({
+        icon: 'success',
+        title: 'Angazovanje radnika',
+        text: 'Uspesno ste angazovali radnika, ocekujte odgovor na elektronskoj posti!',
+        type: 'success',
+        confirmButtonColor: '#64B245'
       })
     }
-    $(document).ready(function() {
-      checkSession();
-    })
+
+    function AngazovanjeError() {
+      Swal.fire({
+        icon: 'error',
+        title: 'Angazovanje radnika',
+        text: 'Morate se prijaviti kako biste angazovali radnika',
+        type: 'error',
+        confirmButtonColor: '#64B245'
+      })
+    }
   </script>
 </body>
 

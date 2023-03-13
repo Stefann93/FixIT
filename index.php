@@ -307,7 +307,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   </div>
 
-                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="VRSTA-POSLA-FIRMA" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -333,6 +333,7 @@ if (isset($_GET['logout'])) {
     </div>
   </div>
   <!--#endregion -->
+
 
 
   <!-- #region NavBar -->
@@ -550,22 +551,6 @@ if (isset($_GET['logout'])) {
         });
       });
     });
-
-    $(document).ready(function() {
-      $("#DELATNOST-FIRMA").change(function() {
-        var selectedOption = $(this).children("option:selected").val();
-        $.ajax({
-          type: "POST",
-          url: "./appdata/ajax.php",
-          data: {
-            option: selectedOption
-          },
-          success: function(response) {
-            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
-          }
-        });
-      });
-    });
   </script>
   <script>
     $(function() {
@@ -662,8 +647,10 @@ if (isset($_GET['logout'])) {
           var email = $('#EMAIL-FIRME').val();
           var sifra = $('#SIFRA-FIRME').val();
           var id_delatnosti = $('#DELATNOST-FIRMA').val();
+          var posao = $('#VRSTA-POSLA-FIRMA').val();
           var id_opstine = $('#OPSTINA-FIRMA').val();
           var adresa = $('#ADRESA-FIRME').val();
+
           e.preventDefault();
 
           $.ajax({
@@ -676,7 +663,8 @@ if (isset($_GET['logout'])) {
               sifra: sifra,
               id_opstine: id_opstine,
               adresa: adresa,
-              id_delatnosti: id_delatnosti
+              id_delatnosti: id_delatnosti,
+              posao: posao,
             },
 
             success: function(data) {

@@ -295,7 +295,7 @@ if (isset($_GET['logout'])) {
                 <form action="radnik.php" method="post">
                   <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
                   <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
-                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="KONTAKT-IZVODJACA" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="IME-I-PREZIME-VLASNIKA" required>
                   <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
                   <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
@@ -313,7 +313,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   </div>
 
-                    <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="VRSTA-POSLA-FIRMA" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -339,6 +339,7 @@ if (isset($_GET['logout'])) {
     </div>
   </div>
   <!--#endregion -->
+
 
 
   <!-- #region NavBar -->
@@ -964,22 +965,6 @@ if (isset($_GET['logout'])) {
         });
       });
     });
-
-    $(document).ready(function() {
-      $("#DELATNOST-FIRMA").change(function() {
-        var selectedOption = $(this).children("option:selected").val();
-        $.ajax({
-          type: "POST",
-          url: "./appdata/ajax.php",
-          data: {
-            option: selectedOption
-          },
-          success: function(response) {
-            $("#VRSTA-POSLA-FIRMA").html(response); // Update the content of the #result div with the selected value
-          }
-        });
-      });
-    });
   </script>
   <script>
     $(function() {
@@ -1065,6 +1050,7 @@ if (isset($_GET['logout'])) {
     });
     $(function() {
       $('#RegisterF').click(function(e) {
+
         var valid = this.form.checkValidity();
 
         if (valid) {
@@ -1074,9 +1060,10 @@ if (isset($_GET['logout'])) {
           var email = $('#EMAIL-FIRME').val();
           var sifra = $('#SIFRA-FIRME').val();
           var id_delatnosti = $('#DELATNOST-FIRMA').val();
-          var posao_id = $('#VRSTA-POSLA-FIRMA').val();
+          var posao = $('#VRSTA-POSLA-FIRMA').val();
           var id_opstine = $('#OPSTINA-FIRMA').val();
           var adresa = $('#ADRESA-FIRME').val();
+
           e.preventDefault();
 
           $.ajax({
@@ -1088,9 +1075,9 @@ if (isset($_GET['logout'])) {
               email: email,
               sifra: sifra,
               id_opstine: id_opstine,
-              // adresa: adresa,
+              adresa: adresa,
               id_delatnosti: id_delatnosti,
-              posao_id: posao_id,
+              posao: posao,
             },
 
             success: function(data) {
@@ -1120,7 +1107,6 @@ if (isset($_GET['logout'])) {
                   document.getElementById('OPSTINA-FIRMA').selectedIndex = 0;
                 }
               })
-
             },
             error: function(data) {
               Swal.fire({
@@ -1137,7 +1123,6 @@ if (isset($_GET['logout'])) {
             title: 'Regitracija',
             text: 'Niste uneli neki od podataka!',
             confirmButtonColor: '#64B245'
-
           })
         }
       });

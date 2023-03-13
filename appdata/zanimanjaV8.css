@@ -298,12 +298,10 @@ a{
 .nasMajstorNaslov {
   text-transform: uppercase;
   text-align: center;
-  font-family: 'customFont';
 }
 
 .nasMajstorTekst {
   text-align: center;
-  font-family: 'customFont';
 }
 
 .page {
@@ -381,7 +379,6 @@ a{
   padding-right: 100px;
   text-transform: uppercase;
   border-radius: 17px;
-  font-family: 'customFont';
 }
 
 @media (max-width: 450px) {
@@ -454,16 +451,19 @@ svg {
 .kalendar {
   background-image: url('../slike/Ikonice/kalendar.svg');
 }
+.tip{
+  padding-left: 10px;
+}
 .tip:hover{
   background-color: #64b245;
   color:white;
   cursor:pointer;
  }
- .aa52{
+ .prviRed{
   width: 75%;
  }
  @media (max-width: 767px) {
-  .aa52{
+  .prviRed{
     width: 100%;
    }
 }
@@ -472,4 +472,24 @@ svg {
   align-items: center;
   justify-content: center;
   width: 90px;
+}
+.dropdown-menu{
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.btn-outlined{
+  padding: 5px 25px;
+  border-radius: 27px;
+  margin: 0px 4px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  border:1px solid black;
+  color:black;
+  font-weight: bold;
+  font-family:'Montserrat', sans-serif;
+  display: flex;
+}
+.btn-outlined:hover{
+  color: #252525;
+  border:1px solid #64B245;
 }
