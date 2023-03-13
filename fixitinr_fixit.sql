@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2023 at 10:51 PM
+-- Generation Time: Mar 14, 2023 at 12:10 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -60,14 +60,6 @@ CREATE TABLE `events` (
   `naziv_posla` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`id_event`, `start`, `end`, `id_radnika`, `naziv_posla`) VALUES
-(57, '2023-03-20', '2023-03-24', 1, 'moler'),
-(58, '2023-03-27', '2023-04-01', 1, 'moler');
-
 -- --------------------------------------------------------
 
 --
@@ -81,9 +73,17 @@ CREATE TABLE `firma` (
   `email` varchar(60) DEFAULT NULL,
   `sifra` varchar(60) DEFAULT NULL,
   `id_delatnosti` int(11) NOT NULL,
-  `posao_id` int(11) NOT NULL,
+  `vrsta_rada` varchar(1000) NOT NULL,
+  `adresa` varchar(100) NOT NULL,
   `id_opstine` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `firma`
+--
+
+INSERT INTO `firma` (`id_firme`, `ime_firme`, `ime_vlasnika`, `email`, `sifra`, `id_delatnosti`, `vrsta_rada`, `adresa`, `id_opstine`) VALUES
+(100, 'Stefan DOO', '1', '1', '1', 1, '1', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,8 @@ INSERT INTO `fizicko_lice` (`id_fizicko`, `ime`, `prezime`, `email`, `sifra`, `J
 (5, 'Lazar', 'Jankovic', 'email7612@example.com', 'password5873', '6878455270', '85', 'Random Adresa 5591', '1', '1', 2147483647, '8', 'DODATI!', 'Da', '2022-02-12'),
 (6, 'Nikola', 'Ilic', 'email6223@example.com', 'password5796', '1281898139', '71', 'Random Adresa 9935', '1', '1', 2147483647, '6', 'DODATI!', 'Da', '2022-05-22'),
 (7, 'Konstantin', 'Marinkovic', 'email4733@example.com', 'password3586', '4359745542', '133', 'Random Adresa 8322', '1', '1', 2147483647, '5', 'DODATI!', 'Da', '2022-02-08'),
-(8, 'Bora', 'Milijanovic', 'email1730@example.com', 'password6150', '6005294126', '158', 'Random Adresa 91', '1', '1', 2147483647, '2', 'DODATI!', 'Ne', '2022-02-09');
+(8, 'Bora', 'Milijanovic', 'email1730@example.com', 'password6150', '6005294126', '158', 'Random Adresa 91', '1', '1', 2147483647, '2', 'DODATI!', 'Ne', '2022-02-09'),
+(10, 'Milos', 'Milosevic', 'miloos@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab', '2412515125', '7', 'Adresa 12', '2', '18', 659821435, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -142,12 +143,7 @@ CREATE TABLE `korisnik` (
 --
 
 INSERT INTO `korisnik` (`korisnik_id`, `ime`, `prezime`, `email`, `sifra`) VALUES
-(3, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab'),
-(8, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab'),
-(9, NULL, NULL, NULL, NULL),
-(10, NULL, NULL, NULL, NULL),
-(11, NULL, NULL, NULL, NULL),
-(12, '2', '2', '2@gmail.com', 'da4b9237bacccdf19c0760cab7aec4a8359010b0');
+(14, '1', '1', '1@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab');
 
 -- --------------------------------------------------------
 
@@ -892,25 +888,25 @@ ALTER TABLE `vrsta_rada`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `firma`
 --
 ALTER TABLE `firma`
-  MODIFY `id_firme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_firme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `fizicko_lice`
 --
 ALTER TABLE `fizicko_lice`
-  MODIFY `id_fizicko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_fizicko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `korisnik`
 --
 ALTER TABLE `korisnik`
-  MODIFY `korisnik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `korisnik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `vrsta_rada`
