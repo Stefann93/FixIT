@@ -8,11 +8,11 @@ if (isset($_POST)) {
   $email = $_POST['email'];
   $sifra = sha1($_POST['sifra']);
   $id_delatnosti = $_POST['id_delatnosti'];
-  $posao_id = $_POST['posao_id'];
+  $adresa = $_POST['adresa'];
   $id_opstine = $_POST['id_opstine'];
-  $sql = "INSERT INTO firma (ime_firme, ime_vlasnika, email, sifra, id_opstine, id_delatnosti, posao_id) Values (?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO firma (ime_firme, ime_vlasnika, email, sifra, id_opstine, id_delatnosti, adresa) Values (?,?,?,?,?,?,?)";
   $stmtinsert = $db->prepare($sql);
-  $result = $stmtinsert->execute([$ime_firme, $ime_vlasnika, $email, $sifra, $id_opstine, $id_delatnosti, $posao_id]);
+  $result = $stmtinsert->execute([$ime_firme, $ime_vlasnika, $email, $sifra, $id_opstine, $id_delatnosti, $adresa]);
   if ($result) {
     echo 'Uspesna Registracija!';
   } else {

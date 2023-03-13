@@ -232,17 +232,15 @@
   text-transform: uppercase;
   text-align: center;
   margin-top: 3rem;
-font-family: 'customFont';
-font-size: 3rem;
-color:white;
-background-color:#64B245;
-border-radius: 15px;
+  font-size: 3rem;
+  color:white;
+  background-color:#64B245;
+  border-radius: 15px;
 }
 
 .tekst {
   font-weight: bold;
 }
-
 .as {
   color: white;
   font-size: 25px;

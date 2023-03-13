@@ -623,6 +623,7 @@ color:black;
     }   
      .recenzije-tab{
         background-image: url('../slike/Ikonice/ocena.svg');
+        border-top-right-radius: 30px;
     }   
      .kontakt{
         background-image: url('../slike/Ikonice/contact.svg');

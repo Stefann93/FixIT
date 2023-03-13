@@ -20,7 +20,7 @@ if (isset($_GET['logout'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
   <link href="./appdata/main.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./appdata/radnikV12.css" />
+  <link rel="stylesheet" href="./appdata/radnikV13.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
   <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet' media='print' />
@@ -310,7 +310,7 @@ if (isset($_GET['logout'])) {
                     </div>
                   </div>
 
-                    <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+                  <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
 
                   <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
                     <option value="odaberi" disabled selected>Odaberi opštinu...</option>
@@ -631,11 +631,11 @@ if (isset($_GET['logout'])) {
             </h4>
             <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
             <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <section class="p-5 bg-primary nasMajstor">
     <div class="container">
