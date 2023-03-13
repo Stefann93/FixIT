@@ -287,71 +287,62 @@ if (isset($_GET['logout'])) {
     <!--#endregion -->
 
     <!--#region firma modal -->
-    <div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered ">
-            <div class="modal-content radius-register-mc">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="myform bg-dark radius-register">
-                        <div class="row">
-                            <div class="col-xl-6"><img src="../register_images/firma_register.jpg" class="register-img img-fluid w-100 h-100 d-none d-xl-block" alt="Responsive image"></div>
-                            <div class="col">
-                                <form action="odrzavanje.php" method="post">
-                                    <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
-                                    <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
-                                    <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Ime i prezime vlasnika" id="IME-I-PREZIME-VLASNIKA" required>
-                                    <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
-                                    <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
-                                    <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
-                                    <div class="row">
-                                        <div class="col">
-                                            <select class="dropdown reg-drop dropdown-register fs-6" required id="DELATNOST-FIRMA" NAME="DELATNOST">
-                                                <option value="odaberi" disabled selected>Odaberi delatnost...</option>
-                                                <?php
-                                                $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
-                                                    or die($conn->error);
-                                                while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                                                    <option value="<?= $podatakDelatnost['id_delatnosti'] ?>">
-                                                        <?= $podatakDelatnost['naziv_delatnosti'] ?>
-                                                    </option>
-                                                <?php endwhile; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <select class="dropdown my-4 reg-drop dropdown-register fs-6" required id="VRSTA-POSLA-FIRMA" name="VRSTA_POSLA">
-                                        <!-- OPASNOST SQL INJECTIONA -->
-                                        <option value="odaberiPosao" id="odaberiPosao" disabled selected>Odaberi vrstu
-                                            posla... </option>
-                                        <!--  -->
-                                    </select>
-
-                                    <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
-                                        <option value="odaberi" disabled selected>Odaberi opštinu...</option>
-                                        <?php
-                                        $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
-                                            or die($conn->error);
-                                        while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                                            <option value="<?= $podatakOpstine['id_opstine'] ?>">
-                                                <?= $podatakOpstine['ime_opstine'] ?>
-                                            </option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                    <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
-                                    <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
-                    firme:</label>
-                  <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
-
-                                    <button type="submit" name="submit" id="RegisterF" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj
-                                        se</button>
-                                </form>
-                            </div>
-                        </div>
+<div class="modal fade" id="registerFirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+      <div class="modal-content radius-register-mc">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="myform bg-dark radius-register">
+            <div class="row">
+              <div class="col-xl-6"><img src="../register_images/firma_register.jpg" class="img-fluid w-100 h-100 d-none d-xl-block register-img" alt="Responsive image"></div>
+              <div class="col">
+                <form action="radnik.php" method="post">
+                  <h1 class="text-center mb-4 fw-bolder fs-3">Registracija firme</h1>
+                  <input style="display: block;" type="text" class="input register-textbox fs-6" placeholder="Ime firme" id="IME-FIRME" required>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Kontakt izvođača" id="KONTAKT-IZVODJACA" required>
+                  <input style="display: block;" type="email" class="input register-textbox fs-6" placeholder="Email" id="EMAIL-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" placeholder="Sifra" id="SIFRA-FIRME" required>
+                  <input style="display: block;" type="password" class="input my-4 register-textbox fs-6" id="potvrda-sifre" placeholder="Potvrdite sifru" required>
+                  <div class="row">
+                    <div class="col">
+                      <select class="dropdown reg-drop dropdown-register fs-6 mb-4" required id="DELATNOST-FIRMA" NAME="DELATNOST">
+                        <option value="odaberi" disabled selected>Odaberi delatnost...</option>
+                        <?php
+                        $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
+                          or die($conn->error);
+                        while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                        <?php endwhile; ?>
+                      </select>
                     </div>
-                </div>
+                  </div>
+
+                    <textarea class="form-control bg-dark mb-4 ta-work text-white" placeholder="Napišite vrstu rada" id="vrstaRada" rows="3"></textarea>
+
+                  <select class="dropdown reg-drop dropdown-register fs-6" NAME="OPSTINA" id="OPSTINA-FIRMA">
+                    <option value="odaberi" disabled selected>Odaberi opštinu...</option>
+                    <?php
+                    $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
+                      or die($conn->error);
+                    while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                    <?php endwhile; ?>
+                  </select>
+                  <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
+                  <!-- <label class="form-label" for="customFile">Izaberite sliku kao dokaz o postojanju
+                  firme:</label>
+                <input type="file" class="form-control upload-rad text-white" id="SLIKA-FIRME" /> -->
+
+                  <button type="submit" name="submit" id="RegisterF" class="btn btn-primary text-center text-white fw-bold w-100 mt-4">Registruj se</button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!--#endregion -->
+  </div>
+  <!--#endregion -->
 
     <!-- #region NavBar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top aa">

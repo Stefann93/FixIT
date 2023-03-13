@@ -337,7 +337,6 @@ if (isset($_GET['logout'])) {
   </div>
   <!--#endregion -->
 
-
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
@@ -418,6 +417,7 @@ if (isset($_GET['logout'])) {
       <li data-tab-target="#angazovanje" class="tab active angazovanje fs-3">Angazovanje</li>
       <li data-tab-target="#kontakt" class="tab  kontakt fs-3">Kontakt</li>
       <li data-tab-target="#recenzije" class="tab  recenzije-tab fs-3">Recenzije</li>
+      <li data-tab-target="#verifikacija" class="tab  verifikacija-tab fs-3">Verifikacija</li>
     </ul>
     <div class="container">
       <div class="tab-content mb-5">
@@ -618,6 +618,20 @@ if (isset($_GET['logout'])) {
           </div>
           <div class="text-center">
             <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" onclick="Angazovanje()">ANGAZUJ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="verifikacija" data-tab-content>
+      <div class="d-lg-flex justify-content-between flex-wrap">
+        <div class="verifikacija w-100 pb-4 p-4">
+          <div class="ostatak-sekcija mt-3">
+            <h4><span class="zvezdica"></span>
+              Verifikacija firme
+            </h4>
+            <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
+            <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+            </div>
           </div>
         </div>
       </div>
