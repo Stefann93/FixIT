@@ -338,6 +338,7 @@ if (isset($_GET['logout'])) {
   <!--#endregion -->
 
 
+
   <!-- #region NavBar -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container">
@@ -379,8 +380,12 @@ if (isset($_GET['logout'])) {
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item hover-element text-white" href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-                                                                          echo $fullUrl . "&logout=true" ?>">Odjavi se</a></li>
+              <li><a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                            echo $fullUrl . "&logout=true" ?>" class="dropdown-item hover-element text-white <?php
+                                                                                                              if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
+                                                                                                                echo 'd-none';
+                                                                                                              }
+                                                                                                              ?>">Odjavi se</a></li>
             </ul>
           </li>
         </ul>
@@ -396,7 +401,7 @@ if (isset($_GET['logout'])) {
           <?php $result = $conn->query("select * from firma where id_firme=($_GET[id])")
             or die($conn->error);
           $podatak = $result->fetch_assoc();
-          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`firma` INNER JOIN poslovi ON firma.vrsta_rada = poslovi.posao_id) inner join opstine on firma.id_opstine = opstine.id_opstine)  WHERE poslovi.naziv_posla = '$_GET[posao]' and firma.id_firme=$_GET[id];")
+          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) inner join opstine on firma.id_opstine= opstine.id_opstine) WHERE poslovi.naziv_posla = '$_GET[posao]' and firma.id_firme='$_GET[id]';")
             or die($conn->error);
           $podatakPosao = $posao->fetch_assoc();
           ?>
@@ -505,11 +510,11 @@ if (isset($_GET['logout'])) {
                 <h4><span class="telefon"></span>
                   Kontakt telefon
                 </h4>
-                <!-- <?php
-                      $telefon = $conn->query("SELECT br_tel FROM firma where id_fizicko='$_GET[id]';")
-                        or die($conn->error);
-                      $podatakTelefon = $telefon->fetch_assoc();
-                      ?> --> brtel
+                <?php
+                $telefon = $conn->query("SELECT br_tel FROM firma where id_firme='$_GET[id]';")
+                  or die($conn->error);
+                $podatakTelefon = $telefon->fetch_assoc();
+                ?>
                 <p class="lead undertext">+<?= $podatakTelefon['br_tel'] ?></p>
               </div>
               <div class="email-sekcija">
@@ -544,7 +549,7 @@ if (isset($_GET['logout'])) {
               Lokacija
             </h4>
             <?php
-            $adresa = $conn->query("SELECT firma.adresa,opstine.ime_opstine FROM firma inner join opstine on firma.id_opstine = opstine.id_opstine where firma.id_='$_GET[id]';")
+            $adresa = $conn->query("SELECT firma.adresa,opstine.ime_opstine FROM firma inner join opstine on firma.id_opstine = opstine.id_opstine where firma.id_firme='$_GET[id]';")
               or die($conn->error);
             $podatakAdresa = $adresa->fetch_assoc();
             ?>
@@ -613,25 +618,24 @@ if (isset($_GET['logout'])) {
             <textarea name="opis" class="opis-tekst  mb-4" id="opis" rows="7" placeholder="Type..."></textarea>
           </div>
           <div class="text-center">
-            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" onclick="Angazovanje()">ANGAZUJ</button>
+            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" id="angazuj" onclick="Angazovanje()">ANGAZUJ</button>
+          </div>
+        </div>
+        <div id="verifikacija" data-tab-content>
+          <div class="d-lg-flex justify-content-between flex-wrap">
+            <div class="verifikacija w-100 pb-4 p-4">
+              <div class="ostatak-sekcija mt-3">
+                <h4><span class="zvezdica"></span>
+                  Verifikacija firme
+                </h4>
+                <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
+                <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="verifikacija" data-tab-content>
-      <div class="d-lg-flex justify-content-between flex-wrap">
-        <div class="verifikacija w-100 pb-4 p-4">
-          <div class="ostatak-sekcija mt-3">
-            <h4><span class="zvezdica"></span>
-              Verifikacija firme
-            </h4>
-            <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
-            <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
   <section class="p-5 bg-primary nasMajstor">
     <div class="container">

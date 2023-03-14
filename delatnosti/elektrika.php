@@ -472,7 +472,7 @@ if (isset($_GET['logout'])) {
                 <a href="../posao.php?posao=Serviser%20mobilnih%20telefona&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ELEKTRIKA/SERVISTELEFONA.jpg');">
                     <span class="Dugnaziv">Serviser mobilnih telefona</span>
                 </a>
-                <a href="../posao.php?posao=serviser%20racunara&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ELEKTRIKA/SERVISKOMPJUTERA.jpg');">
+                <a href="../posao.php?posao=serviser-racunara&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ELEKTRIKA/SERVISKOMPJUTERA.jpg');">
                     <span class="Dugnaziv">Serviser računara</span>
                 </a>
             </div>
