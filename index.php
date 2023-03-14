@@ -433,11 +433,7 @@ Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republ
                 stupite u kontakt sa majstorom i angažujte majstora u vremenskom periodu koji vama odgovara.</span></p>
           </div>
           <div class="input-group trazi pt-4">
-<<<<<<< Updated upstream
-            <input type="text" class="form-control search-bar" placeholder="Pronadji majstora..." id="search" />
-=======
           <input type="text" class="form-control search-bar" placeholder="Pronadji majstora..." id="search" />
->>>>>>> Stashed changes
             <button class="btn btn-primary btn-lg text-light search-button" type="button" onclick="Pretraga()">Pretraži</button>
           </div>
 
@@ -889,11 +885,6 @@ Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republ
         }
       });
     });
-
-<<<<<<< Updated upstream
-    function Pretraga() {
-=======
-
     const checkbox1 = document.getElementById('checkbox1');
   const nextbutton = document.getElementById('nextbutton');
 
@@ -904,9 +895,7 @@ Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republ
       nextbutton.disabled = true;
     }
   });
-
   function Pretraga() {
->>>>>>> Stashed changes
       var rezultat = document.getElementById("search");
       window.location.href = "posao.php?posao=" + rezultat.value + "&p=1"
     }
