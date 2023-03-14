@@ -677,7 +677,8 @@ if (isset($_GET['logout'])) {
           window.location.href = url;
         }
       });
-    
+    }
+
 
     var dropdownMenu = document.getElementById('opstineFilter');
     if (window.location.search.indexOf('opstina=') > -1) {
@@ -866,7 +867,6 @@ if (isset($_GET['logout'])) {
       $('#RegisterF').click(function(e) {
 
         var valid = this.form.checkValidity();
-
         if (valid) {
 
           var imeFirme = $('#IME-FIRME').val();
