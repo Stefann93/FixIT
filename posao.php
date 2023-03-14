@@ -644,17 +644,61 @@ if (isset($_GET['logout'])) {
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     var tip = document.getElementById('tipFilter');
-    tip.addEventListener('click', function(event) {
-      if (event.target.tagName === 'LI') {
-        var odabranTip = event.target.textContent;
-        if (odabranTip.includes(" ")) {
-          odabranTip = odabranTip.replace(/ /g, "-");
+    if (window.location.search.indexOf('tip=') > -1) {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          let searchParams = new URLSearchParams(window.location.search);
+          let currenttip = searchParams.get('tip');
+          var newtip = event.target.textContent;
+          if (newtip.includes(" ")) {
+            newtip = newtip.replace(/ /g, "-");
+          }
+          searchParams.set('tip', newtip);
+          let newSearchString = searchParams.toString();
+          let currentUrlWithoutSearch = window.location.href.split('?')[0];
+          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
+          window.location.href = newUrl;
         }
-        localStorage.setItem('start', window.location.href);
-        url = window.location.href + "&tip=" + odabranTip;
-        window.location.href = url;
-      }
-    });
+      });
+    } else {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          var newtip = event.target.textContent;
+          if (newtip.includes(" ")) {
+            newtip = newtip.replace(/ /g, "-");
+          }
+          localStorage.setItem('start', window.location.href);
+          url = window.location.href + "&tip=" + newtip;
+          window.location.href = url;
+        }
+      });
+    }
+
+    var dropdownMenu = document.getElementById('opstineFilter');
+    if (window.location.search.indexOf('opstina=') > -1) {
+      dropdownMenu.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          let searchParams = new URLSearchParams(window.location.search);
+          let currentOpstina = searchParams.get('opstina');
+          var newOpstina = event.target.textContent;
+          searchParams.set('opstina', newOpstina);
+          let newSearchString = searchParams.toString();
+          let currentUrlWithoutSearch = window.location.href.split('?')[0];
+          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
+          window.location.href = newUrl;
+        }
+      });
+    } else {
+      dropdownMenu.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          var opstina = event.target.textContent;
+          localStorage.setItem('start', window.location.href);
+          url = window.location.href + "&opstina=" + opstina;
+          window.location.href = url;
+        }
+      });
+    }
+
 
     var dropdownMenu = document.getElementById('opstineFilter');
     if (window.location.search.indexOf('opstina=') > -1) {
@@ -1045,34 +1089,6 @@ if (isset($_GET['logout'])) {
         }
       });
     });
-    var tip = document.getElementById('tipFilter');
-    if (window.location.search.indexOf('tip=') > -1) {
-      tip.addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI') {
-          let searchParams = new URLSearchParams(window.location.search);
-          let currenttip = searchParams.get('tip');
-          var newtip = event.target.textContent;
-          if (newtip.includes(" ")) {
-            newtip = newtip.replace(/ /g, "-");
-          }
-          searchParams.set('tip', newtip);
-          let newSearchString = searchParams.toString();
-          let currentUrlWithoutSearch = window.location.href.split('?')[0];
-          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
-          window.location.href = newUrl;
-        }
-      });
-    } else {
-      tip.addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI') {
-          var opstina = event.target.textContent;
-          localStorage.setItem('start', window.location.href);
-          url = window.location.href + "&tip=" + opstina;
-          window.location.href = url;
-        }
-      });
-    }
-
     const checkbox1 = document.getElementById('checkbox1');
     const nextbutton = document.getElementById('nextbutton');
 
