@@ -24,7 +24,7 @@ if (isset($_GET['logout'])) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./appdata/zanimanjaV8.css" />
+  <link rel="stylesheet" href="./appdata/zanimanjaV9.css" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -408,12 +408,12 @@ if (isset($_GET['logout'])) {
   <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
   </div>
   <div class="container">
-    <div class="naslov text-uppercase fw-bold mb-5" id="ImePosla">
+    <div class="naslov text-uppercase fw-bold mb-3 text-dark" id="ImePosla">
       <?= $podatak['naziv_posla'] ?>
     </div>
 
 
-    <div class="d-sm-flex w-100">
+    <div class="d-sm-flex w-100 filters text-center">
       <div class="input-group mb-3 prviRed">
         <input type="text" class="form-control border-dark" placeholder="Pretraga majstora" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-primary text-light search-button" type="button" id="button-addon2">Pretraži</button>
@@ -466,8 +466,8 @@ if (isset($_GET['logout'])) {
     <div class="as">
       <table class="tabelaa">
         <tr class="aa1">
-          <td class="majstor">Majstor</td>
-          <td class="ocena">Prosecna ocena</td>
+          <td class="majstor">Izvođač usluga</td>
+          <td class="ocena">Ocena</td>
         </tr>
       </table>
       <table class="tabela2">
@@ -513,7 +513,7 @@ if (isset($_GET['logout'])) {
   </div>
   <section id="instructors" class="p-5 bg-primary">
     <div class="container">
-      <h1 class="text-center text-white">OCENE MAJSTORA</h1>
+      <h1 class="text-center text-white display-font">RECENZIJE MAJSTORA</h1>
       <p class="lead text-center text-white mb-5">
         Recenzije najbolje ocenjenih majstora
       </p>
@@ -522,7 +522,7 @@ if (isset($_GET['logout'])) {
           <div class="card bg-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3" alt="" />
-              <h3 class="card-title mb-3">Marko Nikolic</h3>
+              <h3 class="card-title mb-3">Marko Nikolić</h3>
               <p class="card-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda accusamus nobis sed cupiditate iusto? Quibusdam.
@@ -534,7 +534,7 @@ if (isset($_GET['logout'])) {
           <div class="card bg-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle mb-3" alt="" />
-              <h3 class="card-title mb-3">Stefan Markovic</h3>
+              <h3 class="card-title mb-3">Milica Simić</h3>
               <p class="card-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda accusamus nobis sed cupiditate iusto? Quibusdam.
@@ -547,7 +547,7 @@ if (isset($_GET['logout'])) {
           <div class="card bg-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" alt="" />
-              <h3 class="card-title mb-3">Milos Nikolic</h3>
+              <h3 class="card-title mb-3">Dejan Pavlović</h3>
               <p class="card-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda accusamus nobis sed cupiditate iusto? Quibusdam.
@@ -560,7 +560,7 @@ if (isset($_GET['logout'])) {
           <div class="card bg-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle mb-3" alt="" />
-              <h3 class="card-title mb-3">Aleksandar Pavlovic</h3>
+              <h3 class="card-title mb-3">Marina Vasić</h3>
               <p class="card-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda accusamus nobis sed cupiditate iusto? Quibusdam.
@@ -573,7 +573,7 @@ if (isset($_GET['logout'])) {
   </section>
   <section class="p-5  bg-dark">
     <div class="container text-center text-sm-start">
-      <h2 class="nasMajstorNaslov pt-5 text-white display-4">
+      <h2 class="nasMajstorNaslov pt-5 text-white display-4 display-font">
         POSTANITE NAS MAJSTOR
       </h2>
       <h4 class="text-primary nasMajstorTekst">Besplatno se upisite u nasu bazu majstora brzo i lako u
@@ -581,7 +581,7 @@ if (isset($_GET['logout'])) {
         koraka
       </h4>
       <div style="text-align: center;">
-        <button type="button" class="majstor-button btn buttonn btn-primary text-white py-2 mt-5 fs-4">Register</button>
+        <button type="button" class="majstor-button btn buttonn btn-primary text-white py-2 mt-5 fs-4 display-font">Registruj se</button>
       </div>
     </div>
   </section>

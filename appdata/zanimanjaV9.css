@@ -233,8 +233,6 @@
   text-align: center;
   margin-top: 3rem;
   font-size: 3rem;
-  color:white;
-  background-color:#64B245;
   border-radius: 15px;
 }
 
@@ -243,7 +241,7 @@
 }
 .as {
   color: white;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 .majstor {
@@ -319,14 +317,14 @@ a{
 }
 
 .aa1 {
-  background-color: #64B245;
+  background-color: #212529;
 }
 
 .aa:hover {
   background-color: #64B245;
   transition: background-color 0.2s;
   color: white;
-  transition: color 0.2s;
+ 
 }
 
 #instructors {
@@ -335,11 +333,12 @@ a{
 
 .page-link {
   border: none;
-  background-color: #e5e5e5;
+  background-color: #212529;
+  color: white;
 }
 
 .page-link:hover {
-  background-color: #64B245;
+  background-color: #212529d2;
   color: white;
 }
 
@@ -492,4 +491,24 @@ svg {
 .btn-outlined:hover{
   color: #252525;
   border:1px solid #64B245;
+}
+
+@media (max-width: 800px) {
+  .pozadinaCenter {
+    height: 200px;
+  }
+}
+
+@media (max-width: 800px) {
+  .filters{
+    margin-bottom: 30px;
+    
+  }
+}
+.display-font{
+  font-family: Grifter, sans-serif;
+}
+
+.secondary-font{
+  font-family: Montserrat, sans-serif;
 }
