@@ -158,3 +158,53 @@ svg {
   box-shadow: none;
   outline: 0 none;
 }
+
+@media (max-width: 991.98px) {
+  .nextbutton-center{
+    justify-content: center;
+    
+  }
+}
+
+.tacbox {
+  display:block;
+  padding: 1em;
+  
+  border: 3px solid #ddd;
+  background-color: #eee;
+  max-width: 800px;
+  color: #252525;
+}
+
+#checkbox1 {
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+}
+
+
+
+.uslovi-text{
+  font-size: 14px;
+  color: white;
+}
+
+#nextbutton:disabled{
+  display: flex;
+align-items: center;
+justify-content: center;
+width: 200px;
+height: 50px;
+border-radius: 50px;
+border: 0;
+outline: 0;
+font-size: 18px;
+background: #616161;
+color: rgba(255, 255, 255, 0.822);
+}
+
+.search-bar-height{
+  height: 48px;
+}
+
+
