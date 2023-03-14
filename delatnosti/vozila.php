@@ -457,6 +457,9 @@ if (isset($_GET['logout'])) {
                 <a href="../posao.php?posao=auto%20elektricar&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ODRZAVANJE-VOZILA/AUTOELEKTRICAR.jpg');">
                     <span>Auto električar</span>
                 </a>
+                <a href="../posao.php?posao=tehnicki-pregled&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ODRZAVANJE-VOZILA/AUTOELEKTRICAR.jpg');">
+                    <span>Tehnički pregled</span>
+                </a>
                 <a href="../posao.php?posao=auto%20limar&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('../slike/Delatnosti/ODRZAVANJE-VOZILA/AUTOLIMAR1.jpg');">
                     <span>Auto limar</span>
                 </a>

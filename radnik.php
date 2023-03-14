@@ -401,7 +401,7 @@ if (isset($_GET['logout'])) {
           <?php $result = $conn->query("select * from fizicko_lice where id_fizicko=($_GET[id])")
             or die($conn->error);
           $podatak = $result->fetch_assoc();
-          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.id_fizicko='$_GET[id]';")
+          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id) inner join opstine on fizicko_lice.ID_Opstine = opstine.ID_Opstine) WHERE poslovi.naziv_posla = '$_GET[posao]' and fizicko_lice.id_fizicko='$_GET[id]';")
             or die($conn->error);
           $podatakPosao = $posao->fetch_assoc();
           ?>

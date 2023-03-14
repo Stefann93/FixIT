@@ -44,8 +44,6 @@ if (isset($_GET['logout'])) {
   $dbpassword = ""; //9KD!Co9]B+D*
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
-  $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id WHERE id_fizicko>7*($_GET[p]-1) and id_fizicko<=7*$_GET[p] and poslovi.naziv_posla = '$_GET[posao]';")
-    or die($conn->error);
   $vrstaRada = $conn->query("SELECT ime_opstine FROM opstine")
     or die($conn->error);
   ?>
@@ -401,8 +399,12 @@ if (isset($_GET['logout'])) {
   </nav>
   <!--#endregion -->
   <?php
-  $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.Posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
-    or die($conn->error);
+  if (isset($_GET['tip']) && $_GET['tip'] === 'Firma')
+    $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) INNER JOIN delatnosti ON firma.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
+      or die($conn->error);
+  else
+    $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
+      or die($conn->error);
   $podatak = $posao->fetch_assoc();
   ?>
   <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
@@ -474,17 +476,20 @@ if (isset($_GET['logout'])) {
         <?php
         $limit = ($_GET['p'] - 1) * 7;
         if (isset($_GET['opstina'])) {
-          $radnik = $conn->query("SELECT id_fizicko,ime,prezime from ((fizicko_lice INNER JOIN opstine on fizicko_lice.id_opstine = opstine.id_opstine) inner join poslovi on fizicko_lice.posao_id = poslovi.posao_id) where opstine.ime_opstine = '$_GET[opstina]' and poslovi.naziv_posla = '$_GET[posao]';")
+          $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime from ((fizicko_lice INNER JOIN opstine on fizicko_lice.id_opstine = opstine.id_opstine) inner join poslovi on fizicko_lice.posao_id = poslovi.posao_id) where opstine.ime_opstine = '$_GET[opstina]' and poslovi.naziv_posla = '$_GET[posao]';")
+            or die($conn->error);
+        } else if (isset($_GET['tip']) && $_GET['tip'] === 'Firma') {
+          $radnik = $conn->query("SELECT id_firme as id,ime_firme as ime from firma INNER JOIN poslovi ON firma.posao = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]'")
             or die($conn->error);
         } else {
-          $radnik = $conn->query("SELECT id_fizicko,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+          $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
             or die($conn->error);
         }
         while ($podatak = $radnik->fetch_assoc()) : ?>
           <tr class="aa">
-            <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id_fizicko'] ?>">
+            <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id']; ?>">
               <?= $podatak['ime'] ?>
-              <?= $podatak['prezime'] ?>
+              <?php if (!isset($_GET['tip']) || $_GET['tip'] !== 'Firma') echo $podatak['prezime'] ?>
             </td>
             <td class="ocena2">10.0</td>
           </tr>
@@ -605,17 +610,35 @@ if (isset($_GET['logout'])) {
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     var tip = document.getElementById('tipFilter');
-    tip.addEventListener('click', function(event) {
-      if (event.target.tagName === 'LI') {
-        var odabranTip = event.target.textContent;
-        if (odabranTip.includes(" ")) {
-          odabranTip = odabranTip.replace(/ /g, "-");
+    if (window.location.search.indexOf('tip=') > -1) {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          let searchParams = new URLSearchParams(window.location.search);
+          let currenttip = searchParams.get('tip');
+          var newtip = event.target.textContent;
+          if (newtip.includes(" ")) {
+            newtip = newtip.replace(/ /g, "-");
+          }
+          searchParams.set('tip', newtip);
+          let newSearchString = searchParams.toString();
+          let currentUrlWithoutSearch = window.location.href.split('?')[0];
+          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
+          window.location.href = newUrl;
         }
-        localStorage.setItem('start', window.location.href);
-        url = window.location.href + "&tip=" + odabranTip;
-        window.location.href = url;
-      }
-    });
+      });
+    } else {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          var newtip = event.target.textContent;
+          if (newtip.includes(" ")) {
+            newtip = newtip.replace(/ /g, "-");
+          }
+          localStorage.setItem('start', window.location.href);
+          url = window.location.href + "&tip=" + newtip;
+          window.location.href = url;
+        }
+      });
+    }
 
     var dropdownMenu = document.getElementById('opstineFilter');
     if (window.location.search.indexOf('opstina=') > -1) {
@@ -650,7 +673,11 @@ if (isset($_GET['logout'])) {
       var posao = document.getElementById("ImePosla").textContent.trim().toLocaleLowerCase();
       let id = element.id;
       let naziv = element.textContent;
-      window.location.href = "./radnik.php?posao=" + posao + "&id=" + id;
+      if (window.location.search.indexOf('tip=Firma') > -1)
+        window.location.href = "./firma.php?posao=" + posao + "&id=" + id;
+      else
+        window.location.href = "./radnik.php?posao=" + posao + "&id=" + id;
+
     }
 
     function page(element) {
@@ -1006,33 +1033,6 @@ if (isset($_GET['logout'])) {
         }
       });
     });
-    var tip = document.getElementById('tipFilter');
-    if (window.location.search.indexOf('tip=') > -1) {
-      tip.addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI') {
-          let searchParams = new URLSearchParams(window.location.search);
-          let currenttip = searchParams.get('tip');
-          var newtip = event.target.textContent;
-          if (newtip.includes(" ")) {
-            newtip = newtip.replace(/ /g, "-");
-          }
-          searchParams.set('tip', newtip);
-          let newSearchString = searchParams.toString();
-          let currentUrlWithoutSearch = window.location.href.split('?')[0];
-          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
-          window.location.href = newUrl;
-        }
-      });
-    } else {
-      tip.addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI') {
-          var opstina = event.target.textContent;
-          localStorage.setItem('start', window.location.href);
-          url = window.location.href + "&tip=" + opstina;
-          window.location.href = url;
-        }
-      });
-    }
   </script>
 </body>
 

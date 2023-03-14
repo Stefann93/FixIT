@@ -62,7 +62,8 @@ if (isset($_GET['logout'])) {
                 Prijavi se
               </button>
               <div>
-                <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me">&nbsp; Ostavi me prijavljenim</label>
+                <label><input class="mt-3" type="checkbox" name="remember-me" id="remember-me">&nbsp; Ostavi me
+                  prijavljenim</label>
 
               </div>
             </form>
@@ -97,7 +98,8 @@ if (isset($_GET['logout'])) {
             <div class="row">
               <div class="col-8 text-white mb-3">
                 <div class=" fs-3 ms-3 mt-3">Korisnik usluga</div>
-                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao korisnik i zakažite termin koji Vama
+                  odgovara! Nađite usluge koje su Vam trenutno potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerKorisnik">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +117,8 @@ if (isset($_GET['logout'])) {
             <div class="row">
               <div class="col-8 text-white mb-3">
                 <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Fizičko lice</div>
-                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao fizičko lice i pružajte usluge kao samostalni
+                  radnik! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFizickoLice">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +136,8 @@ if (isset($_GET['logout'])) {
             <div class="row">
               <div class="col-8 text-white mb-3">
                 <div class=" fs-3 ms-3 mt-3">Izvođač usluga - Firma</div>
-                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente! Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
+                <div class="text-white fs-6 ms-3 mt-1">Registrujete se kao firma i iskoristite Vaše resurse za klijente!
+                  Lako stupite u kontatk sa klijentima kojima su Vaše usluge potrebne</div>
               </div>
               <div class="col-4 d-flex align-items-center text-center">
                 <button type="button" class="btn-custom w-100 text-center m-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerFirma">Nastavi<svg viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -247,7 +251,9 @@ if (isset($_GET['logout'])) {
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
                           or die($conn->error);
                         while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>">
+                            <?= $podatakDelatnost['naziv_delatnosti'] ?>
+                          </option>
                         <?php endwhile; ?>
                       </select>
                     </div>
@@ -263,7 +269,9 @@ if (isset($_GET['logout'])) {
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
                       or die($conn->error);
                     while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>">
+                        <?= $podatakOpstine['ime_opstine'] ?>
+                      </option>
                     <?php endwhile; ?>
                   </select>
                   <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="adresa" name="ADRESA" required>
@@ -304,7 +312,9 @@ if (isset($_GET['logout'])) {
                         $delatnosti = $conn->query("SELECT naziv_delatnosti,id_delatnosti FROM delatnosti")
                           or die($conn->error);
                         while ($podatakDelatnost = $delatnosti->fetch_assoc()) : ?>
-                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>"><?= $podatakDelatnost['naziv_delatnosti'] ?></option>
+                          <option value="<?= $podatakDelatnost['id_delatnosti'] ?>">
+                            <?= $podatakDelatnost['naziv_delatnosti'] ?>
+                          </option>
                         <?php endwhile; ?>
                       </select>
                     </div>
@@ -318,7 +328,9 @@ if (isset($_GET['logout'])) {
                     $opstine = $conn->query("SELECT ime_opstine,id_opstine FROM opstine")
                       or die($conn->error);
                     while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                      <option value="<?= $podatakOpstine['id_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                      <option value="<?= $podatakOpstine['id_opstine'] ?>">
+                        <?= $podatakOpstine['ime_opstine'] ?>
+                      </option>
                     <?php endwhile; ?>
                   </select>
                   <input style="display: block;" type="text" class="input my-4 register-textbox fs-6" placeholder="Adresa" id="ADRESA-FIRME" name="ADRESA-FIRME" required>
@@ -336,7 +348,6 @@ if (isset($_GET['logout'])) {
     </div>
   </div>
   <!--#endregion -->
-
 
 
   <!-- #region NavBar -->
@@ -380,12 +391,11 @@ if (isset($_GET['logout'])) {
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a href="<?php $fullUrl = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-                            echo $fullUrl . "&logout=true" ?>" class="dropdown-item hover-element text-white <?php
-                                                                                                              if (!isset($_SESSION['korisnik']) && !isset($_SESSION['fizicko lice']) && !isset($_SESSION['firma']) && (!isset($_COOKIE['email']) && !isset($_COOKIE['sifra']))) {
-                                                                                                                echo 'd-none';
-                                                                                                              }
-                                                                                                              ?>">Odjavi se</a></li>
+              <li><a class="dropdown-item hover-element text-white" href="<?php $fullUrl = " http" .
+                                                                            (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '')
+                                                                            . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                                                                          echo $fullUrl . "&logout=true" ?>">Odjavi
+                  se</a></li>
             </ul>
           </li>
         </ul>
@@ -401,13 +411,17 @@ if (isset($_GET['logout'])) {
           <?php $result = $conn->query("select * from firma where id_firme=($_GET[id])")
             or die($conn->error);
           $podatak = $result->fetch_assoc();
-          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) inner join opstine on firma.id_opstine= opstine.id_opstine) WHERE poslovi.naziv_posla = '$_GET[posao]' and firma.id_firme='$_GET[id]';")
+          $posao = $conn->query("SELECT poslovi.naziv_posla,opstine.ime_opstine FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) inner join opstine on firma.id_opstine = opstine.id_opstine)  WHERE poslovi.naziv_posla = '$_GET[posao]' and firma.id_firme=$_GET[id];")
             or die($conn->error);
           $podatakPosao = $posao->fetch_assoc();
           ?>
-          <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0"><?= $podatakPosao['naziv_posla'] ?>,
-              <?= $podatakPosao['ime_opstine'] ?></span>
-            <span class="ime d-block my-0"><?= $podatak['ime_firme'] ?></span>
+          <div class="asa"><span id="a" class="text-primary fs-3 okupacija d-block my-0">
+              <?= $podatakPosao['naziv_posla'] ?>,
+              <?= $podatakPosao['ime_opstine'] ?>
+            </span>
+            <span class="ime d-block my-0">
+              <?= $podatak['ime_firme'] ?>
+            </span>
 
           </div>
         </div>
@@ -511,17 +525,21 @@ if (isset($_GET['logout'])) {
                   Kontakt telefon
                 </h4>
                 <?php
-                $telefon = $conn->query("SELECT br_tel FROM firma where id_firme='$_GET[id]';")
+                $telefon = $conn->query("SELECT br_tel FROM firma where id_fizicko='$_GET[id]';")
                   or die($conn->error);
                 $podatakTelefon = $telefon->fetch_assoc();
                 ?>
-                <p class="lead undertext">+<?= $podatakTelefon['br_tel'] ?></p>
+                <p class="lead undertext">
+                  +<?= $podatakTelefon['br_tel'] ?>
+                </p>
               </div>
               <div class="email-sekcija">
                 <h4><span class="email"></span>
                   E-mail
                 </h4>
-                <p class="lead undertext"><?= $podatak['email'] ?></p>
+                <p class="lead undertext">
+                  <?= $podatak['email'] ?>
+                </p>
               </div>
             </div>
             <div class="radno-vreme">
@@ -549,11 +567,14 @@ if (isset($_GET['logout'])) {
               Lokacija
             </h4>
             <?php
-            $adresa = $conn->query("SELECT firma.adresa,opstine.ime_opstine FROM firma inner join opstine on firma.id_opstine = opstine.id_opstine where firma.id_firme='$_GET[id]';")
+            $adresa = $conn->query("SELECT firma.adresa,opstine.ime_opstine FROM firma inner join opstine on firma.id_opstine = opstine.id_opstine where firma.id_firme=$_GET[id];")
               or die($conn->error);
             $podatakAdresa = $adresa->fetch_assoc();
             ?>
-            <p class="lead undertext"><?= $podatakAdresa['adresa'] ?>, <?= $podatakAdresa['ime_opstine'] ?></p>
+            <p class="lead undertext">
+              <?= $podatakAdresa['adresa'] ?>,
+              <?= $podatakAdresa['ime_opstine'] ?>
+            </p>
           </div>
           <div class="ostatak-sekcija mt-3 pb-4">
             <h4><span class="lokacija"></span>
@@ -577,7 +598,9 @@ if (isset($_GET['logout'])) {
                 or die($conn->error);
               while ($podatakUsluga = $usluga->fetch_assoc()) :
               ?>
-                <option value="<?= $podatakUsluga['ime_posla'] ?>"><?= $podatakUsluga['ime_posla'] ?></option>
+                <option value="<?= $podatakUsluga['ime_posla'] ?>">
+                  <?= $podatakUsluga['ime_posla'] ?>
+                </option>
               <?php endwhile; ?>
             </select>
           </div>
@@ -593,7 +616,9 @@ if (isset($_GET['logout'])) {
               $opstine = $conn->query("SELECT ime_opstine FROM opstine")
                 or die($conn->error);
               while ($podatakOpstine = $opstine->fetch_assoc()) : ?>
-                <option value="<?= $podatakOpstine['ime_opstine'] ?>"><?= $podatakOpstine['ime_opstine'] ?></option>
+                <option value="<?= $podatakOpstine['ime_opstine'] ?>">
+                  <?= $podatakOpstine['ime_opstine'] ?>
+                </option>
               <?php endwhile; ?>
             </select>
           </div>
@@ -618,24 +643,25 @@ if (isset($_GET['logout'])) {
             <textarea name="opis" class="opis-tekst  mb-4" id="opis" rows="7" placeholder="Type..."></textarea>
           </div>
           <div class="text-center">
-            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" id="angazuj" onclick="Angazovanje()">ANGAZUJ</button>
-          </div>
-        </div>
-        <div id="verifikacija" data-tab-content>
-          <div class="d-lg-flex justify-content-between flex-wrap">
-            <div class="verifikacija w-100 pb-4 p-4">
-              <div class="ostatak-sekcija mt-3">
-                <h4><span class="zvezdica"></span>
-                  Verifikacija firme
-                </h4>
-                <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
-                <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-              </div>
-            </div>
+            <button type="button" class="prijavi-button btn btn-primary text-white py-2 mt-4 fs-4" onclick="Angazovanje()">ANGAZUJ</button>
           </div>
         </div>
       </div>
     </div>
+    <div id="verifikacija" data-tab-content>
+      <div class="d-lg-flex justify-content-between flex-wrap">
+        <div class="verifikacija w-100 pb-4 p-4">
+          <div class="ostatak-sekcija mt-3">
+            <h4><span class="zvezdica"></span>
+              Verifikacija firme
+            </h4>
+            <p class="lead undertext">Slika koja potvrđuje legitimitet firme</p>
+            <img src="./slike/ver.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <section class="p-5 bg-primary nasMajstor">
     <div class="container">
