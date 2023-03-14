@@ -1006,6 +1006,33 @@ if (isset($_GET['logout'])) {
         }
       });
     });
+    var tip = document.getElementById('tipFilter');
+    if (window.location.search.indexOf('tip=') > -1) {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          let searchParams = new URLSearchParams(window.location.search);
+          let currenttip = searchParams.get('tip');
+          var newtip = event.target.textContent;
+          if (newtip.includes(" ")) {
+            newtip = newtip.replace(/ /g, "-");
+          }
+          searchParams.set('tip', newtip);
+          let newSearchString = searchParams.toString();
+          let currentUrlWithoutSearch = window.location.href.split('?')[0];
+          let newUrl = currentUrlWithoutSearch + '?' + newSearchString;
+          window.location.href = newUrl;
+        }
+      });
+    } else {
+      tip.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI') {
+          var opstina = event.target.textContent;
+          localStorage.setItem('start', window.location.href);
+          url = window.location.href + "&tip=" + opstina;
+          window.location.href = url;
+        }
+      });
+    }
   </script>
 </body>
 

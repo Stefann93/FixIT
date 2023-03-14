@@ -395,8 +395,8 @@ if (isset($_GET['logout'])) {
                 stupite u kontakt sa majstorom i angažujte majstora u vremenskom periodu koji vama odgovara.</span></p>
           </div>
           <div class="input-group trazi pt-4">
-            <input type="text" class="form-control search-bar" placeholder="Pronadji majstora..." />
-            <button class="btn btn-primary btn-lg text-light search-button" type="button">Pretraži</button>
+            <input type="text" class="form-control search-bar" placeholder="Pronadji majstora..." id="search" />
+            <button class="btn btn-primary btn-lg text-light search-button" type="button" onclick="Pretraga()">Pretraži</button>
           </div>
 
           <div class="popular pt-4 d-md-flex align-items-baseline">
@@ -847,6 +847,11 @@ if (isset($_GET['logout'])) {
         }
       });
     });
+
+    function Pretraga() {
+      var rezultat = document.getElementById("search");
+      window.location.href = "posao.php?posao=" + rezultat.value + "&p=1"
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
