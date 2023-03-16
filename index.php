@@ -17,6 +17,11 @@ if (isset($_GET['logout'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS only -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link href="appdata/main.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <!--#region Tekst-->
@@ -24,7 +29,7 @@ if (isset($_GET['logout'])) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <!--#endregion-->
-  <link rel="stylesheet" href="appdata/styleV8.css" />
+  <link rel="stylesheet" href="appdata/styleV9.css" />
   <link rel="shortcut icon" href="slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="./appdata/modal_styleV6.css" />
   <title>FixIT</title>
@@ -521,7 +526,7 @@ if (isset($_GET['logout'])) {
   </section>
   <!--#endregion -->
   <br>
-  <section class="background-section">
+  <section class="background-section pb-5">
     <div class="container text-white pt-5">
       <h1 class="display-font">PROVERENI POUZDANI MAJSTORI</h1>
       <p class="podnaslov">Pronađite pouzdane majstore za sve vaše potrebe na našem sajtu!</p>
@@ -561,16 +566,98 @@ if (isset($_GET['logout'])) {
       </div>
     </div>
   </section>
+
+
+
+
   <!--#region Footer-->
-  <footer class="p-4 bg-dark text-white text-center position-relative">
-    <div class="container">
-      <p class="lead">Copyright &copy; 2022 FixIT</p>
-      <a href="#" class="position-absolute bottom-0 end-0 p-4">
-        <i class="bi bi-arrow-up-circle h1"></i>
-      </a>
-    </div>
-  </footer>
+  <footer class="footer" style="background-color:#212529;">
+<div class="container bottom_border">
+<div class="row">
+<div class=" col-sm-4 col-md col-sm-4  col-12 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Pronađite nas</h5>
+<!--headin5_amrc-->
+<div class="">
+  <img src="./slike/logo/LOGO.png" alt="logo" class="logo-footer">
+</div>
+<p class="mb10">Kompanija "FixIT" je nastala 2022. godine kao projekat Učeničke kompanije Tehničke škole iz
+Mladenovca.</p>
+<p><i class="fa fa-location-arrow"></i>Mladenovac, Vuka Karadžića 75 </p>
+<p><i class="fa fa-phone"></i>  +381/ 11 8230 143 </p>
+<p><i class="fa fa fa-envelope"></i> fixit.rs.contact@gmail.com </p>
+
+
+</div>
+
+<div class=" col-sm-4 col-md  col-6 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Navigacija</h5>
+<!--headin5_amrc-->
+<ul class="footer_ul_amrc">
+<li><a href="index.php">Početna</a></li>
+<li><a href="onama.php">O nama</a></li>
+<li><a href="onama.php">Kontakt</a></li>
+<li><a href="#">Prijavi se</a></li>
+<li><a href="#">Registruj se</a></li>
+
+
+
+
+</ul>
+<!--footer_ul_amrc ends here-->
+</div>
+
+<div class=" col-sm-4 col-md  col-6 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Linkovi</h5>
+<!--headin5_amrc-->
+<ul class="footer_ul_amrc">
+<li><a href="#">Kako Postati Korisnik</a></li>
+<li><a href="#">Registracija Fizickog Lica</a></li>
+<li><a href="#">Registracija Firme</a></li>
+<li><a href="#">Uslovi Korišćenja</a></li>
+<li><a href="#">Pravila O Privatnosti</a></li>
+
+</ul>
+<!--footer_ul_amrc ends here-->
+</div>
+
+
+
+<div class=" col-sm-4 col-md  col-12 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Zapratite nas</h5>
+<!--headin5_amrc ends here-->
+
+<ul class="footer_ul2_amrc">
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Instagram<a href="#">https://www.instagram.com/fixit.in.rs/</a></p></li>
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Facebook<a href="#">https://www.instagram.com/fixit.in.rs/</a></p></li>
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Twitter<a href="#">https://www.instagram.com/fixit.in.rs/</a></p></li>
+</ul> 
+
+<!--footer_ul2_amrc ends here-->
+</div>
+</div>
+</div>
+
+
+<!--foote_bottom_ul_amrc ends here-->
+<p class="text-center pt-4">Copyright @2023 | by <a href="#">FixIT</a></p>
+
+<ul class="social_footer_ul">
+<li><a href="https://www.instagram.com/fixit.in.rs/"><i class="fab fa-facebook-f"></i></a></li>
+<li><a href="https://www.instagram.com/fixit.in.rs/"><i class="fab fa-twitter"></i></a></li>
+<li><a href="https://www.instagram.com/fixit.in.rs/"><i class="fab fa-linkedin"></i></a></li>
+<li><a href="https://www.instagram.com/fixit.in.rs/"><i class="fab fa-instagram"></i></a></li>
+</ul>
+</div>
+<!--social_footer_ul ends here-->
+</div>
+
+</footer>
   <!--#endregion-->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
