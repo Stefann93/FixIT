@@ -24,7 +24,7 @@ if (isset($_GET['logout'])) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./appdata/zanimanjaV9.css" />
+  <link rel="stylesheet" href="./appdata/zanimanjaV11.css" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="shortcut icon" href="./slike/Ikonice/FAVICON2.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -449,7 +449,7 @@ if (isset($_GET['logout'])) {
   <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
   </div>
   <div class="container">
-    <div class="naslov text-uppercase fw-bold mb-3 text-dark" id="ImePosla">
+    <div class="naslov text-uppercase fw-bold mb-3 text-light" id="ImePosla">
       <?= $podatak['naziv_posla'] ?>
     </div>
 
@@ -504,9 +504,9 @@ if (isset($_GET['logout'])) {
                                       } ?>" onclick="Nazad()"><?php echo $_GET['tip'] ?><span class="text-primary">&nbsp;X</span></button>
     </div>
 
-    <div class="as">
+    <div class="as pt-4">
       <table class="tabelaa">
-        <tr class="aa1">
+        <tr class="sort-list">
           <td class="majstor">Izvođač usluga</td>
           <td class="ocena">Ocena</td>
         </tr>
@@ -555,15 +555,15 @@ if (isset($_GET['logout'])) {
 
 
   </div>
-  <section id="instructors" class="p-5 bg-primary">
-    <div class="container">
-      <h1 class="text-center text-white display-font">RECENZIJE MAJSTORA</h1>
-      <p class="lead text-center text-white mb-5">
+  <section id="instructors" class="p-5 bg-light">
+    <div class="container pt-5 pb-4">
+      <h1 class="text-center text-dark display-font">RECENZIJE MAJSTORA</h1>
+      <p class="lead text-center text-dark mb-5">
         Recenzije najbolje ocenjenih majstora
       </p>
       <div class="row g-4 pb-5">
         <div class="col-md-6 col-lg-3">
-          <div class="card bg-light">
+          <div class="card bg-dark text-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3" alt="" />
               <h3 class="card-title mb-3">Marko Nikolić</h3>
@@ -575,7 +575,7 @@ if (isset($_GET['logout'])) {
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
-          <div class="card bg-light">
+          <div class="card bg-dark text-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle mb-3" alt="" />
               <h3 class="card-title mb-3">Milica Simić</h3>
@@ -588,7 +588,7 @@ if (isset($_GET['logout'])) {
         </div>
 
         <div class="col-md-6 col-lg-3">
-          <div class="card bg-light">
+          <div class="card bg-dark text-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" alt="" />
               <h3 class="card-title mb-3">Dejan Pavlović</h3>
@@ -601,7 +601,7 @@ if (isset($_GET['logout'])) {
         </div>
 
         <div class="col-md-6 col-lg-3">
-          <div class="card bg-light">
+          <div class="card bg-dark text-light">
             <div class="card-body text-center">
               <img src="https://randomuser.me/api/portraits/women/12.jpg" class="rounded-circle mb-3" alt="" />
               <h3 class="card-title mb-3">Marina Vasić</h3>

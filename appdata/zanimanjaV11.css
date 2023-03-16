@@ -211,7 +211,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 450px;
+  height: 380px;
 }
 
 .pozadinaBottom {
@@ -277,7 +277,7 @@ a{
 .tabela2 {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 15px;
+  border-spacing: 0 20px;
 }
 
 .tabelaa {
@@ -311,19 +311,20 @@ a{
 }
 
 .aa {
-  background-color: #e5e5e5;
-  color: black;
+  background-color: #64B245;
+  color: white;
   cursor: pointer;
 }
 
-.aa1 {
-  background-color: #212529;
+
+.sort-list {
+  background-color: #6c757d;
 }
 
 .aa:hover {
-  background-color: #64B245;
+  background-color: #73ce4f;
   transition: background-color 0.2s;
-  color: white;
+  
  
 }
 
@@ -333,8 +334,9 @@ a{
 
 .page-link {
   border: none;
-  background-color: #212529;
+  background-color: #6c757d;
   color: white;
+  cursor: pointer;
 }
 
 .page-link:hover {
@@ -511,4 +513,8 @@ svg {
 
 .secondary-font{
   font-family: Montserrat, sans-serif;
+}
+
+body{
+  background: #212529;
 }
