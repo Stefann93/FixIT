@@ -467,52 +467,51 @@ if (isset($_GET['logout'])) {
         <div class="text-center mt-5 pt-2">
           <h1 class="naslov1"><span class="text-primary naslov1">MAJSTORI</span> PO DELATNOSTIMA</h1>
         </div>
-        <a href="delatnosti/gradjevina.php" class="col-6 col-lg-3 ada mt-3">
+        <a href="./delatnost.php?delatnost=gradjevinski-radovi" class="col-6 col-lg-3 ada mt-3">
           <div>
-            <img src="slike/Ikonice/GRADJEVINA.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/GRADJEVINA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Građevina</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/elektrika.php" class="col-6 col-lg-3 ada mt-3">
+        <a href="./delatnost.php?delatnost=elektrika" class="col-6 col-lg-3 ada mt-3">
           <div>
-            <img src="slike/Ikonice/ELEKTRONIKA.svg" alt="" class="img-fluid ikonice " />
+            <img src="./slike/Ikonice/ELEKTRONIKA.svg" alt="" class="img-fluid ikonice " />
             <h5 class="text-dark pt-4"><strong>Elektrika</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/odrzavanje.php" class="col-6 col-lg-3 ada mt-3">
+        <a href="./delatnost.php?delatnost=odrzavanje" class="col-6 col-lg-3 ada mt-3">
           <div>
-            <img src="slike/Ikonice/ODRZAVANJE.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/ODRZAVANJE.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Održavanje</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/cevne-instalacije.php" class="col-6 col-lg-3 ada mt-3 ">
+        <a href="./delatnost.php?delatnost=cevne-instalacije" class="col-6 col-lg-3 ada mt-3 ">
           <div>
-            <img src="slike/Ikonice/CEVNEINSTALACIJE.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/CEVNEINSTALACIJE.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Cevne instalacije</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/obrada-materijala.php" class="col-6 col-lg-3 ada mb-lg-5">
+        <a href="./delatnost.php?delatnost=obrada-materijala" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
-            <img src="slike/Ikonice/OBRADA.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/OBRADA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Obrada materijala</strong> </h5>
           </div>
         </a>
-        <a href="delatnosti/vozila.php" class="col-6 col-lg-3 ada mb-lg-5">
+        <a href="./delatnost.php?delatnost=odrzavanje-vozila" class="col-6 col-lg-3 ada mb-lg-5">
           <div>
-            <img src="slike/Ikonice/VOZILA.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/VOZILA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong> Održavanje vozila</strong></h5>
           </div>
         </a>
-        <a href="delatnosti/garderoba.php" class="col-6 col-lg-3 ada mb-5">
+        <a href="./delatnost.php?delatnost=garderoba-i-nakit" class="col-6 col-lg-3 ada mb-5">
           <div>
-
-            <img src="slike/Ikonice/GARDEROBA.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/GARDEROBA.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong> Garderoba i nakit</strong></h5>
           </div>
         </a>
-        <a href="delatnosti/ostalo.php" class="col-6 col-lg-3 ada mb-5">
+        <a href="./delatnost.php?delatnost=ostalo" class="col-6 col-lg-3 ada mb-5">
           <div>
-            <img src="slike/Ikonice/NEKATEGORIZOVANO.svg" alt="" class="img-fluid ikonice" />
+            <img src="./slike/Ikonice/NEKATEGORIZOVANO.svg" alt="" class="img-fluid ikonice" />
             <h5 class="text-dark pt-4"><strong>Ostalo</strong> </h5>
           </div>
         </a>

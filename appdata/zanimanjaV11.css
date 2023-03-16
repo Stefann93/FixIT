@@ -484,14 +484,14 @@ svg {
   margin: 0px 4px;
   margin-bottom: 10px;
   font-size: 12px;
-  border:1px solid black;
-  color:black;
+  border:1px solid white;
+  color:white;
   font-weight: bold;
   font-family:'Montserrat', sans-serif;
   display: flex;
 }
 .btn-outlined:hover{
-  color: #252525;
+  color: white;
   border:1px solid #64B245;
 }
 

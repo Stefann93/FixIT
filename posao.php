@@ -441,16 +441,15 @@ if (isset($_GET['logout'])) {
   if (isset($_GET['tip']) && $_GET['tip'] === 'Firma')
     $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) INNER JOIN delatnosti ON firma.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
       or die($conn->error);
-  else
-    $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id) INNER JOIN delatnosti ON fizicko_lice.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
-      or die($conn->error);
-  $podatak = $posao->fetch_assoc();
+  $delatnost = $conn->query("SELECT delatnosti.naziv_delatnosti FROM delatnosti INNER JOIN poslovi ON delatnosti.id_delatnosti = poslovi.id_delatnosti WHERE poslovi.naziv_posla = '$_GET[posao]';")
+    or die($conn->error);
+  $delatnostPodatak = $delatnost->fetch_assoc();
   ?>
-  <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $podatak['naziv_delatnosti'] ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
+  <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $delatnostPodatak['naziv_delatnosti'] ?>/<?= strtoupper($_GET['posao']); ?>.jpg');">
   </div>
   <div class="container">
     <div class="naslov text-uppercase fw-bold mb-3 text-light" id="ImePosla">
-      <?= $podatak['naziv_posla'] ?>
+      <?php echo (isset($_GET['posao']) ? $_GET['posao'] : ""); ?>
     </div>
 
 
@@ -495,7 +494,7 @@ if (isset($_GET['logout'])) {
                                                   } else {
                                                     echo 'd-md-flex';
                                                   } ?>">
-      <strong class="popular-text">Filteri:</strong>
+      <strong class="text-white">Filteri:</strong>
       <button class="btn btn-outlined <?php if (!isset($_GET['opstina'])) {
                                         echo 'd-none';
                                       } ?>" onclick="Nazad()"><?php echo $_GET['opstina'] ?><span class="text-primary">&nbsp;X</span></button>
@@ -513,7 +512,10 @@ if (isset($_GET['logout'])) {
       </table>
       <table class="tabela2">
         <?php
-        $limit = ($_GET['p'] - 1) * 7;
+        $page = isset($_GET['p']) ? intval($_GET['p']) : 1;
+
+        $limit = ($page - 1) * 7;
+
         if (isset($_GET['opstina'])) {
           $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime from ((fizicko_lice INNER JOIN opstine on fizicko_lice.id_opstine = opstine.id_opstine) inner join poslovi on fizicko_lice.posao_id = poslovi.posao_id) where opstine.ime_opstine = '$_GET[opstina]' and poslovi.naziv_posla = '$_GET[posao]';")
             or die($conn->error);
@@ -524,35 +526,55 @@ if (isset($_GET['logout'])) {
           $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
             or die($conn->error);
         }
-        while ($podatak = $radnik->fetch_assoc()) : ?>
-          <tr class="aa">
-            <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id']; ?>">
-              <?= $podatak['ime'] ?>
-              <?php if (!isset($_GET['tip']) || $_GET['tip'] !== 'Firma') echo $podatak['prezime'] ?>
+
+        if (mysqli_num_rows($radnik) > 0) {
+          while ($podatak = $radnik->fetch_assoc()) {
+        ?>
+            <tr class="aa">
+              <td onclick="getId(this);" class="majstor2" id="<?= $podatak['id']; ?>">
+                <?= $podatak['ime'] ?>
+                <?php if (!isset($_GET['tip']) || $_GET['tip'] !== 'Firma') echo $podatak['prezime'] ?>
+              </td>
+              <td class="ocena2">10.0</td>
+            </tr>
+          <?php
+          }
+          $result_count = $conn->query("SELECT COUNT(*) as count FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]'");
+          $result = $result_count->fetch_assoc();
+          $total_pages = ceil($result['count'] / 7);
+          ?>
+          <tr>
+            <td colspan="2" class="page">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-md-end justify-content-center">
+                  <?php if ($page > 1) : ?>
+                    <li class="page-item"><a class="page-link" href="?posao=<?= $_GET['posao'] ?>&p=<?= $page - 1 ?>">Prethodni</a></li>
+                  <?php endif; ?>
+                  <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                    <?php if ($i === $page) : ?>
+                      <li class="page-item"><a class="page-link" href="?posao=<?= $_GET['posao'] ?>&p=<?= $i ?>"><?= $i ?></a></li>
+                    <?php else : ?>
+                      <li class="page-item"><a class="page-link" href="?posao=<?= $_GET['posao'] ?>&p=<?= $i ?>"><?= $i ?></a></li>
+                    <?php endif; ?>
+                  <?php endfor; ?>
+                  <?php if ($page < $total_pages) : ?>
+                    <li class="page-item"><a class="page-link" href="?posao=<?= $_GET['posao'] ?>&p=<?= $page + 1 ?>">Sledeci</a></li>
+                  <?php endif; ?>
+                </ul>
+              </nav>
             </td>
-            <td class="ocena2">10.0</td>
           </tr>
-        <?php endwhile; ?>
-        <tr>
-          <td colspan="2" class="page">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-md-end justify-content-center">
-                <li class="page-item"><a class="page-link  fs-5" href="#">Nazad</a></li>
-                <li class="page-item"><a class="page-link fs-5" id="1" onclick="page(this);">1</a>
-                </li>
-                <li class="page-item"><a class="page-link fs-5" id="2" onclick="page(this);">2</a>
-                </li>
-                <li class="page-item"><a class="page-link  fs-5" id="3" onclick="page(this);">3</a>
-                </li>
-                <li class="page-item"><a class="page-link  fs-5" href="./moler-p2.php">Napred</a>
-                </li>
-              </ul>
-            </nav>
-          </td>
-        </tr>
+        <?php
+        } else {
+        ?>
+          <tr>
+            <td colspan="2">Trenutno ne postoji ni jedan izvodjac radova za ovaj posao ili ne odgovara vasim filterima</td>
+          </tr>
+        <?php
+        }
+        ?>
       </table>
     </div>
-
 
   </div>
   <section id="instructors" class="p-5 bg-light">
