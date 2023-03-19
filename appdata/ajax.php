@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$dbusername = "root"; //fixitinr_fixit
-$dbpassword = ""; //9KD!Co9]B+D*
+$dbusername = "fixitinr_fixit"; //fixitinr_fixit
+$dbpassword = "9KD!Co9]B+D*"; //9KD!Co9]B+D*
 $dbname = "fixitinr_fixit"; //fixitinr_fixit
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
 if (isset($_POST['option'])) {

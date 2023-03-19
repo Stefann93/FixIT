@@ -40,8 +40,8 @@ if (isset($_GET['logout'])) {
 <body>
   <?php
   $host = "localhost";
-  $dbusername = "root"; //fixitinr_fixit
-  $dbpassword = ""; //9KD!Co9]B+D*
+  $dbusername = "fixitinr_fixit"; //fixitinr_fixit
+  $dbpassword = "9KD!Co9]B+D*"; //9KD!Co9]B+D*
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
   $vrstaRada = $conn->query("SELECT ime_opstine FROM opstine")

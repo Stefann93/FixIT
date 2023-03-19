@@ -453,6 +453,10 @@ a{
     border-radius: 20px;
     margin-right: 5px;
 }
+.fc-highlight{
+    background-color: orange !important;
+    opacity: 0.1 !important;
+}
 .fc-day-today {
     background-color: #64b245ce !important;
   }
