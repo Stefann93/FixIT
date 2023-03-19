@@ -439,17 +439,27 @@ if (isset($_GET['logout'])) {
   <!--#endregion -->
   <?php
   if (isset($_GET['tip']) && $_GET['tip'] === 'Firma')
-    $posao = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) INNER JOIN delatnosti ON firma.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = '$_GET[posao]';")
+    $posaoFirma = $conn->query("SELECT poslovi.naziv_posla,delatnosti.naziv_delatnosti FROM ((`firma` INNER JOIN poslovi ON firma.posao = poslovi.posao_id) INNER JOIN delatnosti ON firma.id_delatnosti = delatnosti.id_delatnosti) WHERE poslovi.naziv_posla = 'str_replace('-', ' ', strtoupper($_GET[posao]))';")
       or die($conn->error);
-  $delatnost = $conn->query("SELECT delatnosti.naziv_delatnosti FROM delatnosti INNER JOIN poslovi ON delatnosti.id_delatnosti = poslovi.id_delatnosti WHERE poslovi.naziv_posla = '$_GET[posao]';")
+  $posao = str_replace('-', ' ', $_GET['posao']);
+  $delatnost = $conn->query("SELECT delatnosti.naziv_delatnosti FROM delatnosti INNER JOIN poslovi ON delatnosti.id_delatnosti = poslovi.id_delatnosti WHERE poslovi.naziv_posla = '$posao';")
     or die($conn->error);
   $delatnostPodatak = $delatnost->fetch_assoc();
   ?>
-  <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $delatnostPodatak['naziv_delatnosti'] ?>/<?= strtoupper($_GET['posao']); ?>.jpg');">
+  <div class="pozadinaCenter" style="background-image: url('./slike/DelatnostiHighRes/<?= $delatnostPodatak['naziv_delatnosti'] ?>/<?= str_replace('-', ' ', strtoupper($_GET['posao'])); ?>.jpg');">
   </div>
+
   <div class="container">
     <div class="naslov text-uppercase fw-bold mb-3 text-light" id="ImePosla">
-      <?php echo (isset($_GET['posao']) ? $_GET['posao'] : ""); ?>
+      <?php
+      $posao = isset($_GET['posao']) ? $_GET['posao'] : "";
+
+      if (strpos($posao, '-') !== false) {
+        $posao = str_replace('-', ' ', $posao);
+      }
+
+      echo $posao;
+      ?>
     </div>
 
 
@@ -478,7 +488,6 @@ if (isset($_GET['logout'])) {
           Kalendar
         </button>
       </div>
-
       <div class="btn-group">
         <button class="btn filter-dugme btn-secondary btn-sm dropdown-toggle btn-filter ms-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Tip
@@ -516,6 +525,8 @@ if (isset($_GET['logout'])) {
 
         $limit = ($page - 1) * 7;
 
+        $posao = str_replace('-', ' ', $_GET['posao']);
+
         if (isset($_GET['opstina'])) {
           $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime from ((fizicko_lice INNER JOIN opstine on fizicko_lice.id_opstine = opstine.id_opstine) inner join poslovi on fizicko_lice.posao_id = poslovi.posao_id) where opstine.ime_opstine = '$_GET[opstina]' and poslovi.naziv_posla = '$_GET[posao]';")
             or die($conn->error);
@@ -523,7 +534,7 @@ if (isset($_GET['logout'])) {
           $radnik = $conn->query("SELECT id_firme as id,ime_firme as ime from firma INNER JOIN poslovi ON firma.posao = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]'")
             or die($conn->error);
         } else {
-          $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$_GET[posao]' LIMIT $limit,7")
+          $radnik = $conn->query("SELECT id_fizicko as id,ime,prezime FROM `fizicko_lice` INNER JOIN poslovi ON fizicko_lice.posao_id = poslovi.posao_id WHERE poslovi.naziv_posla = '$posao' LIMIT $limit,7")
             or die($conn->error);
         }
 
