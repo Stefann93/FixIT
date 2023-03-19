@@ -461,8 +461,12 @@ if (isset($_GET['logout'])) {
                 <?php $posao = $conn->query("Select naziv_posla from poslovi inner join delatnosti on poslovi.id_delatnosti = delatnosti.id_delatnosti where naziv_delatnosti = '$new_url'")
                     or die($conn->error);
                 while ($podatak = $posao->fetch_assoc()) {
+                    $url = str_replace(' ', '-', $podatak['naziv_posla']);
+                    $url = urlencode($url);
+                    $url = str_replace('%20', '-', $url);
+                    $url = strtolower($url);
                 ?>
-                    <a href="./posao.php?posao=<?= $podatak['naziv_posla']; ?>&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('./slike/Delatnosti/<?= strtoupper($_GET['delatnost']) ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
+                    <a href="./posao.php?posao=<?= $url ?>&p=1" class="col-6 col-lg-3 mx-2 mt-3 slikaPosla" style="background-image: url('./slike/Delatnosti/<?= strtoupper($_GET['delatnost']) ?>/<?= strtoupper($podatak['naziv_posla']); ?>.jpg');">
                         <span><?= $podatak['naziv_posla']; ?></span>
                     </a>
                 <?php } ?>
