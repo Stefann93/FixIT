@@ -39,8 +39,8 @@ if (isset($_GET['logout'])) {
 <body>
   <?php
   $host = "localhost";
-  $dbusername = "root"; //fixitinr_fixit
-  $dbpassword = ""; //9KD!Co9]B+D*
+  $dbusername = "fixitinr_fixit"; //fixitinr_fixit
+  $dbpassword = "9KD!Co9]B+D*"; //9KD!Co9]B+D*
   $dbname = "fixitinr_fixit"; //fixitinr_fixit
   $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
   ?>
@@ -79,42 +79,42 @@ if (isset($_GET['logout'])) {
   </div>
   <!--#endregion-->
 
-   <!--#region Uslovi koriscenja modal-->
-   <div class="modal fade" id="usloviModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable ">
-    <div class="modal-content bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title text-light">Uslovi korišćenja</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body m-4 uslovi-text">
-        <p>Molimo Vas da pažljivo pročitate ove uslove korišćenja pre upotrebe našeg sajta. Korišćenjem našeg sajta, slažete se sa svim ovim uslovima. Ako se ne slažete sa ovim uslovima, molimo Vas da ne koristite naš sajt.<br><br>
+  <!--#region Uslovi koriscenja modal-->
+  <div class="modal fade" id="usloviModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable ">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="modal-title text-light">Uslovi korišćenja</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-4 uslovi-text">
+          <p>Molimo Vas da pažljivo pročitate ove uslove korišćenja pre upotrebe našeg sajta. Korišćenjem našeg sajta, slažete se sa svim ovim uslovima. Ako se ne slažete sa ovim uslovima, molimo Vas da ne koristite naš sajt.<br><br>
 
-Sva autorska prava na ovaj sajt i njegov sadržaj (tekstovi, slike, grafike, logoi, ikone, audio i video zapisi, itd.) pripadaju nama ili našim licenciranim partnerima. Nije dozvoljeno kopiranje, reprodukovanje, distribuiranje, objavljivanje, preuzimanje, prikazivanje ili prenošenje bilo kog dela ovog sajta bez prethodne pisane dozvole.<br><br>
+            Sva autorska prava na ovaj sajt i njegov sadržaj (tekstovi, slike, grafike, logoi, ikone, audio i video zapisi, itd.) pripadaju nama ili našim licenciranim partnerima. Nije dozvoljeno kopiranje, reprodukovanje, distribuiranje, objavljivanje, preuzimanje, prikazivanje ili prenošenje bilo kog dela ovog sajta bez prethodne pisane dozvole.<br><br>
 
-Mi ćemo činiti razumne napore da održimo tačnost i ažurnost informacija na ovom sajtu, ali ne garantujemo da su sve informacije tačne, potpune i ažurne u svakom trenutku. Mi zadržavamo pravo da u bilo koje vreme i bez prethodne najave, izmenimo ili uklonimo sadržaj sa ovog sajta.<br>
+            Mi ćemo činiti razumne napore da održimo tačnost i ažurnost informacija na ovom sajtu, ali ne garantujemo da su sve informacije tačne, potpune i ažurne u svakom trenutku. Mi zadržavamo pravo da u bilo koje vreme i bez prethodne najave, izmenimo ili uklonimo sadržaj sa ovog sajta.<br>
 
-Ovaj sajt može sadržati linkove do drugih sajtova. Mi ne kontrolišemo ove sajtove i ne snosimo odgovornost za njihov sadržaj ili za bilo kakve gubitke ili štete koje mogu nastati kao posledica korišćenja ovih sajtova.<br><br>
+            Ovaj sajt može sadržati linkove do drugih sajtova. Mi ne kontrolišemo ove sajtove i ne snosimo odgovornost za njihov sadržaj ili za bilo kakve gubitke ili štete koje mogu nastati kao posledica korišćenja ovih sajtova.<br><br>
 
-Naš sajt služi kao platforma za povezivanje pružalaca usluga i korisnika njihovih usluga. Mi ne snosimo odgovornost za bilo kakve prevare, nesporazume ili štete koje se mogu desiti između pružaoca usluga i korisnika usluga. Korisnici našeg sajta su odgovorni za provjeru kvaliteta usluga koje pružaju pružaoci usluga, kao i za pregovaranje uslova usluga direktno sa pružaocima usluga.<br>
+            Naš sajt služi kao platforma za povezivanje pružalaca usluga i korisnika njihovih usluga. Mi ne snosimo odgovornost za bilo kakve prevare, nesporazume ili štete koje se mogu desiti između pružaoca usluga i korisnika usluga. Korisnici našeg sajta su odgovorni za provjeru kvaliteta usluga koje pružaju pružaoci usluga, kao i za pregovaranje uslova usluga direktno sa pružaocima usluga.<br>
 
-Sva lična informacija koju prikupljamo od korisnika ovog sajta će biti obrađena u skladu sa našom Politikom privatnosti. Mi ćemo koristiti ove informacije samo u svrhu pružanja usluga na ovom sajtu i nećemo ih deliti sa trećim stranama osim u slučajevima kada je to neophodno za pružanje usluga, kao što je posredovanje u kontaktu između korisnika i pružaoca usluga. Korisnici ovog sajta mogu u bilo kom trenutku zatražiti pristup, izmenu ili brisanje svojih ličnih informacija putem našeg Kontakt obrasca."<br><br>
+            Sva lična informacija koju prikupljamo od korisnika ovog sajta će biti obrađena u skladu sa našom Politikom privatnosti. Mi ćemo koristiti ove informacije samo u svrhu pružanja usluga na ovom sajtu i nećemo ih deliti sa trećim stranama osim u slučajevima kada je to neophodno za pružanje usluga, kao što je posredovanje u kontaktu između korisnika i pružaoca usluga. Korisnici ovog sajta mogu u bilo kom trenutku zatražiti pristup, izmenu ili brisanje svojih ličnih informacija putem našeg Kontakt obrasca."<br><br>
 
-Ova odredba bi trebalo da obezbedi korisnicima da se osećaju sigurno i zaštićeno kada koriste naš sajt i da znaju da se njihove lične informacije obrađuju u skladu sa relevantnim zakonima i pravilima o privatnosti.<br><br>
+            Ova odredba bi trebalo da obezbedi korisnicima da se osećaju sigurno i zaštićeno kada koriste naš sajt i da znaju da se njihove lične informacije obrađuju u skladu sa relevantnim zakonima i pravilima o privatnosti.<br><br>
 
-Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republike Srbije. Svi sporovi koji proisteknu iz ili u vezi sa ovim uslovima korišćenja ili ovog sajta biće rešeni isključivo pred nadležnim sudom u Beogradu, Republika Srbija."<br></p>
-<div class="tacbox" >
-  <input id="checkbox1" type="checkbox"/>
-  <label for="checkbox">Pročitao sam i slažem se sa <span class="green-color-text2">Uslovima korišćenja</span>.</label>
-</div>
-      </div>
-      <div class="modal-footer nextbutton-center">
+            Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republike Srbije. Svi sporovi koji proisteknu iz ili u vezi sa ovim uslovima korišćenja ili ovog sajta biće rešeni isključivo pred nadležnim sudom u Beogradu, Republika Srbija."<br></p>
+          <div class="tacbox">
+            <input id="checkbox1" type="checkbox" />
+            <label for="checkbox">Pročitao sam i slažem se sa <span class="green-color-text2">Uslovima korišćenja</span>.</label>
+          </div>
+        </div>
+        <div class="modal-footer nextbutton-center">
 
-                  <button id="nextbutton" class="btn-custom text-light" data-bs-toggle="modal" data-bs-target="#registerModal" disabled>Sledeće</button>
+          <button id="nextbutton" class="btn-custom text-light" data-bs-toggle="modal" data-bs-target="#registerModal" disabled>Sledeće</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
   <!--#endregion-->
 
 
@@ -1301,16 +1301,15 @@ Korišćenje ovog sajta i ovih uslova korišćenja regulisano je zakonima Republ
     });
 
     const checkbox1 = document.getElementById('checkbox1');
-  const nextbutton = document.getElementById('nextbutton');
+    const nextbutton = document.getElementById('nextbutton');
 
-  checkbox1.addEventListener('change', function() {
-    if (this.checked) {
-      nextbutton.disabled = false;
-    } else {
-      nextbutton.disabled = true;
-    }
-  });
-
+    checkbox1.addEventListener('change', function() {
+      if (this.checked) {
+        nextbutton.disabled = false;
+      } else {
+        nextbutton.disabled = true;
+      }
+    });
   </script>
 </body>
 
